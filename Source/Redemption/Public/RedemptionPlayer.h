@@ -6,24 +6,52 @@
 #include "GameFramework/Character.h"
 #include "RedemptionPlayer.generated.h"
 
+class USpringArmComponent;
+class UCameraComponent;
+class UInputMappingContext;
+class UInputAction;
+struct FInputActionValue;
+
 UCLASS()
 class REDEMPTION_API ARedemptionPlayer : public ACharacter
 {
 	GENERATED_BODY()
 
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	USpringArmComponent* CameraBoom;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	UCameraComponent* FollowCamera;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	UInputMappingContext* DefaultMappingContext;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	UInputAction* JumpAction;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	UInputAction* MoveAction;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	UInputAction* LookAction;
+
 public:
-	// Sets default values for this character's properties
 	ARedemptionPlayer();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	void Move(const FInputActionValue& Value);
+	void Look(const FInputActionValue& Value);
+
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+public:
+	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
+	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
 };
