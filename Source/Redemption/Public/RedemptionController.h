@@ -14,4 +14,15 @@ class REDEMPTION_API ARedemptionController : public AAIController
 {
 	GENERATED_BODY()
 	
+protected:
+	UPROPERTY(EditAnywhere, Category = "Behavior")
+	UBehaviorTree* Tree;
+
+	UPROPERTY(VisibleAnywhere, Category = "Sense")
+	UAIPerceptionComponent* PerceptionComp;
+
+public:
+	ARedemptionController();
+
+	UAIPerceptionComponent* GetPerceptionComponent() { return PerceptionComp; }
 };
