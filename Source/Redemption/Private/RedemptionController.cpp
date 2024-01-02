@@ -28,3 +28,37 @@ ARedemptionController::ARedemptionController()
 	HearingSenseConfig->HearingRange = 500;
 	PerceptionComp->ConfigureSense(*HearingSenseConfig);
 }
+
+void ARedemptionController::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if (Tree)
+	{
+		RunBehaviorTree(Tree);
+	}
+
+	PerceptionComp->OnTargetPerceptionUpdated.AddDynamic(this, &ARedemptionController::UpdateTargetPerception);
+}
+
+void ARedemptionController::UpdateTargetPerception(AActor* Actor, FAIStimulus Stimulus)
+{
+	if (Stimulus.Type == UAISense::GetSenseID(UAISense_Sight::StaticClass()))
+	{
+		UpdateSight(Actor, Stimulus);
+	}
+	else if (Stimulus.Type == UAISense::GetSenseID(UAISense_Hearing::StaticClass()))
+	{
+		UpdateHearing(Stimulus);
+	}
+}
+
+void ARedemptionController::UpdateSight(AActor* Actor, FAIStimulus Stimulus)
+{
+
+}
+
+void ARedemptionController::UpdateHearing(FAIStimulus Stimulus)
+{
+
+}

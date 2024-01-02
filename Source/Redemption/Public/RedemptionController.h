@@ -25,4 +25,13 @@ public:
 	ARedemptionController();
 
 	UAIPerceptionComponent* GetPerceptionComponent() { return PerceptionComp; }
+
+protected:
+	virtual void BeginPlay() override;
+
+	UFUNCTION()
+	void UpdateTargetPerception(AActor* Actor, FAIStimulus Stimulus);
+
+	virtual void UpdateSight(AActor* Actor, FAIStimulus Stimulus);
+	virtual void UpdateHearing(FAIStimulus Stimulus);
 };
