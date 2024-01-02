@@ -2,6 +2,8 @@
 
 
 #include "EnemyCharacter.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "PatrolComponent.h"
 
 // Sets default values
 AEnemyCharacter::AEnemyCharacter()
@@ -9,6 +11,9 @@ AEnemyCharacter::AEnemyCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	PatrolComp = CreateDefaultSubobject<UPatrolComponent>(TEXT("PatrolComponent"));
+
+	GetCharacterMovement()->MaxWalkSpeed = 250;
 }
 
 // Called when the game starts or when spawned

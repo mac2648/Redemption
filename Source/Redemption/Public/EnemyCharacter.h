@@ -6,10 +6,16 @@
 #include "GameFramework/Character.h"
 #include "EnemyCharacter.generated.h"
 
+class UPatrolComponent;
+
 UCLASS()
 class REDEMPTION_API AEnemyCharacter : public ACharacter
 {
 	GENERATED_BODY()
+
+protected:
+	UPROPERTY(VisibleAnywhere)
+	UPatrolComponent* PatrolComp;
 
 public:
 	// Sets default values for this character's properties
@@ -26,4 +32,5 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UPatrolComponent* GetPatrolComponent() { return PatrolComp; }
 };
