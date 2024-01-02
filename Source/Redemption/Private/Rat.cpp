@@ -2,12 +2,9 @@
 
 #include "Rat.h"
 #include "Components/CapsuleComponent.h"
-#include "PatrolComponent.h"
 
 ARat::ARat()
 {
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Temporary mesh"));
 	StaticMesh->SetupAttachment(GetCapsuleComponent());
-
-	PatrolComp = CreateDefaultSubobject<UPatrolComponent>(TEXT("PatrolComponent"));
 }
