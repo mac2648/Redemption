@@ -5,6 +5,8 @@
 #include "Perception/AIPerceptionComponent.h"
 #include "Perception/AISenseConfig_Sight.h"
 #include "Perception/AISenseConfig_Hearing.h"
+#include "BehaviorTree/BlackboardComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 ARedemptionController::ARedemptionController()
 {
@@ -55,7 +57,17 @@ void ARedemptionController::UpdateTargetPerception(AActor* Actor, FAIStimulus St
 
 void ARedemptionController::UpdateSight(AActor* Actor, FAIStimulus Stimulus)
 {
-
+	if (Actor == UGameplayStatics::GetPlayerPawn(GetWorld(), 0))
+	{
+		if (Stimulus.WasSuccessfullySensed())
+		{
+			GetBlackboardComponent()->SetValueAsObject("Player", Actor);
+		}
+		else
+		{
+			GetBlackboardComponent()->ClearValue("Player");
+		}
+	}
 }
 
 void ARedemptionController::UpdateHearing(FAIStimulus Stimulus)
