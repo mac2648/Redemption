@@ -6,9 +6,8 @@
 #include "EnemyCharacter.h"
 #include "Rat.generated.h"
 
-/**
- * 
- */
+class UPatrolComponent;
+
 UCLASS()
 class REDEMPTION_API ARat : public AEnemyCharacter
 {
@@ -19,7 +18,12 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* StaticMesh;
 
+	//change to a parent class if it is decided that other enemies have patrol
+	UPROPERTY(VisibleAnywhere)
+	UPatrolComponent* PatrolComp;
+
 public:
 	ARat();
 	
+	UPatrolComponent* GetPatrolComponent() { return PatrolComp; }
 };
