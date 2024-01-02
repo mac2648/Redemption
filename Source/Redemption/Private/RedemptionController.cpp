@@ -62,6 +62,7 @@ void ARedemptionController::UpdateSight(AActor* Actor, FAIStimulus Stimulus)
 		if (Stimulus.WasSuccessfullySensed())
 		{
 			GetBlackboardComponent()->SetValueAsObject("Player", Actor);
+			GetBlackboardComponent()->ClearValue("LastNoiseLocation");
 		}
 		else
 		{
@@ -72,5 +73,8 @@ void ARedemptionController::UpdateSight(AActor* Actor, FAIStimulus Stimulus)
 
 void ARedemptionController::UpdateHearing(FAIStimulus Stimulus)
 {
-
+	if (Stimulus.WasSuccessfullySensed())
+	{
+		GetBlackboardComponent()->SetValueAsVector("LastNoiseLocation", Stimulus.StimulusLocation);
+	}
 }
