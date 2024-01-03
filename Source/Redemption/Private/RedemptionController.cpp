@@ -66,6 +66,7 @@ void ARedemptionController::UpdateSight(AActor* Actor, FAIStimulus Stimulus)
 		}
 		else
 		{
+			GetBlackboardComponent()->SetValueAsVector("LastSeenLocation", Stimulus.StimulusLocation);
 			GetBlackboardComponent()->ClearValue("Player");
 		}
 	}
