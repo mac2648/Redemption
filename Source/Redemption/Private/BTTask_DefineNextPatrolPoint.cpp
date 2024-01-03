@@ -19,7 +19,7 @@ EBTNodeResult::Type UBTTask_DefineNextPatrolPoint::ExecuteTask(UBehaviorTreeComp
 	{
 		if (UBlackboardComponent* BBComp = OwnerComp.GetBlackboardComponent())
 		{
-			if (SetNextPatrolLocation(PatrolComp->GetPatrolPath(), BBComp))
+			if (SetNextPatrolLocation(PatrolComp, BBComp))
 			{
 				return EBTNodeResult::Succeeded;
 			}
@@ -29,8 +29,10 @@ EBTNodeResult::Type UBTTask_DefineNextPatrolPoint::ExecuteTask(UBehaviorTreeComp
 	return EBTNodeResult::Failed;
 }
 
-bool UBTTask_DefineNextPatrolPoint::SetNextPatrolLocation(const TMap<APatrolPathIndicator*, float>* PatrolPath, UBlackboardComponent* BBComp)
+bool UBTTask_DefineNextPatrolPoint::SetNextPatrolLocation(UPatrolComponent* PatrolComp, UBlackboardComponent* BBComp)
 {
+	const TMap<APatrolPathIndicator*, float>* PatrolPath = PatrolComp->GetPatrolPath();
+
 	TArray<APatrolPathIndicator*> PathIndicators;
 	PatrolPath->GetKeys(PathIndicators);
 
@@ -41,11 +43,19 @@ bool UBTTask_DefineNextPatrolPoint::SetNextPatrolLocation(const TMap<APatrolPath
 
 	int Index = BBComp->GetValueAsInt(PatrolIndex.SelectedKeyName);
 
-	Index++;
+	Index += PatrolComp->GetPatrolDirection();
 
-	if (Index >= PathIndicators.Num())
+	if (Index >= PathIndicators.Num() || Index < 0)
 	{
-		Index = 0;
+		if (PatrolComp->GetPatrolType() == EPatrolType::Loop)
+		{
+			Index = 0;
+		}
+		else
+		{
+			PatrolComp->InverseDirection();
+			Index += PatrolComp->GetPatrolDirection() * 2;
+		}
 	}
 
 	BBComp->SetValueAsVector(PatrolLocation.SelectedKeyName, PathIndicators[Index]->GetActorLocation());

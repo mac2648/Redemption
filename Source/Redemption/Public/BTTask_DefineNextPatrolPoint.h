@@ -6,7 +6,7 @@
 #include "BehaviorTree/BTTaskNode.h"
 #include "BTTask_DefineNextPatrolPoint.generated.h"
 
-class APatrolPathIndicator;
+class UPatrolComponent;
 
 UCLASS()
 class REDEMPTION_API UBTTask_DefineNextPatrolPoint : public UBTTaskNode
@@ -29,5 +29,5 @@ public:
 protected:
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 
-	bool SetNextPatrolLocation(const TMap<APatrolPathIndicator*, float>* PatrolPath, UBlackboardComponent* BBComp);
+	bool SetNextPatrolLocation(UPatrolComponent* PatrolComp, UBlackboardComponent* BBComp);
 };
