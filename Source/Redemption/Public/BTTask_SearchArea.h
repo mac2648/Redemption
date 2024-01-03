@@ -16,7 +16,15 @@ class REDEMPTION_API UBTTask_SearchArea : public UBTTask_BlackboardBase
 	GENERATED_BODY()
 
 protected:
+	//if true will set the key to a random value, if false will set the key to the current index point of patrol
+	UPROPERTY(EditAnywhere)
+	bool IsRandom;
+
+	UPROPERTY(EditAnywhere)
+	FBlackboardKeySelector PatrolIndex;
+
 	AEnemyCharacter* EnemyChar;
+	FTimerHandle TimeHandler;
 	
 public:
 	UBTTask_SearchArea();
@@ -24,6 +32,5 @@ public:
 protected:
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 
-	FTimerHandle TimeHandler;
 	void ResetCharacterRotationRate();
 };
