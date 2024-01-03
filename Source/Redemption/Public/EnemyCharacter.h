@@ -33,4 +33,5 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UPatrolComponent* GetPatrolComponent() { return PatrolComp; }
+	void SetCharaterRotationRateYaw(float RotationRate);
 };
