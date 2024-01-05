@@ -6,10 +6,24 @@
 #include "GameFramework/Pawn.h"
 #include "Crow.generated.h"
 
+class UFloatingPawnMovement;
+class UCapsuleComponent;
+
 UCLASS()
 class REDEMPTION_API ACrow : public APawn
 {
 	GENERATED_BODY()
+
+protected:
+	UPROPERTY(VisibleAnywhere)
+	UCapsuleComponent* CapsuleComp;
+
+	//will later change to a skeletal mesh when asset is ready
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* Mesh;
+
+	UPROPERTY(VisibleAnywhere)
+	UFloatingPawnMovement* MovementComp;
 
 public:
 	// Sets default values for this pawn's properties

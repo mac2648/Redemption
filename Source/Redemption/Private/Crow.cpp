@@ -1,7 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Crow.h"
+#include "GameFramework/FloatingPawnMovement.h"
+#include "Components/CapsuleComponent.h"
+
 
 // Sets default values
 ACrow::ACrow()
@@ -9,6 +11,13 @@ ACrow::ACrow()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	CapsuleComp = CreateDefaultSubobject<UCapsuleComponent>(TEXT("capsule component"));
+	SetRootComponent(CapsuleComp);
+
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+	Mesh->SetupAttachment(CapsuleComp);
+
+	MovementComp = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("Movement Component"));
 }
 
 // Called when the game starts or when spawned
