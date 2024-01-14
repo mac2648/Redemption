@@ -37,3 +37,7 @@ void AEnemyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 }
 
+void AEnemyCharacter::SetCharaterRotationRateYaw(float RotationRate)
+{
+	GetCharacterMovement()->RotationRate.Yaw = RotationRate;
+}
