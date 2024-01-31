@@ -11,6 +11,7 @@ class UCameraComponent;
 class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
+class UPowerUpComponent;
 
 UCLASS()
 class REDEMPTION_API ARedemptionPlayer : public ACharacter
@@ -23,6 +24,9 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* FollowCamera;
+
+	UPROPERTY(EditDefaultsOnly)
+	UPowerUpComponent* PowerUpComp;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputMappingContext* DefaultMappingContext;
