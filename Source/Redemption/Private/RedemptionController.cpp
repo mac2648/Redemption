@@ -12,7 +12,7 @@ ARedemptionController::ARedemptionController()
 {
 	PerceptionComp = CreateDefaultSubobject<UAIPerceptionComponent>(TEXT("AiPercption"));
 
-	UAISenseConfig_Sight* SightSenseConfig = CreateDefaultSubobject<UAISenseConfig_Sight>(TEXT("SightSense"));
+	SightSenseConfig = CreateDefaultSubobject<UAISenseConfig_Sight>(TEXT("SightSense"));
 
 	SightSenseConfig->DetectionByAffiliation.bDetectEnemies = true;
 	SightSenseConfig->DetectionByAffiliation.bDetectFriendlies = true;

@@ -6,6 +6,7 @@
 #include "AIController.h"
 #include "RedemptionController.generated.h"
 
+class UAISenseConfig_Sight;
 /**
  * 
  */
@@ -20,6 +21,9 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, Category = "Sense")
 	UAIPerceptionComponent* PerceptionComp;
+
+	UPROPERTY(VisibleAnywhere, Category = "Sense")
+	UAISenseConfig_Sight* SightSenseConfig;
 
 public:
 	ARedemptionController();
