@@ -38,7 +38,20 @@ void UPowerUpComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 
 void UPowerUpComponent::UsePowerUp(const FInputActionValue& Value)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Using Power"))
+	UE_LOG(LogTemp, Warning, TEXT("Using Power"));
+	
+	if (CurrentPowerUp == EActivePowerUp::BoneThrow)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("BONE!!!!!!"))
+	}
+	else if (CurrentPowerUp == EActivePowerUp::Hover)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("HOVER!!!!!!"))
+	}
+	else if (CurrentPowerUp == EActivePowerUp::Parry)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("PARRY!!!!!!"))
+	}
 }
 
 void UPowerUpComponent::ChangeMappingContext()
@@ -64,4 +77,10 @@ void UPowerUpComponent::ChangeMappingContext()
 			Subsystem->AddMappingContext(ParryMappingContext, 0);
 		}
 	}
+}
+
+void UPowerUpComponent::ChangeActivePowerUp(EActivePowerUp NewPower)
+{
+	CurrentPowerUp = NewPower;
+	ChangeMappingContext();
 }

@@ -10,12 +10,13 @@ class UInputAction;
 class UInputMappingContext;
 struct FInputActionValue;
 
+UENUM(BlueprintType)
 enum EActivePowerUp
 {
-	None,
-	BoneThrow,
-	Parry,
-	Hover
+	None UMETA(DisplayName = "None"),
+	BoneThrow UMETA(DisplayName = "Bone Throw"),
+	Parry UMETA(DisplayName = "Parry"),
+	Hover UMETA(DisplayName = "Hover")
 };
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -49,6 +50,9 @@ public:
 	EActivePowerUp GetActivePowerUp() const { return CurrentPowerUp; }
 
 	UInputAction* GetUsePowerAction() const { return UsePowerUpAction; }
+
+	UFUNCTION(BlueprintCallable)
+	void ChangeActivePowerUp(EActivePowerUp NewPower);
 
 protected:
 	// Called when the game starts
