@@ -1,7 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "PowerUpComponent.h"
+#include "InputActionValue.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
+
+#define GET_PLAYER_CONTROLLER Cast<APlayerController>(Cast<APawn>(GetOwner())->GetController())
+#define GET_ENHANCED_INPUT_LOCAL_PLAYER_SUBSYSTEM ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GET_PLAYER_CONTROLLER->GetLocalPlayer())
 
 // Sets default values for this component's properties
 UPowerUpComponent::UPowerUpComponent()
@@ -18,9 +23,8 @@ UPowerUpComponent::UPowerUpComponent()
 void UPowerUpComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
-	// ...
 	
+	ChangeMappingContext();
 }
 
 
@@ -32,3 +36,51 @@ void UPowerUpComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	// ...
 }
 
+void UPowerUpComponent::UsePowerUp(const FInputActionValue& Value)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Using Power"));
+	
+	if (CurrentPowerUp == EActivePowerUp::BoneThrow)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("BONE!!!!!!"))
+	}
+	else if (CurrentPowerUp == EActivePowerUp::Hover)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("HOVER!!!!!!"))
+	}
+	else if (CurrentPowerUp == EActivePowerUp::Parry)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("PARRY!!!!!!"))
+	}
+}
+
+void UPowerUpComponent::ChangeMappingContext()
+{
+	if (UEnhancedInputLocalPlayerSubsystem* Subsystem = GET_ENHANCED_INPUT_LOCAL_PLAYER_SUBSYSTEM)
+	{
+		Subsystem->RemoveMappingContext(BoneMappingContext);
+		Subsystem->RemoveMappingContext(HoverMappingContext);
+		Subsystem->RemoveMappingContext(ParryMappingContext);
+
+		if (CurrentPowerUp == EActivePowerUp::BoneThrow)
+		{
+			Subsystem->AddMappingContext(BoneMappingContext, 0);
+		}
+
+		if (CurrentPowerUp == EActivePowerUp::Hover)
+		{
+			Subsystem->AddMappingContext(HoverMappingContext, 0);
+		}
+
+		if (CurrentPowerUp == EActivePowerUp::Parry)
+		{
+			Subsystem->AddMappingContext(ParryMappingContext, 0);
+		}
+	}
+}
+
+void UPowerUpComponent::ChangeActivePowerUp(EActivePowerUp NewPower)
+{
+	CurrentPowerUp = NewPower;
+	ChangeMappingContext();
+}

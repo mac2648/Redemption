@@ -10,6 +10,9 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "Perception/AISenseConfig_Hearing.h"
+#include "PowerUpComponent.h"
+
+#define POWER_UP_ACTION PowerUpComp->GetUsePowerAction()
 
 ARedemptionPlayer::ARedemptionPlayer()
 {
@@ -39,6 +42,8 @@ ARedemptionPlayer::ARedemptionPlayer()
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false; 
+
+	PowerUpComp = CreateDefaultSubobject<UPowerUpComponent>(TEXT("PowerUpComp"));
 }
 
 void ARedemptionPlayer::BeginPlay()
@@ -75,6 +80,8 @@ void ARedemptionPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ARedemptionPlayer::Move);
 
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ARedemptionPlayer::Look);
+
+		EnhancedInputComponent->BindAction(POWER_UP_ACTION, ETriggerEvent::Triggered, PowerUpComp, &UPowerUpComponent::UsePowerUp);
 	}
 }
 
