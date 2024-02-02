@@ -28,7 +28,7 @@ void AGargoyleController::BeginPlay()
 
 	if (AGargoyle* Gargoyle = GET_GARGOYLE)
 	{
-
+		SetStadingIndex(Gargoyle);
 	}
 }
 
