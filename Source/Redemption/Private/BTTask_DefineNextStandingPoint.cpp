@@ -51,6 +51,7 @@ EBTNodeResult::Type UBTTask_DefineNextStandingPoint::ExecuteTask(UBehaviorTreeCo
 	}
 
 	OwnerComp.GetBlackboardComponent()->SetValueAsInt(StandingIndex.SelectedKeyName, Gargoyle->GetStandingIndex(ClosestPoint));
+	OwnerComp.GetBlackboardComponent()->SetValueAsVector(NextPosition.SelectedKeyName, ClosestPoint->GetActorLocation());
 
 	return EBTNodeResult::Succeeded;
 }

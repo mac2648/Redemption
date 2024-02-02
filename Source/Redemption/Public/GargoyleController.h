@@ -6,6 +6,7 @@
 #include "RedemptionController.h"
 #include "GargoyleController.generated.h"
 
+class AGargoyle;
 /**
  * 
  */
@@ -17,4 +18,8 @@ class REDEMPTION_API AGargoyleController : public ARedemptionController
 public:
 	AGargoyleController();
 	
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+	void SetStadingIndex(AGargoyle* Gargoyle);
 };

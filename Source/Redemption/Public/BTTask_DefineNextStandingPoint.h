@@ -22,6 +22,9 @@ class REDEMPTION_API UBTTask_DefineNextStandingPoint : public UBTTaskNode
 	UPROPERTY(EditAnywhere)
 	FBlackboardKeySelector StandingIndex;
 
+	UPROPERTY(EditAnywhere)
+	FBlackboardKeySelector NextPosition;
+
 public:
 	UBTTask_DefineNextStandingPoint();
 
