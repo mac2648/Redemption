@@ -25,7 +25,7 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	UCapsuleComponent* CapsuleComp;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, category = "Patrol")
 	TArray<APatrolPathIndicator*> StandingPoints;
 
 public:
@@ -42,6 +42,7 @@ public:
 	APatrolPathIndicator* GetStadingPoint(int Index) const { return StandingPoints[Index]; }
 	//returns -1 if the point is not part of the array
 	int GetStandingIndex(APatrolPathIndicator* Point) const;
+	TArray<APatrolPathIndicator*> GetStandingPoints() const { return StandingPoints; }
 
 protected:
 	// Called when the game starts or when spawned
