@@ -28,11 +28,11 @@ void AGargoyleController::BeginPlay()
 
 	if (AGargoyle* Gargoyle = GET_GARGOYLE)
 	{
-		SetStadingIndex(Gargoyle);
+		SetStandingIndex(Gargoyle);
 	}
 }
 
-void AGargoyleController::SetStadingIndex(AGargoyle* Gargoyle)
+void AGargoyleController::SetStandingIndex(AGargoyle* Gargoyle)
 {
 	TArray<APatrolPathIndicator*> StadingPoints = Gargoyle->GetStandingPoints();
 	float ClosestDistance = 10000000;

@@ -21,5 +21,5 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	void SetStadingIndex(AGargoyle* Gargoyle);
+	void SetStandingIndex(AGargoyle* Gargoyle);
 };
