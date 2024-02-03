@@ -8,6 +8,7 @@
 
 class UFloatingPawnMovement;
 class UCapsuleComponent;
+class APatrolPathIndicator;
 
 UCLASS()
 class REDEMPTION_API AGargoyle : public APawn
@@ -24,6 +25,9 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	UCapsuleComponent* CapsuleComp;
 
+	UPROPERTY(EditAnywhere, category = "Patrol")
+	TArray<APatrolPathIndicator*> StandingPoints;
+
 public:
 	// Sets default values for this pawn's properties
 	AGargoyle();
@@ -35,6 +39,10 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UFloatingPawnMovement* GetFloatMovementComp() const { return FloatMovementComp; }
+	APatrolPathIndicator* GetStadingPoint(int Index) const { return StandingPoints[Index]; }
+	//returns -1 if the point is not part of the array
+	int GetStandingIndex(APatrolPathIndicator* Point) const;
+	TArray<APatrolPathIndicator*> GetStandingPoints() const { return StandingPoints; }
 
 protected:
 	// Called when the game starts or when spawned

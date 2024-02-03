@@ -40,3 +40,15 @@ void AGargoyle::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 }
 
+int AGargoyle::GetStandingIndex(APatrolPathIndicator* Point) const
+{
+	for (int i = 0; i < StandingPoints.Num(); i++)
+	{
+		if (StandingPoints[i] == Point)
+		{
+			return i;
+		}
+	}
+
+	return -1;
+}
