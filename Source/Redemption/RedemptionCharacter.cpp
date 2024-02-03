@@ -10,14 +10,19 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "AudioManager.h"
+#include <Kismet/GameplayStatics.h>
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
 //////////////////////////////////////////////////////////////////////////
 // ARedemptionCharacter
 
+
+
 ARedemptionCharacter::ARedemptionCharacter()
 {
+	
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 		
@@ -52,6 +57,8 @@ ARedemptionCharacter::ARedemptionCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+
+	MyAudioManager = nullptr;
 }
 
 void ARedemptionCharacter::BeginPlay()
@@ -66,6 +73,14 @@ void ARedemptionCharacter::BeginPlay()
 		{
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
+	}
+	// Find the AudioManager in the level
+	MyAudioManager = Cast<AudioManager>(UGameplayStatics::GetActorOfClass(GetWorld(), AudioManager::StaticClass()));
+
+	if (MyAudioManager)
+	{
+		// Start playing ambient music
+		MyAudioManager->PlayAmbientMusic();
 	}
 }
 
