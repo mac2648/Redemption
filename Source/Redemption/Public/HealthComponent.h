@@ -4,7 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Math/Vector.h"
 #include "HealthComponent.generated.h"
+
+
+namespace defs
+{
+	FVector const HealthBarZ{ 0.f, 0.f, 95.f };
+}
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )

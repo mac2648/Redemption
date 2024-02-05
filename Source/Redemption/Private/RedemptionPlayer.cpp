@@ -11,12 +11,30 @@
 #include "InputActionValue.h"
 #include "Perception/AISenseConfig_Hearing.h"
 #include "PowerUpComponent.h"
+#include "Components/WidgetComponent.h"
+#include "HealthComponent.h"
+#include "HealthBarWidget.h"
 
 #define POWER_UP_ACTION PowerUpComp->GetUsePowerAction()
 
-ARedemptionPlayer::ARedemptionPlayer()
+ARedemptionPlayer::ARedemptionPlayer() :
+	WidgetComponent{CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthValue"))},
+	Health{MaxHealth}
 {
 	PrimaryActorTick.bCanEverTick = true;
+
+	if (WidgetComponent)
+	{
+		WidgetComponent->SetupAttachment(RootComponent);
+		WidgetComponent->SetWidgetSpace(EWidgetSpace::Screen);
+		WidgetComponent->SetRelativeLocation(defs::HealthBarZ);
+		static ConstructorHelpers::FClassFinder<UUserWidget> WidgetClass{ TEXT("/Game/UI/BP_HealthBar") };
+		if (WidgetClass.Succeeded())
+		{
+			WidgetComponent->SetWidgetClass((WidgetClass.Class));
+		}
+
+	}
 
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 
@@ -63,6 +81,10 @@ void ARedemptionPlayer::BeginPlay()
 void ARedemptionPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (auto const widget = Cast<UHealthBarWidget>(WidgetComponent->GetUserWidgetObject()))
+	{
+		widget->SetBarValuePercent(Health / MaxHealth);
+	}
 
 }
 
@@ -121,4 +143,19 @@ void ARedemptionPlayer::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+float ARedemptionPlayer::GetHealth() const
+{
+	return Health;
+}
+
+float ARedemptionPlayer::GetMaxHealth() const
+{
+	return MaxHealth;
+}
+
+void ARedemptionPlayer::SetHealth(float const NewHealth)
+{
+	Health = NewHealth;
 }
