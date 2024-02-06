@@ -10,25 +10,6 @@ UCLASS()
 class REDEMPTION_API AudioManager : public AActor
 {
     GENERATED_BODY()
-
-public:
-    // Sets default values for this actor's properties
-    AudioManager();
-
-protected:
-    // Called when the game starts or when spawned
-    virtual void BeginPlay() override;
-
-public:
-    // Function to play a sound at a location
-    void PlaySoundEffectAtLocation(USoundCue* SoundCue, FVector Location, float VolumeMultiplier = 1.f, float PitchMultiplier = 1.f);
-
-    // Function to play ambient music
-    void PlayAmbientMusic();
-
-    // Function to play combat music
-    void PlayCombatMusic();
-
 private:
     // Audio component to play music
     UPROPERTY(VisibleAnywhere, Category = "Audio")
@@ -41,4 +22,41 @@ private:
     // SoundCue for combat music
     UPROPERTY(EditAnywhere, Category = "Audio")
     USoundCue* CombatMusicCue;
+
+    // Audio component for a radom looping ambient sound
+    UPROPERTY(VisibleAnywhere, Category = "Audio")
+    UAudioComponent* LoopingAmbientSoundComponent;
+
+    // Array of sound cues for random ambient sounds
+    UPROPERTY(EditAnywhere, Category = "Audio")
+    TArray<USoundCue*> RandomAmbientSoundCues;
+
+    // Timer handle for playing random ambient sounds
+    FTimerHandle RandomSoundTimerHandle;
+public:
+    // Sets default values for this actor's properties
+    AudioManager();
+
+protected:
+    // Called when the game starts or when spawned
+    virtual void BeginPlay() override;
+    // Function to play a random ambient sound
+    UFUNCTION()
+    void PlayRandomAmbientSound();
+
+    // Function to start playing looping ambient sound
+    void StartLoopingAmbientSound();
+public:
+    // Function to play a sound at a location
+    void PlaySoundEffectAtLocation(USoundCue* SoundCue, FVector Location, float VolumeMultiplier = 1.f, float PitchMultiplier = 1.f);
+
+    // Function to play ambient music
+    void PlayAmbientMusic();
+
+    // Function to play combat music
+    void PlayCombatMusic();
+
+    // Function to start random ambient sounds playing
+    void StartRandomAmbientSounds();
+
 };
