@@ -17,13 +17,12 @@
 
 #define POWER_UP_ACTION PowerUpComp->GetUsePowerAction()
 
-ARedemptionPlayer::ARedemptionPlayer() :
-	WidgetComponent{CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthValue"))},
-	Health{MaxHealth}
+ARedemptionPlayer::ARedemptionPlayer()
 {
+	HealthComp = CreateDefaultSubobject<UHealthComponent>(TEXT("Health Comp"));
 	PrimaryActorTick.bCanEverTick = true;
 
-	if (WidgetComponent)
+	if (UWidgetComponent* WidgetComponent = HealthComp->GetWidgetComp())
 	{
 		WidgetComponent->SetupAttachment(RootComponent);
 		WidgetComponent->SetWidgetSpace(EWidgetSpace::Screen);
@@ -81,11 +80,6 @@ void ARedemptionPlayer::BeginPlay()
 void ARedemptionPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (auto const widget = Cast<UHealthBarWidget>(WidgetComponent->GetUserWidgetObject()))
-	{
-		widget->SetBarValuePercent(Health / MaxHealth);
-	}
-
 }
 
 // Called to bind functionality to input
@@ -145,17 +139,23 @@ void ARedemptionPlayer::Look(const FInputActionValue& Value)
 	}
 }
 
-float ARedemptionPlayer::GetHealth() const
-{
-	return Health;
-}
-
-float ARedemptionPlayer::GetMaxHealth() const
-{
-	return MaxHealth;
-}
-
-void ARedemptionPlayer::SetHealth(float const NewHealth)
-{
-	Health = NewHealth;
-}
+//float ARedemptionPlayer::GetHealth() const
+//{
+//	return Health;
+//}
+//
+//float ARedemptionPlayer::GetMaxHealth() const
+//{
+//	return MaxHealth;
+//}
+//
+//void ARedemptionPlayer::SetHealth(float const NewHealth)
+//{
+//	Health = NewHealth;
+//}
+//
+//void ARedemptionPlayer::TakeDamage()
+//{
+//	int NewHealth = GetHealth() * 0.5;
+//	SetHealth(NewHealth);
+//}

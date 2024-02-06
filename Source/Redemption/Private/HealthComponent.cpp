@@ -2,9 +2,13 @@
 
 
 #include "HealthComponent.h"
+#include "Components/WidgetComponent.h"
+#include "GameFramework/Controller.h"
 
 // Sets default values for this component's properties
-UHealthComponent::UHealthComponent()
+UHealthComponent::UHealthComponent() :
+WidgetComponent{ CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthValue")) },
+Health{ MaxHealth }
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
@@ -19,8 +23,7 @@ void UHealthComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
-	
+	GetOwner()->OnTakeAnyDamage.AddDynamic(this, &UHealthComponent::TakeDamage);
 }
 
 
@@ -29,6 +32,32 @@ void UHealthComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	if (UHealthBarWidget* const widget = Cast<UHealthBarWidget>(WidgetComponent->GetUserWidgetObject()))
+	{
+		widget->SetBarValuePercent(Health / MaxHealth);
+	}
 }
 
+float UHealthComponent::GetHealth() const
+{
+	return Health;
+}
+
+float UHealthComponent::GetMaxHealth() const
+{
+	return MaxHealth;
+}
+
+void UHealthComponent::SetHealth(float const NewHealth)
+{
+	Health = NewHealth;
+}
+
+void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
+{
+	Health -= Damage;
+	if (Health <= 0)
+	{
+		//TO DO : DIE
+	}
+}

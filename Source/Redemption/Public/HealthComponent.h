@@ -5,8 +5,10 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Math/Vector.h"
+#include "HealthBarWidget.h"
 #include "HealthComponent.generated.h"
 
+class UWidgetComponent;
 
 namespace defs
 {
@@ -19,8 +21,23 @@ class REDEMPTION_API UHealthComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
+private:
+	class UWidgetComponent* WidgetComponent;
+	float const MaxHealth{ 100.f };
+	float Health;
+
 public:	
 	// Sets default values for this component's properties
+
+	float GetHealth() const;
+	float GetMaxHealth() const;
+	void SetHealth(float const NewHealth);
+
+	UFUNCTION()
+	void TakeDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+
+	UWidgetComponent* GetWidgetComp() { return WidgetComponent; }
+
 	UHealthComponent();
 
 protected:
@@ -30,6 +47,5 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
 		
 };
