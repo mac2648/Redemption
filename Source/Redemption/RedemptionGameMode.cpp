@@ -5,21 +5,62 @@
 #include "UObject/ConstructorHelpers.h"
 #include "AudioManager.h" 
 #include "Kismet/GameplayStatics.h" 
+#include "EnemyCharacter.h"
+#include "AIController.h"
+#include "BehaviorTree/BlackboardComponent.h"
 
 ARedemptionGameMode::ARedemptionGameMode()
 {
 	// set default pawn class to our Blueprinted character
+    PrimaryActorTick.bCanEverTick = true;
 	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/ThirdPerson/Blueprints/BP_ThirdPersonCharacter"));
 	if (PlayerPawnBPClass.Class != NULL)
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
+
+
+}
+
+void ARedemptionGameMode::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+    bool Safe = true;
+    for (AEnemyCharacter* Curr : Enemies)
+    {
+        
+        AAIController* Enem = Cast<AAIController>(Curr->GetController());
+        UObject* ptr = Enem->GetBlackboardComponent()->GetValueAsObject("Player");
+        if (ptr != nullptr)
+        {
+            Safe = false;
+            break;
+        }
+    }
+
+    if (Safe && !SafeMusic)
+    {
+        HandleGameStateChange(EGameState::Safe);
+        SafeMusic = true;
+    }
+    else if (!Safe && SafeMusic)
+    {
+        HandleGameStateChange(EGameState::InCombat);
+        SafeMusic = false;
+    }
 }
 
 void ARedemptionGameMode::BeginPlay()
 {
     Super::BeginPlay();
-    MyAudioManager = Cast<AudioManager>(UGameplayStatics::GetActorOfClass(GetWorld(), AudioManager::StaticClass()));
+    MyAudioManager = Cast<AAudioManager>(UGameplayStatics::GetActorOfClass(GetWorld(), AAudioManager::StaticClass()));
+    TArray<AActor*> EnemiesActors;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemyCharacter::StaticClass(), EnemiesActors);
+
+    for (AActor* Current : EnemiesActors)
+    {
+        Enemies.Push(Cast<AEnemyCharacter>(Current));
+    }
 
     if (MyAudioManager)
     {

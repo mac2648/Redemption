@@ -4,8 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "AudioManager.h"
 #include "RedemptionGameMode.generated.h"
+
+class AAudioManager;
 
 UCLASS(minimalapi)
 class ARedemptionGameMode : public AGameModeBase
@@ -13,11 +14,13 @@ class ARedemptionGameMode : public AGameModeBase
 	GENERATED_BODY()
 
 private:
-	AudioManager* MyAudioManager;
+	AAudioManager* MyAudioManager;
+	bool SafeMusic = true;
 
 public:
-
+	TArray<class AEnemyCharacter*> Enemies;
 	ARedemptionGameMode();
+	virtual void Tick(float DeltaTime) override;
 	virtual void BeginPlay();
 	enum class EGameState
 	{

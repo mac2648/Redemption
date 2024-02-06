@@ -1,12 +1,15 @@
 #include "AudioManager.h"
 #include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
+#include "Components/AudioComponent.h"
+
 
 // Constants for random sound intervals, this is in seconds
 const float MinRandomSoundInterval = 3.0f; 
 const float MaxRandomSoundInterval = 15.0f; 
 
 // Sets default values
-AudioManager::AudioManager()
+AAudioManager::AAudioManager()
 {
     // Set this actor to not call Tick() every frame. You can turn this on if you need it.
     PrimaryActorTick.bCanEverTick = false;
@@ -21,7 +24,7 @@ AudioManager::AudioManager()
 }
 
 // Called when the game starts or when spawned
-void AudioManager::BeginPlay()
+void AAudioManager::BeginPlay()
 {
     Super::BeginPlay();
 
@@ -38,28 +41,29 @@ void AudioManager::BeginPlay()
     StartRandomAmbientSounds();
 }
 
-void AudioManager::PlayRandomAmbientSound()
+void AAudioManager::PlayRandomAmbientSound()
 {
     int32 RandomIndex = FMath::RandRange(0, RandomAmbientSoundCues.Num() - 1);
     UGameplayStatics::PlaySoundAtLocation(this, RandomAmbientSoundCues[RandomIndex], GetActorLocation());
 
     // Reset the timer with a new random interval
     float RandomInterval = FMath::RandRange(MinRandomSoundInterval, MaxRandomSoundInterval);
-    GetWorld()->GetTimerManager().SetTimer(RandomSoundTimerHandle, this, &AudioManager::PlayRandomAmbientSound, RandomInterval, false);
+    GetWorld()->GetTimerManager().SetTimer(RandomSoundTimerHandle, this, &AAudioManager::PlayRandomAmbientSound, RandomInterval, false);
 }
 
-void AudioManager::StartRandomAmbientSounds()
+void AAudioManager::StartRandomAmbientSounds()
 {
+
     // Ensure there's at least one sound cue to play
     if (RandomAmbientSoundCues.Num() > 0)
     {
         // Start a looping timer that calls PlayRandomAmbientSound at random intervals
         float RandomInterval = FMath::RandRange(MinRandomSoundInterval, MaxRandomSoundInterval);
-        GetWorld()->GetTimerManager().SetTimer(RandomSoundTimerHandle, this, &AudioManager::PlayRandomAmbientSound, RandomInterval, false);
+        GetWorld()->GetTimerManager().SetTimer(RandomSoundTimerHandle, this, &AAudioManager::PlayRandomAmbientSound, RandomInterval, false);
     }
 }
 // Implementation to start playing ambient music
-void AudioManager::PlayAmbientMusic()
+void AAudioManager::PlayAmbientMusic()
 {
     if (AmbientMusicCue != nullptr)
     {
@@ -69,7 +73,7 @@ void AudioManager::PlayAmbientMusic()
 }
 
 // Implementation to switch to combat music
-void AudioManager::PlayCombatMusic()
+void AAudioManager::PlayCombatMusic()
 {
     if (CombatMusicCue != nullptr)
     {

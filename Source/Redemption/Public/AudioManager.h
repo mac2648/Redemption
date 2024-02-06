@@ -2,18 +2,19 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Sound/SoundCue.h"
-#include "Components/AudioComponent.h"
 #include "AudioManager.generated.h"
 
+class UAudioComponent;
+class USoundCue;
 UCLASS()
-class REDEMPTION_API AudioManager : public AActor
+class REDEMPTION_API AAudioManager : public AActor
 {
     GENERATED_BODY()
 private:
     // Audio component to play music
     UPROPERTY(VisibleAnywhere, Category = "Audio")
     UAudioComponent* MusicComponent;
+
 
     // SoundCue for ambient music
     UPROPERTY(EditAnywhere, Category = "Audio")
@@ -30,12 +31,14 @@ private:
     // Array of sound cues for random ambient sounds
     UPROPERTY(EditAnywhere, Category = "Audio")
     TArray<USoundCue*> RandomAmbientSoundCues;
+    UPROPERTY(EditAnywhere, Category = "Audio")
+    TArray<class APatrolPathIndicator*> RandCueLocations;
 
     // Timer handle for playing random ambient sounds
     FTimerHandle RandomSoundTimerHandle;
 public:
     // Sets default values for this actor's properties
-    AudioManager();
+    AAudioManager();
 
 protected:
     // Called when the game starts or when spawned
