@@ -10,12 +10,14 @@ ABone::ABone()
 	PrimaryActorTick.bCanEverTick = true;
 
 	BoxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("Box Collider"));
-	SetRootComponent(BoxComp);
 
 	BoxComp->OnComponentBeginOverlap.AddDynamic(this, &ABone::OnBoneBeginOverlap);
 
 	BoneMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Bone Mesh"));
-	BoneMesh->SetupAttachment(BoxComp);
+	BoxComp->SetupAttachment(BoneMesh);
+
+	SetRootComponent(BoneMesh);
+	//changed the root component
 }
 
 // Called when the game starts or when spawned
