@@ -44,6 +44,9 @@ protected:
 
 	UHealthComponent* HealthComp;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	UInputAction* CrouchAction;
+
 public:
 	ARedemptionPlayer();
 

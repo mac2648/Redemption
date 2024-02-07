@@ -4,9 +4,13 @@
 #include "InputActionValue.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Bone.h"
+#include "GameFramework/Character.h"
 
 #define GET_PLAYER_CONTROLLER Cast<APlayerController>(Cast<APawn>(GetOwner())->GetController())
 #define GET_ENHANCED_INPUT_LOCAL_PLAYER_SUBSYSTEM ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GET_PLAYER_CONTROLLER->GetLocalPlayer())
+
+const int BONE_SPEED = 5000;
 
 // Sets default values for this component's properties
 UPowerUpComponent::UPowerUpComponent()
@@ -23,7 +27,7 @@ UPowerUpComponent::UPowerUpComponent()
 void UPowerUpComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	ChangeMappingContext();
 }
 
@@ -42,7 +46,7 @@ void UPowerUpComponent::UsePowerUp(const FInputActionValue& Value)
 	
 	if (CurrentPowerUp == EActivePowerUp::BoneThrow)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("BONE!!!!!!"))
+		ExecuteBonePowerUp();
 	}
 	else if (CurrentPowerUp == EActivePowerUp::Hover)
 	{
@@ -83,4 +87,24 @@ void UPowerUpComponent::ChangeActivePowerUp(EActivePowerUp NewPower)
 {
 	CurrentPowerUp = NewPower;
 	ChangeMappingContext();
+}
+
+//will spawn the bone
+void UPowerUpComponent::ExecuteBonePowerUp()
+{
+	if (BoneBP)
+	{
+		if (ACharacter* OwnerChar = Cast<ACharacter>(GetOwner()))
+		{
+			FVector FowardVec = OwnerChar->GetActorForwardVector();
+			FVector SpawnPos = OwnerChar->GetActorLocation() + FowardVec * 100;
+
+			FRotator CharacterRotation = FowardVec.Rotation();
+
+			FVector BoneDirection = FowardVec + FVector(0.0, 0.0, 0.3);
+
+			ABone* Bone = GetWorld()->SpawnActor<ABone>(BoneBP, SpawnPos, FRotator::ZeroRotator);
+			Bone->GetMesh()->AddImpulse(BoneDirection * BONE_SPEED);
+		}
+	}
 }

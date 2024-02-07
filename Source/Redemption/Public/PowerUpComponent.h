@@ -9,6 +9,7 @@
 class UInputAction;
 class UInputMappingContext;
 struct FInputActionValue;
+class ABone;
 
 UENUM(BlueprintType)
 enum EActivePowerUp
@@ -37,6 +38,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputAction* UsePowerUpAction;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Power")
+	TSubclassOf<ABone> BoneBP;
+
 	EActivePowerUp CurrentPowerUp = EActivePowerUp::BoneThrow;
 
 public:	
@@ -59,4 +63,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	void ChangeMappingContext();
+
+	//will spawn the bone
+	void ExecuteBonePowerUp();
 };

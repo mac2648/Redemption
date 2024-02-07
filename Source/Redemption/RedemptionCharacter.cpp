@@ -11,13 +11,17 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 
+
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
 //////////////////////////////////////////////////////////////////////////
 // ARedemptionCharacter
 
+
+
 ARedemptionCharacter::ARedemptionCharacter()
 {
+	
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 		
@@ -52,6 +56,7 @@ ARedemptionCharacter::ARedemptionCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+
 }
 
 void ARedemptionCharacter::BeginPlay()
@@ -67,6 +72,7 @@ void ARedemptionCharacter::BeginPlay()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+	
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -86,6 +92,12 @@ void ARedemptionCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ARedemptionCharacter::Look);
+
+		// Crouching
+		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Triggered, this, &ARedemptionCharacter::Crouching);
+
+		// Changing Perspective
+
 	}
 	else
 	{
@@ -127,4 +139,9 @@ void ARedemptionCharacter::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void ARedemptionCharacter::Crouching()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Crouching!"));
 }

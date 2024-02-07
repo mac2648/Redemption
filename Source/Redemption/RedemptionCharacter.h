@@ -44,6 +44,10 @@ class ARedemptionCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LookAction;
 
+	/** Look Crouch Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* CrouchAction;
+
 public:
 	ARedemptionCharacter();
 	
@@ -55,6 +59,11 @@ protected:
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
+
+	/** Called for Crouching input */
+	void Crouching();
+
+	bool IsCrouching = false;
 			
 protected:
 	// APawn interface
