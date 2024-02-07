@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Components/WidgetComponent.h"
 #include "RedemptionPlayer.generated.h"
 
 class USpringArmComponent;
@@ -12,6 +13,7 @@ class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
 class UPowerUpComponent;
+class UHealthComponent;
 
 UCLASS()
 class REDEMPTION_API ARedemptionPlayer : public ACharacter
@@ -40,10 +42,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputAction* LookAction;
 
+	UHealthComponent* HealthComp;
+
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputAction* CrouchAction;
-
-
 
 public:
 	ARedemptionPlayer();
@@ -62,5 +64,4 @@ public:
 public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
-
 };
