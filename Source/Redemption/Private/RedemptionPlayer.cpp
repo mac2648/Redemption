@@ -138,24 +138,3 @@ void ARedemptionPlayer::Look(const FInputActionValue& Value)
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
 }
-
-//float ARedemptionPlayer::GetHealth() const
-//{
-//	return Health;
-//}
-//
-//float ARedemptionPlayer::GetMaxHealth() const
-//{
-//	return MaxHealth;
-//}
-//
-//void ARedemptionPlayer::SetHealth(float const NewHealth)
-//{
-//	Health = NewHealth;
-//}
-//
-//void ARedemptionPlayer::TakeDamage()
-//{
-//	int NewHealth = GetHealth() * 0.5;
-//	SetHealth(NewHealth);
-//}

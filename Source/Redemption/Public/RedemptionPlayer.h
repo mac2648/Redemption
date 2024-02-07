@@ -58,18 +58,7 @@ public:
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	//float GetHealth() const;
-	//float GetMaxHealth() const;
-	//void SetHealth(float const NewHealth);
-	//
-	//void TakeDamage();
-
 public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
-
-private:
-	//class UWidgetComponent* WidgetComponent;
-	//float const MaxHealth{ 100.f };
-	//float Health;
 };
