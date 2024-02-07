@@ -2,6 +2,8 @@
 
 #include "Bone.h"
 #include "Components/BoxComponent.h"
+#include "Perception/AISenseConfig_Hearing.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ABone::ABone()
@@ -34,7 +36,20 @@ void ABone::Tick(float DeltaTime)
 
 }
 
+//this function is triggered when the bone overlaps with something
 void ABone::OnBoneBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	
+	if (OtherActor == this)
+	{
+		return;
+	}
+
+	if (OtherActor != UGameplayStatics::GetPlayerPawn(GetWorld(), 0))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("OtherActor = %s"), *OtherActor->GetName())
+		UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 1.5f, this);
+
+		FTimerHandle DestroyHandle;
+		GetWorld()->GetTimerManager().SetTimer(DestroyHandle, this, &ABone::DestroyBone, 2.0, false);
+	}
 }

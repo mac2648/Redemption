@@ -27,7 +27,7 @@ UPowerUpComponent::UPowerUpComponent()
 void UPowerUpComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	ChangeMappingContext();
 }
 

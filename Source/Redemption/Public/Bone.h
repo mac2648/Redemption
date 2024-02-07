@@ -35,4 +35,6 @@ protected:
 	UFUNCTION()
 	void OnBoneBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
+	//function created to be able to use timers. it just destroys the bone
+	void DestroyBone() { Destroy(); }
 };
