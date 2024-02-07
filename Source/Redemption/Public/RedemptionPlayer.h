@@ -40,6 +40,11 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputAction* LookAction;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	UInputAction* CrouchAction;
+
+
+
 public:
 	ARedemptionPlayer();
 

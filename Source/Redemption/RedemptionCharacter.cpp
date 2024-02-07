@@ -86,6 +86,12 @@ void ARedemptionCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ARedemptionCharacter::Look);
+
+		// Crouching
+		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Triggered, this, &ARedemptionCharacter::Crouching);
+
+		// Changing Perspective
+
 	}
 	else
 	{
@@ -127,4 +133,9 @@ void ARedemptionCharacter::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void ARedemptionCharacter::Crouching()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Crouching!"));
 }
