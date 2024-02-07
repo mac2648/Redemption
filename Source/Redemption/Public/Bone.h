@@ -26,6 +26,7 @@ public:
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	UStaticMeshComponent* GetMesh() { return BoneMesh; }
 
 protected:
 	// Called when the game starts or when spawned
