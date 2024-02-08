@@ -13,5 +13,19 @@ UCLASS()
 class REDEMPTION_API UBTTask_Fly : public UBTTaskNode
 {
 	GENERATED_BODY()
+
+protected:
+
+	UPROPERTY(EditAnywhere)
+	FBlackboardKeySelector Location;
+
+	UPROPERTY(EditAnywhere)
+	float Speed = 100;
+
+public:
+	UBTTask_Fly();
+
+protected:
+	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 	
 };

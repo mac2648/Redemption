@@ -20,13 +20,16 @@ EBTNodeResult::Type UBTTask_DefineFlyPoints::ExecuteTask(UBehaviorTreeComponent&
 	AGargoyle* Gargoyle = GET_GARGOYLE;
 
 	FVector FlyPoint1 = Gargoyle->GetActorLocation() + FVector(30.0, 0.0, 250.0);
+	UE_LOG(LogTemp, Warning, TEXT("Flypoint1: %s"), *FlyPoint1.ToString())
 
 	GET_BLACKBOARD->SetValueAsVector(PathPoint1.SelectedKeyName, FlyPoint1);
 
 	APatrolPathIndicator* NextStandingPoint = Gargoyle->GetStandingPoint(GET_BLACKBOARD->GetValueAsInt(LocationIndex.SelectedKeyName));
 	FVector FlyPoint2 = NextStandingPoint->GetActorLocation() + FVector(30.0, 0.0, 250.0);
+	UE_LOG(LogTemp, Warning, TEXT("Flypoint2: %s"), *FlyPoint2.ToString())
 
-	GET_BLACKBOARD->SetValueAsVector(PathPoint1.SelectedKeyName, FlyPoint2);
+
+	GET_BLACKBOARD->SetValueAsVector(PathPoint2.SelectedKeyName, FlyPoint2);
 	GET_BLACKBOARD->SetValueAsInt(PathIndex.SelectedKeyName, 0);
 
 	return EBTNodeResult::Succeeded;
