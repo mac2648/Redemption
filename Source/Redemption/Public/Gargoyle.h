@@ -39,7 +39,7 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UFloatingPawnMovement* GetFloatMovementComp() const { return FloatMovementComp; }
-	APatrolPathIndicator* GetStadingPoint(int Index) const { return StandingPoints[Index]; }
+	APatrolPathIndicator* GetStandingPoint(int Index) const { return StandingPoints[Index]; }
 	//returns -1 if the point is not part of the array
 	int GetStandingIndex(APatrolPathIndicator* Point) const;
 	TArray<APatrolPathIndicator*> GetStandingPoints() const { return StandingPoints; }
