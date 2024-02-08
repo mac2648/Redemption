@@ -46,7 +46,6 @@ void ABone::OnBoneBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* Othe
 
 	if (OtherActor != UGameplayStatics::GetPlayerPawn(GetWorld(), 0))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("OtherActor = %s"), *OtherActor->GetName())
 		UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 1.5f, this);
 
 		FTimerHandle DestroyHandle;

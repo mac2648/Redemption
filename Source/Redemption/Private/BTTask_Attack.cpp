@@ -21,6 +21,7 @@ EBTNodeResult::Type UBTTask_Attack::ExecuteTask(UBehaviorTreeComponent& OwnerCom
 
 	OwnerComp.GetBlackboardComponent()->SetValueAsVector(NextLocation.SelectedKeyName, AttackPosition);
 	OwnerComp.GetBlackboardComponent()->SetValueAsFloat(WaitTime.SelectedKeyName, StunDuration);
+	OwnerComp.GetBlackboardComponent()->SetValueAsBool(IsStuned.SelectedKeyName, true);
 
 	return EBTNodeResult::Succeeded;
 }

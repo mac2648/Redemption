@@ -4,33 +4,25 @@
 
 #include "CoreMinimal.h"
 #include "BehaviorTree/BTTaskNode.h"
-#include "BTTask_Attack.generated.h"
+#include "BTTask_FinishStun.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class REDEMPTION_API UBTTask_Attack : public UBTTaskNode
+class REDEMPTION_API UBTTask_FinishStun : public UBTTaskNode
 {
 	GENERATED_BODY()
-	
+
 protected:
-	UPROPERTY(EditAnywhere)
-	FBlackboardKeySelector NextLocation;
-
-	UPROPERTY(EditAnywhere)
-	FBlackboardKeySelector WaitTime;
-
 	UPROPERTY(EditAnywhere)
 	FBlackboardKeySelector IsStuned;
 
-	UPROPERTY(EditAnywhere)
-	float StunDuration;
-
 
 public:
-	UBTTask_Attack();
+	UBTTask_FinishStun();
 
 protected:
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
+	
 };
