@@ -55,9 +55,11 @@ void UHealthComponent::SetHealth(float const NewHealth)
 
 void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
 {
+	UE_LOG(LogTemp, Warning, TEXT("Health: %f"), Health)
 	Health -= Damage;
 	if (Health <= 0)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("DIE"))
 		//TO DO : DIE
 	}
 }
