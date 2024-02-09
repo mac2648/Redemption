@@ -29,7 +29,8 @@ EBTNodeResult::Type UBTTask_Fly::ExecuteTask(UBehaviorTreeComponent& OwnerComp, 
 
 	GargoyleMoveComp->Velocity = FlyVec * Speed;
 
-	UE_LOG(LogTemp, Warning, TEXT("Distance: %f"), (CurrentLocation - LocationVec).Length())
+	GET_BLACKBOARD->SetValueAsBool(IsLanded.SelectedKeyName, false);
+
 	if ((CurrentLocation - LocationVec).Length() < 15.0f)
 	{
 		GET_BLACKBOARD->ClearValue(Location.SelectedKeyName);

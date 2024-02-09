@@ -4,30 +4,34 @@
 
 #include "CoreMinimal.h"
 #include "BehaviorTree/BTTaskNode.h"
-#include "BTTask_DefineFlyPoints.generated.h"
+#include "BTTask_GargoyleLand.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class REDEMPTION_API UBTTask_DefineFlyPoints : public UBTTaskNode
+class REDEMPTION_API UBTTask_GargoyleLand : public UBTTaskNode
 {
 	GENERATED_BODY()
 
 protected:
+
+	UPROPERTY(EditAnywhere)
+	FBlackboardKeySelector StadingRotation;
+
 	UPROPERTY(EditAnywhere)
 	FBlackboardKeySelector LocationIndex;
 
 	UPROPERTY(EditAnywhere)
-	FBlackboardKeySelector PathPoint1;
+	FBlackboardKeySelector IsLanded;
 
 	UPROPERTY(EditAnywhere)
-	FBlackboardKeySelector PathPoint2;
-
+	float Speed = 100;
 
 public:
-	UBTTask_DefineFlyPoints();
+	UBTTask_GargoyleLand();
 
 protected:
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
+	
 };

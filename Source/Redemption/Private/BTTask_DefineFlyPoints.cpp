@@ -18,6 +18,7 @@ UBTTask_DefineFlyPoints::UBTTask_DefineFlyPoints()
 EBTNodeResult::Type UBTTask_DefineFlyPoints::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
 	AGargoyle* Gargoyle = GET_GARGOYLE;
+	if (!Gargoyle) return EBTNodeResult::Failed;
 
 	FVector FlyPoint1 = Gargoyle->GetActorLocation() + FVector(30.0, 0.0, 250.0);
 	UE_LOG(LogTemp, Warning, TEXT("Flypoint1: %s"), *FlyPoint1.ToString())
@@ -30,7 +31,6 @@ EBTNodeResult::Type UBTTask_DefineFlyPoints::ExecuteTask(UBehaviorTreeComponent&
 
 
 	GET_BLACKBOARD->SetValueAsVector(PathPoint2.SelectedKeyName, FlyPoint2);
-	GET_BLACKBOARD->SetValueAsInt(PathIndex.SelectedKeyName, 0);
 
 	return EBTNodeResult::Succeeded;
 }

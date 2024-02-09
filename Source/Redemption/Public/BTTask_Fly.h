@@ -19,6 +19,10 @@ protected:
 	UPROPERTY(EditAnywhere)
 	FBlackboardKeySelector Location;
 
+
+	UPROPERTY(EditAnywhere)
+	FBlackboardKeySelector IsLanded;
+
 	UPROPERTY(EditAnywhere)
 	float Speed = 100;
 
