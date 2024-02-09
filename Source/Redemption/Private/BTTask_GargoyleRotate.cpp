@@ -16,7 +16,7 @@ EBTNodeResult::Type UBTTask_GargoyleRotate::ExecuteTask(UBehaviorTreeComponent& 
 	APawn* Pawn = OwnerComp.GetAIOwner()->GetPawn();
 	if (!Pawn) return EBTNodeResult::Failed;
 
-	FRotator DesiredRotation = GET_BLACKBOARD->GetValueAsRotator(StadingRotation.SelectedKeyName);
+	FRotator DesiredRotation = GET_BLACKBOARD->GetValueAsRotator(StandingRotation.SelectedKeyName);
 
 	FRotator NewRotation = FMath::Lerp(Pawn->GetActorRotation(), DesiredRotation, RotSpeed);
 
@@ -24,7 +24,7 @@ EBTNodeResult::Type UBTTask_GargoyleRotate::ExecuteTask(UBehaviorTreeComponent& 
 
 	if ((NewRotation - DesiredRotation).IsNearlyZero(0.001))
 	{
-		GET_BLACKBOARD->ClearValue(StadingRotation.SelectedKeyName);
+		GET_BLACKBOARD->ClearValue(StandingRotation.SelectedKeyName);
 	}
 
 	return EBTNodeResult::Succeeded;

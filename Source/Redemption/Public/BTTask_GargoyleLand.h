@@ -17,7 +17,7 @@ class REDEMPTION_API UBTTask_GargoyleLand : public UBTTaskNode
 protected:
 
 	UPROPERTY(EditAnywhere)
-	FBlackboardKeySelector StadingRotation;
+	FBlackboardKeySelector StandingRotation;
 
 	UPROPERTY(EditAnywhere)
 	FBlackboardKeySelector LocationIndex;

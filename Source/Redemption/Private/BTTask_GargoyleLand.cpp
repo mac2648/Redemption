@@ -38,7 +38,7 @@ EBTNodeResult::Type UBTTask_GargoyleLand::ExecuteTask(UBehaviorTreeComponent& Ow
 		FRotator NewRotation = LandingPoint->GetActorRotation();
 
 		GET_BLACKBOARD->SetValueAsBool(IsLanded.SelectedKeyName, true);
-		GET_BLACKBOARD->SetValueAsRotator(StadingRotation.SelectedKeyName, NewRotation);
+		GET_BLACKBOARD->SetValueAsRotator(StandingRotation.SelectedKeyName, NewRotation);
 		GET_BLACKBOARD->SetValueAsFloat(FlyDelay.SelectedKeyName, FLY_DELAY);
 	}
 

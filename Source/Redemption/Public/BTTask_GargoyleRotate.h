@@ -17,7 +17,7 @@ class REDEMPTION_API UBTTask_GargoyleRotate : public UBTTaskNode
 protected:
 
 	UPROPERTY(EditAnywhere)
-	FBlackboardKeySelector StadingRotation;
+	FBlackboardKeySelector StandingRotation;
 
 	UPROPERTY(EditAnywhere)
 	float RotSpeed = 10;
