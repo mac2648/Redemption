@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "DeadBody.generated.h"
 
+class UInteractWidgetComponent;
+
 UCLASS()
 class REDEMPTION_API ADeadBody : public AActor
 {
@@ -14,6 +16,9 @@ class REDEMPTION_API ADeadBody : public AActor
 protected:
 	UPROPERTY(EditAnywhere)
 	USkeletalMeshComponent* Mesh;
+
+	UPROPERTY(EditAnywhere)
+	UInteractWidgetComponent* InteractComp;
 	
 public:	
 	// Sets default values for this actor's properties

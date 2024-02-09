@@ -2,6 +2,8 @@
 
 
 #include "DeadBody.h"
+#include "InteractWidgetComponent.h"
+#include "Components/BoxComponent.h"
 
 // Sets default values
 ADeadBody::ADeadBody()
@@ -11,6 +13,8 @@ ADeadBody::ADeadBody()
 
 	Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Body Mesh"));
 
+	InteractComp = CreateDefaultSubobject<UInteractWidgetComponent>(TEXT("Interact Comp"));
+	InteractComp->GetBoxComp()->SetupAttachment(GetRootComponent());
 }
 
 // Called when the game starts or when spawned
