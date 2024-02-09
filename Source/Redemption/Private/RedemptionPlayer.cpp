@@ -153,6 +153,8 @@ void ARedemptionPlayer::StartCrouch()
 
 	FVector offset = FVector(0, 0, -40);
 	FPPCamera->AddWorldOffset(offset);
+
+	GetCapsuleComponent()->InitCapsuleSize(42.f, 60.0f);
 }
 
 void ARedemptionPlayer::EndCrouch()
@@ -161,4 +163,6 @@ void ARedemptionPlayer::EndCrouch()
 
 	FVector offset = FVector(0, 0, 40);
 	FPPCamera->AddWorldOffset(offset);
+
+	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 }
