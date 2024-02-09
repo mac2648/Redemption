@@ -23,7 +23,7 @@ class REDEMPTION_API UHealthComponent : public UActorComponent
 
 private:
 	class UWidgetComponent* WidgetComponent;
-	float const MaxHealth{ 100.f };
+	float const MaxHealth{ 2.f };
 	float Health;
 
 public:	
