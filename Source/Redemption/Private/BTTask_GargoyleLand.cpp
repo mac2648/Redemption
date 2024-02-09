@@ -9,6 +9,7 @@
 
 #define GET_GARGOYLE Cast<AGargoyle>(OwnerComp.GetAIOwner()->GetPawn())
 #define GET_BLACKBOARD OwnerComp.GetBlackboardComponent()
+#define FLY_DELAY 6.0f
 
 UBTTask_GargoyleLand::UBTTask_GargoyleLand()
 {
@@ -39,6 +40,7 @@ EBTNodeResult::Type UBTTask_GargoyleLand::ExecuteTask(UBehaviorTreeComponent& Ow
 
 		GET_BLACKBOARD->SetValueAsBool(IsLanded.SelectedKeyName, true);
 		GET_BLACKBOARD->SetValueAsRotator(StadingRotation.SelectedKeyName, NewRotation);
+		GET_BLACKBOARD->SetValueAsFloat(FlyDelay.SelectedKeyName, FLY_DELAY);
 	}
 
 	return EBTNodeResult::Succeeded;

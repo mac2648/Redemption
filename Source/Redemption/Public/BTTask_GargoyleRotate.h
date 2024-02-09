@@ -4,37 +4,27 @@
 
 #include "CoreMinimal.h"
 #include "BehaviorTree/BTTaskNode.h"
-#include "BTTask_GargoyleLand.generated.h"
+#include "BTTask_GargoyleRotate.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class REDEMPTION_API UBTTask_GargoyleLand : public UBTTaskNode
+class REDEMPTION_API UBTTask_GargoyleRotate : public UBTTaskNode
 {
 	GENERATED_BODY()
-
+	
 protected:
 
 	UPROPERTY(EditAnywhere)
 	FBlackboardKeySelector StadingRotation;
 
 	UPROPERTY(EditAnywhere)
-	FBlackboardKeySelector LocationIndex;
-
-	UPROPERTY(EditAnywhere)
-	FBlackboardKeySelector IsLanded;
-
-	UPROPERTY(EditAnywhere)
-	FBlackboardKeySelector FlyDelay;
-
-	UPROPERTY(EditAnywhere)
-	float Speed = 100;
+	float RotSpeed = 10;
 
 public:
-	UBTTask_GargoyleLand();
+	UBTTask_GargoyleRotate();
 
 protected:
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
-	
 };
