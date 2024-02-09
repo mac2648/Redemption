@@ -33,7 +33,6 @@ EBTNodeResult::Type UBTTask_GargoyleLand::ExecuteTask(UBehaviorTreeComponent& Ow
 
 	GargoyleMoveComp->Velocity = LandingDirection * Speed;
 
-	UE_LOG(LogTemp, Warning, TEXT("distance: %f"), (LandingPosition - CurrentPosition).Length())
 	if ((LandingPosition - CurrentPosition).Length() < 120)
 	{
 		FRotator NewRotation = LandingPoint->GetActorRotation();
