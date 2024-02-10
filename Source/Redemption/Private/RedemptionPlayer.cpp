@@ -56,9 +56,13 @@ ARedemptionPlayer::ARedemptionPlayer()
 	CameraBoom->TargetArmLength = 400.0f; 
 	CameraBoom->bUsePawnControlRotation = true; 
 
-	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
-	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
-	FollowCamera->bUsePawnControlRotation = false; 
+	TPPCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("TPPCamera"));
+	TPPCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
+	TPPCamera->bUsePawnControlRotation = false;
+
+	FPPCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FPPCamera"));
+	FPPCamera->SetupAttachment(ACharacter::GetMesh());
+	FPPCamera->bUsePawnControlRotation = true;
 
 	PowerUpComp = CreateDefaultSubobject<UPowerUpComponent>(TEXT("PowerUpComp"));
 }
@@ -72,6 +76,7 @@ void ARedemptionPlayer::BeginPlay()
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
+			Subsystem->AddMappingContext(TPPMappingContext, 1);
 		}
 	}
 }
@@ -99,8 +104,8 @@ void ARedemptionPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 
 		EnhancedInputComponent->BindAction(POWER_UP_ACTION, ETriggerEvent::Triggered, PowerUpComp, &UPowerUpComponent::UsePowerUp);
 
-		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Started, this, &ACharacter::Crouch, false);
-		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Completed, this, &ACharacter::UnCrouch, false);
+		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Started, this, &ARedemptionPlayer::StartCrouch);
+		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Completed, this, &ARedemptionPlayer::EndCrouch);
 	}
 }
 
@@ -140,4 +145,24 @@ void ARedemptionPlayer::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void ARedemptionPlayer::StartCrouch()
+{
+	ACharacter::Crouch();
+
+	FVector offset = FVector(0, 0, -40);
+	FPPCamera->AddWorldOffset(offset);
+
+	GetCapsuleComponent()->InitCapsuleSize(42.f, 60.0f);
+}
+
+void ARedemptionPlayer::EndCrouch()
+{
+	ACharacter::UnCrouch();
+
+	FVector offset = FVector(0, 0, 40);
+	FPPCamera->AddWorldOffset(offset);
+
+	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 }
