@@ -4,6 +4,8 @@
 #include "HealthComponent.h"
 #include "Components/WidgetComponent.h"
 #include "GameFramework/Controller.h"
+#include "RedemptionPlayer.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties
 UHealthComponent::UHealthComponent() :
@@ -14,7 +16,6 @@ Health{ MaxHealth }
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	// ...
 }
 
 
@@ -53,11 +54,32 @@ void UHealthComponent::SetHealth(float const NewHealth)
 	Health = NewHealth;
 }
 
+void UHealthComponent::Die()
+{
+	ACharacter* myCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+	FVector PlayerDiedLocation = myCharacter->GetActorLocation();
+
+	GameOver();
+}
+
+void UHealthComponent::Respawn()
+{
+	Health = MaxHealth;
+	//TO DO: Save Player's Death Location and Spawn a dead body.
+	
+}
+
+void UHealthComponent::GameOver()
+{
+	UUserWidget* GameOverWidget = CreateWidget<UUserWidget>(GetWorld(), GameOverWidgetClass);
+	GameOverWidget->AddToViewport();
+}
+
 void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
 {
 	Health -= Damage;
 	if (Health <= 0)
 	{
-		//TO DO : DIE
+		Die();
 	}
 }

@@ -42,6 +42,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputAction* LookAction;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	UHealthComponent* HealthComp;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")

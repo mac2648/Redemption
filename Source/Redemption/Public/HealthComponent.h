@@ -29,9 +29,18 @@ private:
 public:	
 	// Sets default values for this component's properties
 
+
 	float GetHealth() const;
 	float GetMaxHealth() const;
 	void SetHealth(float const NewHealth);
+	void Die();
+	void Respawn();
+
+	UFUNCTION(BlueprintCallable)
+	void GameOver();
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UUserWidget> GameOverWidgetClass;
 
 	UFUNCTION()
 	void TakeDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
