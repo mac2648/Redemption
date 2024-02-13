@@ -62,12 +62,7 @@ void UHealthComponent::Die()
 	GameOver();
 }
 
-void UHealthComponent::Respawn()
-{
-	Health = MaxHealth;
-	//TO DO: Save Player's Death Location and Spawn a dead body.
-	
-}
+
 
 void UHealthComponent::GameOver()
 {

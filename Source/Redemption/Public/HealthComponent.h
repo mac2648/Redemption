@@ -34,7 +34,6 @@ public:
 	float GetMaxHealth() const;
 	void SetHealth(float const NewHealth);
 	void Die();
-	void Respawn();
 
 	UFUNCTION(BlueprintCallable)
 	void GameOver();
