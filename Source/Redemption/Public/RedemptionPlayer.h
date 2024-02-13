@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Components/WidgetComponent.h"
+#include "Engine/GameInstance.h"
 #include "RedemptionPlayer.generated.h"
 
 class USpringArmComponent;
@@ -58,12 +59,15 @@ public:
 	ARedemptionPlayer();
 
 protected:
+
 	virtual void BeginPlay() override;
 
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
 	void StartCrouch();
 	void EndCrouch();
+
+	
 
 public:	
 	virtual void Tick(float DeltaTime) override;
