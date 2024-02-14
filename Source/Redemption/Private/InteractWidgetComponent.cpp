@@ -6,6 +6,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "Components/BoxComponent.h"
 #include "RedemptionPlayer.h"
+#include "PuzzleLever.h"
 
 #define GET_PLAYER_CONTROLLER Cast<APlayerController>(Player->GetController())
 #define GET_ENHANCED_INPUT_LOCAL_PLAYER_SUBSYSTEM ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GET_PLAYER_CONTROLLER->GetLocalPlayer())
@@ -71,5 +72,8 @@ void UInteractWidgetComponent::OnOverlapEnd(UPrimitiveComponent* OverlappedComp,
 
 void UInteractWidgetComponent::Interract()
 {
-	//TO DO : link with the use of whatever has the component
+	if (APuzzleLever* Lever = Cast<APuzzleLever>(GetOwner()))
+	{
+		Lever->Activate();
+	}
 }
