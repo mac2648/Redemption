@@ -3,15 +3,15 @@
 
 #include "RedemptionGameInstance.h"
 
-void URedemptionGameInstance::GetPlayerDiedLocation(FVector NewPlayerDiedLocation)
+FVector URedemptionGameInstance::GetPlayerDiedLocation()
 {
-	ACharacter* myCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
-	FVector NewPlayerDiedLocation = myCharacter->GetActorLocation();
-
-	PlayerDiedLocation = NewPlayerDiedLocation;
+	
+	return PlayerDiedLocation;
+	
 }
 
 void URedemptionGameInstance::SetPlayerDiedLocation()
 {
-	return PlayerDiedLocation;
+	ACharacter* myCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+	PlayerDiedLocation = myCharacter->GetActorLocation();
 }

@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
+#include "RedemptionPlayer.h"
+#include "Kismet/GameplayStatics.h"
 #include "RedemptionGameInstance.generated.h"
 
 /**
@@ -18,7 +20,8 @@ protected:
 	
 	FVector PlayerDiedLocation = FVector::ZeroVector;
 
-	FVector GetPlayerDiedLocation(FVector NewPlayerDiedLocation);
+public:
+
+	FVector GetPlayerDiedLocation();
 	void SetPlayerDiedLocation();
-	
 };
