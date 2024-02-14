@@ -18,3 +18,10 @@ void AInteractable::BeginPlay()
 	Super::BeginPlay();
 	
 }
+
+void AInteractable::Activate()
+{
+	IsActive = true;
+
+	OnActivate.Broadcast();
+}

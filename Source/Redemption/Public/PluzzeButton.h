@@ -21,8 +21,6 @@ protected:
 
 public:
 	APluzzeButton();
-
-	virtual void Activate() override;
 	
 protected:
 	// Called when the game starts or when spawned

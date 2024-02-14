@@ -27,7 +27,7 @@ public:
 	AInteractable();
 
 	//function that will broadcast the OnActive event
-	virtual void Activate() {};
+	virtual void Activate();
 	bool GetIsActive() { return IsActive; }
 
 protected:

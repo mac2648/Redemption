@@ -14,14 +14,9 @@ APluzzeButton::APluzzeButton()
 
 void APluzzeButton::BeginPlay()
 {
+	Super::BeginPlay();
+
 	BoxComp->OnComponentBeginOverlap.AddDynamic(this, &APluzzeButton::OnOverlapBegin);
-}
-
-void APluzzeButton::Activate()
-{
-	IsActive = true;
-
-	OnActivate.Broadcast();
 }
 
 void APluzzeButton::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
