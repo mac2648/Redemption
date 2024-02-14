@@ -23,5 +23,7 @@ void AInteractable::Activate()
 {
 	IsActive = true;
 
+	UE_LOG(LogTemp, Warning, TEXT("ACTIVATE!!!!"))
+
 	OnActivate.Broadcast();
 }
