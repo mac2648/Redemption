@@ -16,15 +16,18 @@ namespace defs
 }
 
 
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class REDEMPTION_API UHealthComponent : public UActorComponent
 {
 	GENERATED_BODY()
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnHealthLowDelegate);
 
 private:
 	class UWidgetComponent* WidgetComponent;
 	float const MaxHealth{ 2.f };
 	float Health;
+	UUserWidget* CurrentVignetteWidget = nullptr;
 
 public:	
 	// Sets default values for this component's properties
@@ -41,8 +44,17 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<UUserWidget> GameOverWidgetClass;
 
+	UPROPERTY(BlueprintAssignable, Category = "Health")
+	FOnHealthLowDelegate OnHealthLow;
+
+	UPROPERTY(BlueprintAssignable, Category = "Health")
+	FOnHealthLowDelegate OnHealthRestored;
+
 	UFUNCTION()
 	void TakeDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+
+	UPROPERTY(EditDefaultsOnly, Category = "UI")
+	TSubclassOf<UUserWidget> VignetteWidgetClass;
 
 	UWidgetComponent* GetWidgetComp() { return WidgetComponent; }
 

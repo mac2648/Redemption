@@ -6,6 +6,7 @@
 #include "GameFramework/Controller.h"
 #include "RedemptionPlayer.h"
 #include "Kismet/GameplayStatics.h"
+#include "Blueprint/UserWidget.h"
 
 // Sets default values for this component's properties
 UHealthComponent::UHealthComponent() :
@@ -63,18 +64,42 @@ void UHealthComponent::Die()
 }
 
 
-
 void UHealthComponent::GameOver()
 {
 	UUserWidget* GameOverWidget = CreateWidget<UUserWidget>(GetWorld(), GameOverWidgetClass);
 	GameOverWidget->AddToViewport();
 }
 
-void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
+void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
 {
-	Health -= Damage;
-	if (Health <= 0)
-	{
-		Die();
-	}
+    Health -= Damage;
+
+    if (Health <= 0)
+    {
+        Die();
+    }
+    else if (Health == 1 && !CurrentVignetteWidget)
+    {
+        UWorld* World = GetWorld();
+        if (World)
+        {
+            CurrentVignetteWidget = CreateWidget<UUserWidget>(World, VignetteWidgetClass);
+            if (CurrentVignetteWidget)
+            {
+                CurrentVignetteWidget->AddToViewport();
+            }
+            else
+            {
+                UE_LOG(LogTemp, Error, TEXT("Failed to create widget"));
+            }
+        }
+       
+    }
+
+
+    else if (Health > 1 && CurrentVignetteWidget)
+    {
+        CurrentVignetteWidget->RemoveFromViewport();
+        CurrentVignetteWidget = nullptr;
+    }
 }
