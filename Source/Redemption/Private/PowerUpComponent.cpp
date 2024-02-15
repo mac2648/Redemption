@@ -42,8 +42,6 @@ void UPowerUpComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 
 void UPowerUpComponent::UsePowerUp(const FInputActionValue& Value)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Using Power"));
-	
 	if (CurrentPowerUp == EActivePowerUp::BoneThrow)
 	{
 		ExecuteBonePowerUp();

@@ -11,7 +11,6 @@ APuzzleLever::APuzzleLever()
 
 void APuzzleLever::Activate()
 {
-	UE_LOG(LogTemp, Warning, TEXT("ACTIVATE!!!!"))
 	IsActive = !IsActive;
 
 	OnActivate.Broadcast();
