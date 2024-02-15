@@ -54,6 +54,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputAction* CrouchAction;
 
+	UHealthComponent* GetHealthComponent() const { return HealthComp; }
+
 public:
 	ARedemptionPlayer();
 
