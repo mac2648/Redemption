@@ -7,6 +7,7 @@
 #include "Kismet/GameplayStatics.h" 
 #include "EnemyCharacter.h"
 #include "AIController.h"
+#include "RedemptionGameInstance.h"
 #include "BehaviorTree/BlackboardComponent.h"
 
 ARedemptionGameMode::ARedemptionGameMode()
@@ -66,6 +67,17 @@ void ARedemptionGameMode::BeginPlay()
     {
         MyAudioManager->PlayAmbientMusic();
     }
+
+    URedemptionGameInstance* Instance = Cast<URedemptionGameInstance>(GetGameInstance());
+    FVector PlayerBodyPosition = Instance->GetPlayerDiedLocation();
+
+    if (PlayerBodyPosition != FVector::ZeroVector)
+    {
+        GetWorld()->SpawnActor<AActor>(DeadBodyClass, PlayerBodyPosition, FRotator::ZeroRotator);
+    }
+
+
+
 }
 
 void ARedemptionGameMode::HandleGameStateChange(EGameState NewState)
