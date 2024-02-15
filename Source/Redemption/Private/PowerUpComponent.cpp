@@ -109,10 +109,6 @@ void UPowerUpComponent::ExecuteBonePowerUp()
 
 			FVector BoneDirection = CameraVec + FVector(0.0, 0.0, 0.5);
 
-			UE_LOG(LogTemp, Warning, TEXT("%s"), *OwnerChar->GetCharacterMovement()->Velocity.ToString());
-			UE_LOG(LogTemp, Warning, TEXT("%s"), *(BoneDirection * BONE_SPEED).ToString());
-			UE_LOG(LogTemp, Warning, TEXT("%s"), *(BoneDirection * BONE_SPEED + OwnerChar->GetCharacterMovement()->Velocity).ToString());
-
 			ABone* Bone = GetWorld()->SpawnActor<ABone>(BoneBP, SpawnPos, CameraRotation);
 			Bone->GetMesh()->SetPhysicsLinearVelocity(BoneDirection * BONE_SPEED + OwnerChar->GetCharacterMovement()->Velocity);
 
