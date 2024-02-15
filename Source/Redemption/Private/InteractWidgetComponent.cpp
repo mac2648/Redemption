@@ -36,7 +36,7 @@ void UInteractWidgetComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedCom
 	{
 		if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(Player->InputComponent))
 		{
-			EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this, &UInteractWidgetComponent::Interract);
+			BindedAction = &EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this, &UInteractWidgetComponent::Interract);
 		}
 
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = GET_ENHANCED_INPUT_LOCAL_PLAYER_SUBSYSTEM)
@@ -62,6 +62,11 @@ void UInteractWidgetComponent::OnOverlapEnd(UPrimitiveComponent* OverlappedComp,
 			Subsystem->RemoveMappingContext(InteractMappingContext);
 		}
 
+		if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(Player->InputComponent))
+		{
+			EnhancedInputComponent->RemoveBinding(*BindedAction);
+		}
+
 		if (InteractWidget)
 		{
 			InteractWidget->RemoveFromParent();
@@ -72,8 +77,10 @@ void UInteractWidgetComponent::OnOverlapEnd(UPrimitiveComponent* OverlappedComp,
 
 void UInteractWidgetComponent::Interract()
 {
+	UE_LOG(LogTemp, Warning, TEXT("interact"))
 	if (APuzzleLever* Lever = Cast<APuzzleLever>(GetOwner()))
 	{
+		UE_LOG(LogTemp, Warning, TEXT("Is Lever"))
 		Lever->Activate();
 	}
 }
