@@ -39,7 +39,10 @@ void UPowerUpComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	if (BoneCD >= 0)
+	{
+		BoneCD -= DeltaTime;
+	}
 }
 
 void UPowerUpComponent::UsePowerUp(const FInputActionValue& Value)
@@ -94,26 +97,17 @@ void UPowerUpComponent::ChangeActivePowerUp(EActivePowerUp NewPower)
 //will spawn the bone
 void UPowerUpComponent::ExecuteBonePowerUp()
 {
-	if (BoneBP)
+	if (BoneBP && BoneCD <= 0.0)
 	{
 		if (ARedemptionPlayer* OwnerChar = Cast<ARedemptionPlayer>(GetOwner()))
 		{
 			FRotator CameraRotation = OwnerChar->GetControlRotation();
 
 			FVector CameraVec = CameraRotation.Vector();
-			//FVector CameraVecNormal = CameraVec;
-			//CameraVecNormal.Normalize();
 
 			FVector SpawnPos = OwnerChar->GetActorLocation() + CameraVec * 80 + FVector(0.0, 0.0, 50.0f);
 
 			FVector BoneDirection = CameraVec + FVector(0.0, 0.0, 0.5);
-
-			/*FVector FowardVec = OwnerChar->GetActorForwardVector();
-			FVector SpawnPos = OwnerChar->GetActorLocation() + FowardVec * 100;
-
-			FRotator CharacterRotation = FowardVec.Rotation();
-
-			FVector BoneDirection = FowardVec + FVector(0.0, 0.0, 0.3);*/
 
 			UE_LOG(LogTemp, Warning, TEXT("%s"), *OwnerChar->GetCharacterMovement()->Velocity.ToString());
 			UE_LOG(LogTemp, Warning, TEXT("%s"), *(BoneDirection * BONE_SPEED).ToString());
@@ -121,6 +115,8 @@ void UPowerUpComponent::ExecuteBonePowerUp()
 
 			ABone* Bone = GetWorld()->SpawnActor<ABone>(BoneBP, SpawnPos, CameraRotation);
 			Bone->GetMesh()->SetPhysicsLinearVelocity(BoneDirection * BONE_SPEED + OwnerChar->GetCharacterMovement()->Velocity);
+
+			BoneCD = BONE_CD;
 		}
 	}
 }
