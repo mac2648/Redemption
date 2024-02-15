@@ -4,6 +4,7 @@
 #include "Components/BoxComponent.h"
 #include "Perception/AISenseConfig_Hearing.h"
 #include "Kismet/GameplayStatics.h"
+#include "GameFramework/RotatingMovementComponent.h"
 
 // Sets default values
 ABone::ABone()
@@ -20,13 +21,16 @@ ABone::ABone()
 
 	SetRootComponent(BoneMesh);
 	//changed the root component
+
+	RotationComp = CreateDefaultSubobject<URotatingMovementComponent>(TEXT("Rotation Comp"));
 }
 
 // Called when the game starts or when spawned
 void ABone::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	RotationComp->RotationRate = FRotator(-180.0, 0.0, 0.0);
 }
 
 // Called every frame
@@ -46,6 +50,7 @@ void ABone::OnBoneBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* Othe
 
 	if (OtherActor != UGameplayStatics::GetPlayerPawn(GetWorld(), 0))
 	{
+		RotationComp->RotationRate = FRotator(0.0, 0.0, 0.0);
 		UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 1.5f, this);
 
 		FTimerHandle DestroyHandle;

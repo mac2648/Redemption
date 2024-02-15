@@ -23,6 +23,11 @@ EBTNodeResult::Type UBTTask_GargoyleAttack::ExecuteTask(UBehaviorTreeComponent& 
 	AGargoyle* Gargoyle = GET_GARGOYLE;
 	FVector CurrentLocation = Gargoyle->GetActorLocation();
 
+	if (!GET_BLACKBOARD->GetValueAsObject(Player.SelectedKeyName))
+	{
+		return EBTNodeResult::Failed;
+	}
+
 	FVector PlayerLocation = Cast<AActor>(GET_BLACKBOARD->GetValueAsObject(Player.SelectedKeyName))->GetActorLocation();
 
 	FVector FlyVec = PlayerLocation - CurrentLocation + FVector(0.0, 0.0, 160.0);

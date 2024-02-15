@@ -6,6 +6,8 @@
 #include "Components/ActorComponent.h"
 #include "PowerUpComponent.generated.h"
 
+const float BONE_CD = 1.0f;
+
 class UInputAction;
 class UInputMappingContext;
 struct FInputActionValue;
@@ -40,6 +42,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Power")
 	TSubclassOf<ABone> BoneBP;
+
+	UPROPERTY(EditDefaultsOnly, category = "Power")
+	float BoneCD = BONE_CD;
 
 	EActivePowerUp CurrentPowerUp = EActivePowerUp::BoneThrow;
 
