@@ -4,11 +4,29 @@
 #include "Components/CapsuleComponent.h"
 #include "RedemptionPlayer.h"
 #include "Kismet/GameplayStatics.h"
+#include "AIController.h"
+#include "BehaviorTree/BlackboardComponent.h"
 
 ARat::ARat()
 {
-	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Temporary mesh"));
-	StaticMesh->SetupAttachment(GetCapsuleComponent());
+
+}
+
+void ARat::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if (AAIController* _Controller = Cast<AAIController>(GetController()))
+	{
+		if (_Controller->GetBlackboardComponent()->GetValueAsObject("Player"))
+		{
+			IsChasing = true;
+		}
+		else
+		{
+			IsChasing = false;
+		}
+	}
 }
 
 void ARat::BeginPlay()
