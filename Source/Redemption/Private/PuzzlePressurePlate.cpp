@@ -27,7 +27,6 @@ void APuzzlePressurePlate::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, A
 
 void APuzzlePressurePlate::Deactivate()
 {
-	UE_LOG(LogTemp, Warning, TEXT("DE ACTIVATE!!!!"))
 	IsActive = false;
 
 	//gate will check if all are active so it does not matter that it is deactivating
