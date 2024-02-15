@@ -96,7 +96,6 @@ void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDam
        
     }
 
-
     else if (Health > 1 && CurrentVignetteWidget)
     {
         CurrentVignetteWidget->RemoveFromViewport();
