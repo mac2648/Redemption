@@ -13,6 +13,10 @@ class ARedemptionGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
+protected:
+	UPROPERTY(EditDefaultsOnly, category = "DeadBody")
+	TSubclassOf<AActor> DeadBodyClass;
+
 private:
 	AAudioManager* MyAudioManager;
 	bool SafeMusic = true;

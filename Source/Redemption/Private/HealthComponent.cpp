@@ -5,6 +5,7 @@
 #include "Components/WidgetComponent.h"
 #include "GameFramework/Controller.h"
 #include "RedemptionPlayer.h"
+#include "RedemptionGameInstance.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties
@@ -56,9 +57,8 @@ void UHealthComponent::SetHealth(float const NewHealth)
 
 void UHealthComponent::Die()
 {
-	ACharacter* myCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
-	FVector PlayerDiedLocation = myCharacter->GetActorLocation();
-
+	URedemptionGameInstance* Instance = Cast<URedemptionGameInstance>(GetOwner()->GetGameInstance());
+	Instance->SetPlayerDiedLocation();
 	GameOver();
 }
 
