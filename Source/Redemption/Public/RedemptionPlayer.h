@@ -57,6 +57,8 @@ protected:
 public:
 	ARedemptionPlayer();
 
+	UCameraComponent* GetFPPCamera() { return FPPCamera; }
+
 protected:
 	virtual void BeginPlay() override;
 

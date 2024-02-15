@@ -5,12 +5,14 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Bone.h"
-#include "GameFramework/Character.h"
+#include "RedemptionPlayer.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 #define GET_PLAYER_CONTROLLER Cast<APlayerController>(Cast<APawn>(GetOwner())->GetController())
 #define GET_ENHANCED_INPUT_LOCAL_PLAYER_SUBSYSTEM ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GET_PLAYER_CONTROLLER->GetLocalPlayer())
 
-const int BONE_SPEED = 5000;
+const int BONE_SPEED = 550;
 
 // Sets default values for this component's properties
 UPowerUpComponent::UPowerUpComponent()
@@ -94,17 +96,31 @@ void UPowerUpComponent::ExecuteBonePowerUp()
 {
 	if (BoneBP)
 	{
-		if (ACharacter* OwnerChar = Cast<ACharacter>(GetOwner()))
+		if (ARedemptionPlayer* OwnerChar = Cast<ARedemptionPlayer>(GetOwner()))
 		{
-			FVector FowardVec = OwnerChar->GetActorForwardVector();
+			FRotator CameraRotation = OwnerChar->GetControlRotation();
+
+			FVector CameraVec = CameraRotation.Vector();
+			//FVector CameraVecNormal = CameraVec;
+			//CameraVecNormal.Normalize();
+
+			FVector SpawnPos = OwnerChar->GetActorLocation() + CameraVec * 80 + FVector(0.0, 0.0, 50.0f);
+
+			FVector BoneDirection = CameraVec + FVector(0.0, 0.0, 0.5);
+
+			/*FVector FowardVec = OwnerChar->GetActorForwardVector();
 			FVector SpawnPos = OwnerChar->GetActorLocation() + FowardVec * 100;
 
 			FRotator CharacterRotation = FowardVec.Rotation();
 
-			FVector BoneDirection = FowardVec + FVector(0.0, 0.0, 0.3);
+			FVector BoneDirection = FowardVec + FVector(0.0, 0.0, 0.3);*/
 
-			ABone* Bone = GetWorld()->SpawnActor<ABone>(BoneBP, SpawnPos, FRotator::ZeroRotator);
-			Bone->GetMesh()->AddImpulse(BoneDirection * BONE_SPEED);
+			UE_LOG(LogTemp, Warning, TEXT("%s"), *OwnerChar->GetCharacterMovement()->Velocity.ToString());
+			UE_LOG(LogTemp, Warning, TEXT("%s"), *(BoneDirection * BONE_SPEED).ToString());
+			UE_LOG(LogTemp, Warning, TEXT("%s"), *(BoneDirection * BONE_SPEED + OwnerChar->GetCharacterMovement()->Velocity).ToString());
+
+			ABone* Bone = GetWorld()->SpawnActor<ABone>(BoneBP, SpawnPos, CameraRotation);
+			Bone->GetMesh()->SetPhysicsLinearVelocity(BoneDirection * BONE_SPEED + OwnerChar->GetCharacterMovement()->Velocity);
 		}
 	}
 }
