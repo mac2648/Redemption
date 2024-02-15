@@ -44,12 +44,6 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<UUserWidget> GameOverWidgetClass;
 
-	UPROPERTY(BlueprintAssignable, Category = "Health")
-	FOnHealthLowDelegate OnHealthLow;
-
-	UPROPERTY(BlueprintAssignable, Category = "Health")
-	FOnHealthLowDelegate OnHealthRestored;
-
 	UFUNCTION()
 	void TakeDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 
