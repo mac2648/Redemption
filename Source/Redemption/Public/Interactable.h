@@ -6,19 +6,20 @@
 #include "GameFramework/Actor.h"
 #include "Interactable.generated.h"
 
-DECLARE_MULTICAST_DELEGATE(FInteractableActivate)
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FInteractableActivate);
 
 UCLASS()
 class REDEMPTION_API AInteractable : public AActor
 {
 	GENERATED_BODY()
 
+public:
+	//event that the door will subscribe to
+	FInteractableActivate OnActivate;
+
 protected:
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* Mesh;
-
-	//event that the door will subscribe to
-	FInteractableActivate OnActivate;
 
 	bool IsActive = false;
 	
