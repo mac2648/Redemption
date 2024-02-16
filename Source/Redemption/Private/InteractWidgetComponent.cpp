@@ -103,5 +103,6 @@ void UInteractWidgetComponent::Interract()
 		{
 			healthComp->SetHealth(2);
 		}
+
 	}
 }

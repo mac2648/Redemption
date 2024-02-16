@@ -54,10 +54,12 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputAction* CrouchAction;
 
-	UHealthComponent* GetHealthComponent() const { return HealthComp; }
+	
 
 public:
 	ARedemptionPlayer();
+	UHealthComponent* GetHealthComponent() const { return HealthComp; }
+
 
 protected:
 	virtual void BeginPlay() override;
