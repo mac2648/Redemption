@@ -6,6 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 ARat::ARat()
 {
@@ -42,5 +43,10 @@ void ARat::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActo
 	if (ARedemptionPlayer* Player = Cast<ARedemptionPlayer>(OtherActor))
 	{
 		UGameplayStatics::ApplyDamage(Player, 1.0f, GetController(), this, UDamageType::StaticClass());
+
+		FVector knockbackDir = Player->GetActorLocation() - GetActorLocation();
+		knockbackDir.Normalize();
+
+		Player->GetCharacterMovement()->Velocity = knockbackDir * 500;
 	}
 }
