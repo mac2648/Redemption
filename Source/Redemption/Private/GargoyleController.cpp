@@ -8,7 +8,7 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Kismet/GameplayStatics.h"
 
-#define GET_GARGOYLE Cast<AGargoyle>(GetOwner())
+#define GET_GARGOYLE Cast<AGargoyle>(GetPawn())
 
 const int PERIPHERAL_VISION_ANGLE = 60;
 const int SIGHT_RADIUS = 3000;
@@ -62,6 +62,11 @@ void AGargoyleController::UpdateSight(AActor* Actor, FAIStimulus Stimulus)
 		if (Stimulus.WasSuccessfullySensed() && IsLanded)
 		{
 			GetBlackboardComponent()->SetValueAsObject("Player", Actor);
+		}
+		else if (!Stimulus.WasSuccessfullySensed() && IsLanded)
+		{
+			GetBlackboardComponent()->ClearValue("Player");
+			GetBlackboardComponent()->SetValueAsVector("LastSeenLocation", Stimulus.StimulusLocation);
 		}
 		else
 		{

@@ -17,7 +17,7 @@ void ARatController::UpdateSight(AActor* Actor, FAIStimulus Stimulus)
 			GetBlackboardComponent()->SetValueAsObject("Player", Actor);
 			if (UCharacterMovementComponent* MoveComp = Cast<ACharacter>(GetPawn())->GetCharacterMovement())
 			{
-				MoveComp->MaxWalkSpeed = 300;
+				MoveComp->MaxWalkSpeed = 370;
 			}
 		}
 		else
