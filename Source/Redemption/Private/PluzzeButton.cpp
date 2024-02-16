@@ -9,7 +9,7 @@ APluzzeButton::APluzzeButton()
 	BoxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComp"));
 	SetRootComponent(BoxComp);
 
-	Mesh->SetupAttachment(BoxComp);
+	BaseMesh->SetupAttachment(BoxComp);
 }
 
 void APluzzeButton::BeginPlay()
