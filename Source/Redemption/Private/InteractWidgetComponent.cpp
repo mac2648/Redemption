@@ -7,6 +7,9 @@
 #include "Components/BoxComponent.h"
 #include "RedemptionPlayer.h"
 #include "PuzzleLever.h"
+#include "DeadBody.h"
+#include "Kismet/GameplayStatics.h"
+#include "HealthComponent.h"
 
 #define GET_PLAYER_CONTROLLER Cast<APlayerController>(Player->GetController())
 #define GET_ENHANCED_INPUT_LOCAL_PLAYER_SUBSYSTEM ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GET_PLAYER_CONTROLLER->GetLocalPlayer())
@@ -50,6 +53,8 @@ void UInteractWidgetComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedCom
 			InteractWidget = CreateWidget<UUserWidget>(GetWorld(), InteractWidgetClass);
 			InteractWidget->AddToViewport();
 		}
+
+
 	}
 }
 
@@ -82,5 +87,22 @@ void UInteractWidgetComponent::Interract()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Is Lever"))
 		Lever->Activate();
+	}
+	else if (ADeadBody* Body = Cast<ADeadBody>(GetOwner()))
+	{		
+		ARedemptionPlayer* Player = Cast<ARedemptionPlayer>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+
+		if (!Player)
+		{
+			return;
+		}
+
+		UHealthComponent* healthComp = Player->GetHealthComponent();
+		
+		if (healthComp)
+		{
+			healthComp->SetHealth(2);
+		}
+
 	}
 }
