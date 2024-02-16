@@ -30,6 +30,11 @@ void AGate::BeginPlay()
 		Current->OnActivate.AddDynamic(this, &AGate::CheckOpenConditions);
 	}
 
+	if (MasterKey)
+	{
+		MasterKey->OnActivate.AddDynamic(this, &AGate::CheckOpenConditions);
+	}
+
 	ClosedRotation = GetActorRotation();
 	OpenedRotation = GetActorRotation();
 	OpenedRotation.Yaw += MoveAngle;
@@ -51,6 +56,14 @@ void AGate::CheckOpenConditions()
 		{
 			ShouldOpen = false;
 			break;
+		}
+	}
+
+	if (MasterKey)
+	{
+		if (MasterKey->GetIsActive())
+		{
+			ShouldOpen = true;
 		}
 	}
 

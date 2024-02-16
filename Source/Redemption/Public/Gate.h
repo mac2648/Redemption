@@ -17,6 +17,10 @@ protected:
 	UPROPERTY(EditAnywhere)
 	TMap<AInteractable*, bool> InteractableKeys;
 
+	//when this interactable is active the gate will always be open does not matter the InteractableKeys
+	UPROPERTY(EditAnywhere)
+	AInteractable* MasterKey = nullptr;
+
 	UPROPERTY(EditDefaultsOnly)
 	UStaticMeshComponent* Mesh;
 

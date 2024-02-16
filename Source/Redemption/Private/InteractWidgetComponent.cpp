@@ -82,10 +82,8 @@ void UInteractWidgetComponent::OnOverlapEnd(UPrimitiveComponent* OverlappedComp,
 
 void UInteractWidgetComponent::Interract()
 {
-	UE_LOG(LogTemp, Warning, TEXT("interact"))
 	if (APuzzleLever* Lever = Cast<APuzzleLever>(GetOwner()))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Is Lever"))
 		Lever->Activate();
 	}
 	else if (ADeadBody* Body = Cast<ADeadBody>(GetOwner()))
