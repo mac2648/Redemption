@@ -9,7 +9,8 @@ APuzzlePressurePlate::APuzzlePressurePlate()
 	BoxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComp"));
 	SetRootComponent(BoxComp);
 
-	Mesh->SetupAttachment(BoxComp);
+	BaseMesh->SetupAttachment(BoxComp);
+	PuzzleMesh->SetupAttachment(BoxComp);
 }
 
 void APuzzlePressurePlate::BeginPlay()

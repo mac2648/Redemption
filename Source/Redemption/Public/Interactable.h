@@ -19,7 +19,10 @@ public:
 
 protected:
 	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* Mesh;
+	UStaticMeshComponent* BaseMesh;
+
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* PuzzleMesh;
 
 	bool IsActive = false;
 	
