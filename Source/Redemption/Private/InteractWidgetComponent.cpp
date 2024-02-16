@@ -102,5 +102,6 @@ void UInteractWidgetComponent::Interract()
 			healthComp->SetHealth(2);
 		}
 
+		Body->Destroy();
 	}
 }
