@@ -22,4 +22,6 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	void SetStandingIndex(AGargoyle* Gargoyle);
+
+	virtual void UpdateSight(AActor* Actor, FAIStimulus Stimulus) override;
 };

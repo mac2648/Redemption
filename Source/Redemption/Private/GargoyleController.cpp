@@ -6,6 +6,7 @@
 #include "Gargoyle.h"
 #include "PatrolPathIndicator.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 #define GET_GARGOYLE Cast<AGargoyle>(GetOwner())
 
@@ -30,6 +31,8 @@ void AGargoyleController::BeginPlay()
 	{
 		SetStandingIndex(Gargoyle);
 	}
+
+	GetBlackboardComponent()->SetValueAsBool("IsLanded", true);
 }
 
 void AGargoyleController::SetStandingIndex(AGargoyle* Gargoyle)
@@ -48,4 +51,21 @@ void AGargoyleController::SetStandingIndex(AGargoyle* Gargoyle)
 	}
 
 	GetBlackboardComponent()->SetValueAsInt("LocationIndex", Gargoyle->GetStandingIndex(CurrentStandingPos));
+}
+
+void AGargoyleController::UpdateSight(AActor* Actor, FAIStimulus Stimulus)
+{
+	bool IsLanded = GetBlackboardComponent()->GetValueAsBool("IsLanded");
+
+	if (Actor == UGameplayStatics::GetPlayerPawn(GetWorld(), 0))
+	{
+		if (Stimulus.WasSuccessfullySensed() && IsLanded)
+		{
+			GetBlackboardComponent()->SetValueAsObject("Player", Actor);
+		}
+		else
+		{
+			GetBlackboardComponent()->SetValueAsVector("LastSeenLocation", Stimulus.StimulusLocation);
+		}
+	}
 }
