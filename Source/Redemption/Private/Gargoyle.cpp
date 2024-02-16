@@ -5,6 +5,8 @@
 #include "Components/CapsuleComponent.h"
 #include "RedemptionPlayer.h"
 #include "Kismet/GameplayStatics.h"
+#include "AIController.h"
+#include "BehaviorTree/BlackboardComponent.h"
 
 // Sets default values
 AGargoyle::AGargoyle()
@@ -34,6 +36,10 @@ void AGargoyle::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (AAIController* _Controller = Cast<AAIController>(GetController()))
+	{
+		IsLanded = _Controller->GetBlackboardComponent()->GetValueAsBool("IsLanded");
+	}
 }
 
 // Called to bind functionality to input

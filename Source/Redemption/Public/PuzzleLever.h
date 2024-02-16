@@ -19,8 +19,12 @@ protected:
 	UPROPERTY(EditAnywhere)
 	UInteractWidgetComponent* InteractComp;
 
+	bool IsRotating = false;
+
 public:
 	APuzzleLever();
 
 	virtual void Activate() override;
+
+	virtual void Tick(float DeltaTime) override;
 };

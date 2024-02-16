@@ -20,6 +20,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly)
 	UStaticMeshComponent* Mesh;
 
+	UPROPERTY(EditAnywhere)
+	float MoveAngle = 90;
+
 	FRotator OpenedRotation = FRotator::ZeroRotator;
 	FRotator ClosedRotation = FRotator::ZeroRotator;
 

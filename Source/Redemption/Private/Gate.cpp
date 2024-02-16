@@ -32,7 +32,7 @@ void AGate::BeginPlay()
 
 	ClosedRotation = GetActorRotation();
 	OpenedRotation = GetActorRotation();
-	OpenedRotation.Yaw += 90;
+	OpenedRotation.Yaw += MoveAngle;
 }
 
 void AGate::CheckOpenConditions()

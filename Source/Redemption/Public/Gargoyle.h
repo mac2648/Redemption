@@ -28,6 +28,9 @@ protected:
 	UPROPERTY(EditAnywhere, category = "Patrol")
 	TArray<APatrolPathIndicator*> StandingPoints;
 
+	UPROPERTY(VisibleAnywhere)
+	bool IsLanded = false;
+
 public:
 	// Sets default values for this pawn's properties
 	AGargoyle();
@@ -43,6 +46,9 @@ public:
 	//returns -1 if the point is not part of the array
 	int GetStandingIndex(APatrolPathIndicator* Point) const;
 	TArray<APatrolPathIndicator*> GetStandingPoints() const { return StandingPoints; }
+
+	UFUNCTION(BlueprintCallable)
+	bool GetIsLanded() { return IsLanded; }
 
 protected:
 	// Called when the game starts or when spawned
