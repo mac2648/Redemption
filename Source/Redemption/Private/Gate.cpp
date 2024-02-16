@@ -69,12 +69,14 @@ void AGate::CheckOpenConditions()
 
 	if (ShouldOpen && !IsOpen)
 	{
+		//SOUND -> play here
 		IsOpen = true;
 		FTimerHandle RotationHandle;
 		GetWorld()->GetTimerManager().SetTimer(RotationHandle, this, &AGate::RotateGate, ROTATION_INTERVAL, false);
 	}
 	else if (!ShouldOpen && IsOpen)
 	{
+		//SOUND -> play here
 		IsOpen = false;
 		FTimerHandle RotationHandle;
 		GetWorld()->GetTimerManager().SetTimer(RotationHandle, this, &AGate::RotateGate, ROTATION_INTERVAL, false);
