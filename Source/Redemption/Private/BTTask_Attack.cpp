@@ -17,7 +17,7 @@ EBTNodeResult::Type UBTTask_Attack::ExecuteTask(UBehaviorTreeComponent& OwnerCom
 {
 	APawn* OwnerPawn = OwnerComp.GetAIOwner()->GetPawn();
 
-	FVector AttackPosition = OwnerPawn->GetActorLocation() + OwnerPawn->GetActorForwardVector() * 50;
+	FVector AttackPosition = OwnerPawn->GetActorLocation() + OwnerPawn->GetActorForwardVector() * 80;
 
 	OwnerComp.GetBlackboardComponent()->SetValueAsVector(NextLocation.SelectedKeyName, AttackPosition);
 	OwnerComp.GetBlackboardComponent()->SetValueAsFloat(WaitTime.SelectedKeyName, StunDuration);

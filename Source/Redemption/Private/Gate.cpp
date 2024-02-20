@@ -30,6 +30,11 @@ void AGate::BeginPlay()
 		Current->OnActivate.AddDynamic(this, &AGate::CheckOpenConditions);
 	}
 
+	if (MasterKey)
+	{
+		MasterKey->OnActivate.AddDynamic(this, &AGate::CheckOpenConditions);
+	}
+
 	ClosedRotation = GetActorRotation();
 	OpenedRotation = GetActorRotation();
 	OpenedRotation.Yaw += MoveAngle;
@@ -54,14 +59,24 @@ void AGate::CheckOpenConditions()
 		}
 	}
 
+	if (MasterKey)
+	{
+		if (MasterKey->GetIsActive())
+		{
+			ShouldOpen = true;
+		}
+	}
+
 	if (ShouldOpen && !IsOpen)
 	{
+		//SOUND -> play here
 		IsOpen = true;
 		FTimerHandle RotationHandle;
 		GetWorld()->GetTimerManager().SetTimer(RotationHandle, this, &AGate::RotateGate, ROTATION_INTERVAL, false);
 	}
 	else if (!ShouldOpen && IsOpen)
 	{
+		//SOUND -> play here
 		IsOpen = false;
 		FTimerHandle RotationHandle;
 		GetWorld()->GetTimerManager().SetTimer(RotationHandle, this, &AGate::RotateGate, ROTATION_INTERVAL, false);
