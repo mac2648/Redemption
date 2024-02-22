@@ -46,7 +46,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, category = "Power")
 	float BoneCD = BONE_CD;
 
-	EActivePowerUp CurrentPowerUp = EActivePowerUp::BoneThrow;
+	EActivePowerUp CurrentPowerUp = EActivePowerUp::Parry;
+
+	bool IsParring = false;
 
 public:	
 	// Sets default values for this component's properties
@@ -62,6 +64,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void ChangeActivePowerUp(EActivePowerUp NewPower);
+	bool GetIsParring() { return IsParring; }
 
 protected:
 	// Called when the game starts
@@ -71,4 +74,6 @@ protected:
 
 	//will spawn the bone
 	void ExecuteBonePowerUp();
+
+	void ExecuteParryPowerUp(bool NewParry);
 };

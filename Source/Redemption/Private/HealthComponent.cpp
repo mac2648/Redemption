@@ -8,6 +8,7 @@
 #include "RedemptionGameInstance.h"
 #include "Kismet/GameplayStatics.h"
 #include "Blueprint/UserWidget.h"
+#include "PowerUpComponent.h"
 
 // Sets default values for this component's properties
 UHealthComponent::UHealthComponent() :
@@ -78,6 +79,17 @@ void UHealthComponent::GameOver()
 
 void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
 {
+    if (ARedemptionPlayer* Player = Cast<ARedemptionPlayer>(GetOwner()))
+    {
+        if (UPowerUpComponent* PowerComp = Player->GetPowerUpComponent())
+        {
+            if (PowerComp->GetActivePowerUp() == EActivePowerUp::Parry && PowerComp->GetIsParring())
+            {
+                return;
+            }
+        }
+    }
+
     Health -= Damage;
 
     if (Health <= 0)

@@ -57,6 +57,10 @@ void UPowerUpComponent::UsePowerUp(const FInputActionValue& Value)
 	}
 	else if (CurrentPowerUp == EActivePowerUp::Parry)
 	{
+		bool Parry = Value.Get<bool>();
+
+		ExecuteParryPowerUp(Parry);
+
 		UE_LOG(LogTemp, Warning, TEXT("PARRY!!!!!!"))
 	}
 }
@@ -113,4 +117,9 @@ void UPowerUpComponent::ExecuteBonePowerUp()
 			BoneCD = BONE_CD;
 		}
 	}
+}
+
+void UPowerUpComponent::ExecuteParryPowerUp(bool NewParry)
+{
+	IsParring = NewParry;
 }
