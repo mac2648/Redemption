@@ -9,6 +9,7 @@
 #include "AIController.h"
 #include "RedemptionGameInstance.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "DeadBody.h"
 
 ARedemptionGameMode::ARedemptionGameMode()
 {
@@ -100,5 +101,27 @@ void ARedemptionGameMode::HandleGameStateChange(EGameState NewState)
 
     default:
         break;
+    }
+}
+
+void ARedemptionGameMode::DestroyDeadBodies()
+{
+    TArray<AActor*> DeadBodiesActors;
+
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ADeadBody::StaticClass(), DeadBodiesActors);
+
+    TArray<ADeadBody*> DeadBodies;
+
+    for (AActor* Actor : DeadBodiesActors)
+    {
+        if (ADeadBody* Body = Cast<ADeadBody>(Actor))
+        {
+            DeadBodies.Add(Body);
+        }
+    }
+
+    for (ADeadBody* Body : DeadBodies)
+    {
+        Body->Destroy();
     }
 }

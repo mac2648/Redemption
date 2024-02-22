@@ -32,5 +32,6 @@ public:
 		InCombat
 	};
 	void HandleGameStateChange(EGameState NewState);
+	void DestroyDeadBodies();
 
 };
