@@ -12,15 +12,15 @@ class REDEMPTION_API ARat : public AEnemyCharacter
 {
 	GENERATED_BODY()
 
-private:
-	UPROPERTY(EditAnywhere, Category = "Audio")
-	USoundCue* RatAttackSound;
-
 
 protected:
 
 	UPROPERTY(BlueprintReadOnly)
 	bool IsChasing = false;
+
+private:
+	UPROPERTY(EditAnywhere, Category = "Audio")
+	USoundCue* RatAttackSound;
 
 public:
 	ARat();
