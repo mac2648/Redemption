@@ -6,6 +6,7 @@
 #include "EnemyCharacter.h"
 #include "Rat.generated.h"
 
+class USoundCue;
 UCLASS()
 class REDEMPTION_API ARat : public AEnemyCharacter
 {
@@ -16,6 +17,10 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly)
 	bool IsChasing = false;
+
+private:
+	UPROPERTY(EditAnywhere, Category = "Audio")
+	USoundCue* RatAttackSound;
 
 public:
 	ARat();
