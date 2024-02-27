@@ -21,6 +21,14 @@ ARedemptionPlayer::ARedemptionPlayer()
 {
 	HealthComp = CreateDefaultSubobject<UHealthComponent>(TEXT("Health Comp"));
 	PrimaryActorTick.bCanEverTick = true;
+	// Stamina settings
+	MaxStamina = 100.0f;
+	Stamina = MaxStamina;
+	MaxSprintSpeed = 800.0f; // How fast you run
+	StaminaDepletionRate = 10.0f; // per second while sprinting
+	StaminaRegenerationRate = 5.0f; // per second while not sprinting
+	bCanSprint = true;
+
 
 	if (UWidgetComponent* WidgetComponent = HealthComp->GetWidgetComp())
 	{
@@ -31,6 +39,11 @@ ARedemptionPlayer::ARedemptionPlayer()
 		if (WidgetClass.Succeeded())
 		{
 			WidgetComponent->SetWidgetClass((WidgetClass.Class));
+		}
+		static ConstructorHelpers::FObjectFinder<UInputAction> SprintActionFinder(TEXT("/Game/InputActions/IA_Sprint"));
+		if (SprintActionFinder.Succeeded())
+		{
+			SprintAction = SprintActionFinder.Object;
 		}
 
 	}
@@ -79,12 +92,44 @@ void ARedemptionPlayer::BeginPlay()
 			Subsystem->AddMappingContext(TPPMappingContext, 1);
 		}
 	}
+	// Creating the stamina widget for the hud
+	if (StaminaWidgetClass != nullptr)
+	{
+		StaminaWidget = CreateWidget<UUserWidget>(GetWorld(), StaminaWidgetClass);
+		if (StaminaWidget != nullptr)
+		{
+			StaminaWidget->AddToViewport();
+		}
+	}
 }
 
 // Called every frame
 void ARedemptionPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (bIsSprinting && bCanSprint)
+	{
+		Stamina -= StaminaDepletionRate * DeltaTime;
+		if (Stamina <= 0)
+		{
+			Stamina = 0;
+			StopSprinting(); // prevent sprinting when stamina is depleted
+			bCanSprint = false; // Disable sprinting
+		}
+	}
+	else
+	{
+		Stamina += StaminaRegenerationRate * DeltaTime;
+		if (Stamina >= MaxStamina)
+		{
+			Stamina = MaxStamina;
+			bCanSprint = true; // Enable sprinting
+		}
+	}
+
+	// Update the HUD with the new stamina value
+	UpdateStaminaWidget(Stamina / MaxStamina);
 }
 
 // Called to bind functionality to input
@@ -106,6 +151,9 @@ void ARedemptionPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 
 		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Started, this, &ARedemptionPlayer::StartCrouch);
 		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Completed, this, &ARedemptionPlayer::EndCrouch);
+
+		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Started, this, &ARedemptionPlayer::StartSprinting);
+		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Completed, this, &ARedemptionPlayer::StopSprinting);
 	}
 }
 
@@ -172,4 +220,26 @@ void ARedemptionPlayer::EndCrouch()
 	FPPCamera->AddWorldOffset(offset);
 
 	GetCapsuleComponent()->SetCapsuleSize(42.f, 96.0f);
+}
+
+void ARedemptionPlayer::StartSprinting()
+{
+	UE_LOG(LogTemp, Warning, TEXT("StartSprinting called"));
+	if (Stamina > 0 && bCanSprint)
+	{
+		bIsSprinting = true;
+		GetCharacterMovement()->MaxWalkSpeed = MaxSprintSpeed;
+	}
+}
+
+void ARedemptionPlayer::StopSprinting()
+{
+	UE_LOG(LogTemp, Warning, TEXT("StopSprinting called"));
+	bIsSprinting = false;
+	GetCharacterMovement()->MaxWalkSpeed = 500.f;
+}
+
+void ARedemptionPlayer::UpdateStaminaWidget(float StamPercent)
+{
+	// Will affect the HUD elements eventually.
 }
