@@ -25,8 +25,8 @@ ARedemptionPlayer::ARedemptionPlayer()
 	MaxStamina = 100.0f;
 	Stamina = MaxStamina;
 	MaxSprintSpeed = 800.0f; // How fast you run
-	StaminaDepletionRate = 10.0f; // per second while sprinting
-	StaminaRegenerationRate = 5.0f; // per second while not sprinting
+	StaminaDepletionRate = 60.0f; // per second while sprinting
+	StaminaRegenerationRate = 15.0f; // per second while not sprinting
 	bCanSprint = true;
 
 
@@ -40,10 +40,11 @@ ARedemptionPlayer::ARedemptionPlayer()
 		{
 			WidgetComponent->SetWidgetClass((WidgetClass.Class));
 		}
-		static ConstructorHelpers::FObjectFinder<UInputAction> SprintActionFinder(TEXT("/Game/InputActions/IA_Sprint"));
+		static ConstructorHelpers::FObjectFinder<UInputAction> SprintActionFinder(TEXT("/Game/Player/Input/Actions/IA_Sprint"));
 		if (SprintActionFinder.Succeeded())
 		{
 			SprintAction = SprintActionFinder.Object;
+			UE_LOG(LogTemp, Warning, TEXT("BINDED AND FOUND"));
 		}
 
 	}
