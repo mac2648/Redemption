@@ -7,11 +7,15 @@
 #include "PowerUpComponent.generated.h"
 
 const float BONE_CD = 1.0f;
+const float PARRY_MAX_ENERGY = 100.0f;
+const float PARRY_DEPLETION_RATE = 50.0f;
+const float PARRY_FILL_RATE = 10.0f;
 
 class UInputAction;
 class UInputMappingContext;
 struct FInputActionValue;
 class ABone;
+class UParryBarWidget;
 
 UENUM(BlueprintType)
 enum EActivePowerUp
@@ -43,8 +47,12 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Power")
 	TSubclassOf<ABone> BoneBP;
 
-	UPROPERTY(EditDefaultsOnly, category = "Power")
+	UPROPERTY(EditDefaultsOnly, category = "UI")
+	TSubclassOf<UParryBarWidget> ParryBarWidgetClass;
+
 	float BoneCD = BONE_CD;
+	float ParryEnergy = PARRY_MAX_ENERGY;
+	UParryBarWidget* ParryBar = nullptr;
 
 	EActivePowerUp CurrentPowerUp = EActivePowerUp::Parry;
 
@@ -64,7 +72,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void ChangeActivePowerUp(EActivePowerUp NewPower);
-	bool GetIsParring() { return IsParring; }
+	bool GetIsParring() const { return IsParring; }
+	float GetParryEnergyPercentage() const { return ParryEnergy / PARRY_MAX_ENERGY; }
 
 protected:
 	// Called when the game starts

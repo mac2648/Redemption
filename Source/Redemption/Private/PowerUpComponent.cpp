@@ -8,6 +8,7 @@
 #include "RedemptionPlayer.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "ParryBarWidget.h"
 
 #define GET_PLAYER_CONTROLLER Cast<APlayerController>(Cast<APawn>(GetOwner())->GetController())
 #define GET_ENHANCED_INPUT_LOCAL_PLAYER_SUBSYSTEM ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GET_PLAYER_CONTROLLER->GetLocalPlayer())
@@ -42,6 +43,35 @@ void UPowerUpComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	if (BoneCD >= 0)
 	{
 		BoneCD -= DeltaTime;
+	}
+	if (IsParring)
+	{
+		ParryEnergy -= PARRY_DEPLETION_RATE * DeltaTime;
+		if (ParryEnergy <= 0)
+		{
+			ExecuteParryPowerUp(false);
+		}
+	}
+	else if (!IsParring && ParryEnergy < PARRY_MAX_ENERGY)
+	{
+		ParryEnergy += PARRY_FILL_RATE * DeltaTime;
+		if (ParryEnergy > PARRY_MAX_ENERGY)
+		{
+			ParryEnergy = PARRY_MAX_ENERGY;
+		}
+	}
+
+	if (ParryBar)
+	{
+		if (ParryEnergy >= PARRY_MAX_ENERGY)
+		{
+			ParryBar->RemoveFromParent();
+			ParryBar = nullptr;
+		}
+		else
+		{
+			ParryBar->SetBarValuePercent(GetParryEnergyPercentage());
+		}
 	}
 }
 
@@ -122,4 +152,13 @@ void UPowerUpComponent::ExecuteBonePowerUp()
 void UPowerUpComponent::ExecuteParryPowerUp(bool NewParry)
 {
 	IsParring = NewParry;
+
+	if (NewParry && !ParryBar)
+	{
+		ParryBar = CreateWidget<UParryBarWidget>(GetWorld(), ParryBarWidgetClass);
+		if (ParryBar)
+		{
+			ParryBar->AddToViewport();
+		}
+	}
 }
