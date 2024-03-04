@@ -24,8 +24,8 @@ ARedemptionPlayer::ARedemptionPlayer()
 	// Stamina settings
 	MaxStamina = 100.0f;
 	Stamina = MaxStamina;
-	MaxSprintSpeed = 800.0f; // How fast you run
-	StaminaDepletionRate = 60.0f; // per second while sprinting
+	MaxSprintSpeed = 600.0f; // How fast you run
+	StaminaDepletionRate = 75.0f; // per second while sprinting
 	StaminaRegenerationRate = 15.0f; // per second while not sprinting
 	bCanSprint = true;
 
@@ -60,7 +60,7 @@ ARedemptionPlayer::ARedemptionPlayer()
 
 	GetCharacterMovement()->JumpZVelocity = 700.f;
 	GetCharacterMovement()->AirControl = 0.35f;
-	GetCharacterMovement()->MaxWalkSpeed = 500.f;
+	GetCharacterMovement()->MaxWalkSpeed = 250.f;
 	GetCharacterMovement()->MinAnalogWalkSpeed = 20.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
 	GetCharacterMovement()->BrakingDecelerationFalling = 1500.0f;
