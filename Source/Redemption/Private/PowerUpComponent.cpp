@@ -44,7 +44,7 @@ void UPowerUpComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	{
 		BoneCD -= DeltaTime;
 	}
-	if (IsParring)
+	if (IsParrying)
 	{
 		ParryEnergy -= PARRY_DEPLETION_RATE * DeltaTime;
 		if (ParryEnergy <= 0)
@@ -52,7 +52,7 @@ void UPowerUpComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 			ExecuteParryPowerUp(false);
 		}
 	}
-	else if (!IsParring && ParryEnergy < PARRY_MAX_ENERGY)
+	else if (!IsParrying && ParryEnergy < PARRY_MAX_ENERGY)
 	{
 		ParryEnergy += PARRY_FILL_RATE * DeltaTime;
 		if (ParryEnergy > PARRY_MAX_ENERGY)
@@ -151,7 +151,7 @@ void UPowerUpComponent::ExecuteBonePowerUp()
 
 void UPowerUpComponent::ExecuteParryPowerUp(bool NewParry)
 {
-	IsParring = NewParry;
+	IsParrying = NewParry;
 
 	if (NewParry && !ParryBar)
 	{

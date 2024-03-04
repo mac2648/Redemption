@@ -56,7 +56,7 @@ protected:
 
 	EActivePowerUp CurrentPowerUp = EActivePowerUp::Parry;
 
-	bool IsParring = false;
+	bool IsParrying = false;
 
 public:	
 	// Sets default values for this component's properties
@@ -72,7 +72,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void ChangeActivePowerUp(EActivePowerUp NewPower);
-	bool GetIsParrying() const { return IsParring; }
+	bool GetIsParrying() const { return IsParrying; }
 	float GetParryEnergyPercentage() const { return ParryEnergy / PARRY_MAX_ENERGY; }
 
 protected:
