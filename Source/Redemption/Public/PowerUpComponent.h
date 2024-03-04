@@ -72,7 +72,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void ChangeActivePowerUp(EActivePowerUp NewPower);
-	bool GetIsParring() const { return IsParring; }
+	bool GetIsParrying() const { return IsParring; }
 	float GetParryEnergyPercentage() const { return ParryEnergy / PARRY_MAX_ENERGY; }
 
 protected:

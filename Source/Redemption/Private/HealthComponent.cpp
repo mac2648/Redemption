@@ -83,7 +83,7 @@ void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDam
     {
         if (UPowerUpComponent* PowerComp = Player->GetPowerUpComponent())
         {
-            if (PowerComp->GetActivePowerUp() == EActivePowerUp::Parry && PowerComp->GetIsParring())
+            if (PowerComp->GetActivePowerUp() == EActivePowerUp::Parry && PowerComp->GetIsParrying())
             {
                 return;
             }
