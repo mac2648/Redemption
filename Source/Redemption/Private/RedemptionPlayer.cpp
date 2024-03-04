@@ -237,7 +237,7 @@ void ARedemptionPlayer::StopSprinting()
 {
 	UE_LOG(LogTemp, Warning, TEXT("StopSprinting called"));
 	bIsSprinting = false;
-	GetCharacterMovement()->MaxWalkSpeed = 500.f;
+	GetCharacterMovement()->MaxWalkSpeed = 250.f;
 }
 
 void ARedemptionPlayer::UpdateStaminaWidget(float StamPercent)
