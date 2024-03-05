@@ -23,16 +23,21 @@ EBTNodeResult::Type UBTTask_GargoyleAttack::ExecuteTask(UBehaviorTreeComponent& 
 	AGargoyle* Gargoyle = GET_GARGOYLE;
 	FVector CurrentLocation = Gargoyle->GetActorLocation();
 
+	if (!GET_BLACKBOARD->GetValueAsObject(Player.SelectedKeyName))
+	{
+		return EBTNodeResult::Failed;
+	}
+
 	FVector PlayerLocation = Cast<AActor>(GET_BLACKBOARD->GetValueAsObject(Player.SelectedKeyName))->GetActorLocation();
 
-	FVector FlyVec = PlayerLocation - CurrentLocation + FVector(0.0, 0.0, 160.0);
+	FVector FlyVec = PlayerLocation - CurrentLocation + FVector(0.0, 0.0, 180.0);
 	FlyVec.Normalize();
 
 	UFloatingPawnMovement* GargoyleMoveComp = Gargoyle->GetFloatMovementComp();
 
 	GargoyleMoveComp->Velocity = FlyVec * Speed;
 
-	if ((CurrentLocation - PlayerLocation).Length() < 15.0f)
+	if ((CurrentLocation - PlayerLocation).Length() < 185.0f)
 	{
 		GET_BLACKBOARD->ClearValue(Player.SelectedKeyName);
 	}

@@ -7,7 +7,9 @@
 #include "Kismet/GameplayStatics.h" 
 #include "EnemyCharacter.h"
 #include "AIController.h"
+#include "RedemptionGameInstance.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "DeadBody.h"
 
 ARedemptionGameMode::ARedemptionGameMode()
 {
@@ -66,6 +68,17 @@ void ARedemptionGameMode::BeginPlay()
     {
         MyAudioManager->PlayAmbientMusic();
     }
+
+    URedemptionGameInstance* Instance = Cast<URedemptionGameInstance>(GetGameInstance());
+    FVector PlayerBodyPosition = Instance->GetPlayerDiedLocation();
+
+    if (PlayerBodyPosition != FVector::ZeroVector)
+    {
+        GetWorld()->SpawnActor<AActor>(DeadBodyClass, PlayerBodyPosition, FRotator::ZeroRotator);
+    }
+
+
+
 }
 
 void ARedemptionGameMode::HandleGameStateChange(EGameState NewState)
@@ -88,5 +101,27 @@ void ARedemptionGameMode::HandleGameStateChange(EGameState NewState)
 
     default:
         break;
+    }
+}
+
+void ARedemptionGameMode::DestroyDeadBodies()
+{
+    TArray<AActor*> DeadBodiesActors;
+
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ADeadBody::StaticClass(), DeadBodiesActors);
+
+    TArray<ADeadBody*> DeadBodies;
+
+    for (AActor* Actor : DeadBodiesActors)
+    {
+        if (ADeadBody* Body = Cast<ADeadBody>(Actor))
+        {
+            DeadBodies.Add(Body);
+        }
+    }
+
+    for (ADeadBody* Body : DeadBodies)
+    {
+        Body->Destroy();
     }
 }

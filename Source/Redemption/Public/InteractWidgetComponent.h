@@ -9,6 +9,7 @@
 class UInputMappingContext;
 class UInputAction;
 class UBoxComponent;
+struct FInputBindingHandle;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class REDEMPTION_API UInteractWidgetComponent : public UActorComponent
@@ -29,6 +30,7 @@ protected:
 	TSubclassOf<UUserWidget> InteractWidgetClass;
 
 	UUserWidget* InteractWidget = nullptr;
+	FInputBindingHandle* BindedAction;
 
 public:	
 	// Sets default values for this component's properties

@@ -82,6 +82,8 @@ APatrolPathIndicator* UBTTask_DefineNextStandingPoint::SecondClosestPositionToPl
 	APatrolPathIndicator* Closest = nullptr;
 	APatrolPathIndicator* SecondClosest = nullptr;
 
+	TArray<float> Distances;
+
 	for (APatrolPathIndicator* Current : *StandingPoints)
 	{
 		if (FVector::Dist(PlayerLocation, Current->GetActorLocation()) < ClosestDistanceToPlayer)
@@ -91,6 +93,11 @@ APatrolPathIndicator* UBTTask_DefineNextStandingPoint::SecondClosestPositionToPl
 
 			ClosestDistanceToPlayer = FVector::Dist(PlayerLocation, Current->GetActorLocation());
 			Closest = Current;
+		}
+		else if (FVector::Dist(PlayerLocation, Current->GetActorLocation()) < SecondDistanceToPlayer)
+		{
+			SecondDistanceToPlayer = FVector::Dist(PlayerLocation, Current->GetActorLocation());
+			SecondClosest = Current;
 		}
 	}
 

@@ -4,6 +4,11 @@
 #include "HealthComponent.h"
 #include "Components/WidgetComponent.h"
 #include "GameFramework/Controller.h"
+#include "RedemptionPlayer.h"
+#include "RedemptionGameInstance.h"
+#include "Kismet/GameplayStatics.h"
+#include "Blueprint/UserWidget.h"
+#include "../RedemptionGameMode.h"
 
 // Sets default values for this component's properties
 UHealthComponent::UHealthComponent() :
@@ -14,7 +19,6 @@ Health{ MaxHealth }
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	// ...
 }
 
 
@@ -51,13 +55,67 @@ float UHealthComponent::GetMaxHealth() const
 void UHealthComponent::SetHealth(float const NewHealth)
 {
 	Health = NewHealth;
+
+    if (Health > 1 && CurrentVignetteWidget)
+    {
+        CurrentVignetteWidget->RemoveFromViewport();
+        CurrentVignetteWidget = nullptr;
+    }
 }
 
-void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
+void UHealthComponent::Die()
 {
-	Health -= Damage;
-	if (Health <= 0)
-	{
-		//TO DO : DIE
-	}
+	URedemptionGameInstance* Instance = Cast<URedemptionGameInstance>(GetOwner()->GetGameInstance());
+
+    if (Instance)
+    {
+        Instance->SetPlayerDiedLocation();
+    }
+
+    if (ARedemptionGameMode* GameMode = Cast<ARedemptionGameMode>(UGameplayStatics::GetGameMode(GetWorld())))
+    {
+        GameMode->DestroyDeadBodies();
+    }
+
+	GameOver();
+}
+
+
+void UHealthComponent::GameOver()
+{
+	UUserWidget* GameOverWidget = CreateWidget<UUserWidget>(GetWorld(), GameOverWidgetClass);
+	GameOverWidget->AddToViewport();
+}
+
+void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
+{
+    Health -= Damage;
+
+    if (Health <= 0)
+    {
+        Die();
+    }
+    else if (Health == 1 && !CurrentVignetteWidget)
+    {
+        UWorld* World = GetWorld();
+        if (World)
+        {
+            CurrentVignetteWidget = CreateWidget<UUserWidget>(World, VignetteWidgetClass);
+            if (CurrentVignetteWidget)
+            {
+                CurrentVignetteWidget->AddToViewport();
+            }
+            else
+            {
+                UE_LOG(LogTemp, Error, TEXT("Failed to create widget"));
+            }
+        }
+       
+    }
+
+    else if (Health > 1 && CurrentVignetteWidget)
+    {
+        CurrentVignetteWidget->RemoveFromViewport();
+        CurrentVignetteWidget = nullptr;
+    }
 }

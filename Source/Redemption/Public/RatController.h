@@ -13,5 +13,7 @@ UCLASS()
 class REDEMPTION_API ARatController : public ALandEnemyController
 {
 	GENERATED_BODY()
-	
+protected:
+
+	virtual void UpdateSight(AActor* Actor, FAIStimulus Stimulus) override;
 };

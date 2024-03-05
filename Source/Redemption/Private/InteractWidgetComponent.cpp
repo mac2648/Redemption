@@ -6,6 +6,10 @@
 #include "EnhancedInputSubsystems.h"
 #include "Components/BoxComponent.h"
 #include "RedemptionPlayer.h"
+#include "PuzzleLever.h"
+#include "DeadBody.h"
+#include "Kismet/GameplayStatics.h"
+#include "HealthComponent.h"
 
 #define GET_PLAYER_CONTROLLER Cast<APlayerController>(Player->GetController())
 #define GET_ENHANCED_INPUT_LOCAL_PLAYER_SUBSYSTEM ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GET_PLAYER_CONTROLLER->GetLocalPlayer())
@@ -35,7 +39,7 @@ void UInteractWidgetComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedCom
 	{
 		if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(Player->InputComponent))
 		{
-			EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this, &UInteractWidgetComponent::Interract);
+			BindedAction = &EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this, &UInteractWidgetComponent::Interract);
 		}
 
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = GET_ENHANCED_INPUT_LOCAL_PLAYER_SUBSYSTEM)
@@ -49,6 +53,8 @@ void UInteractWidgetComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedCom
 			InteractWidget = CreateWidget<UUserWidget>(GetWorld(), InteractWidgetClass);
 			InteractWidget->AddToViewport();
 		}
+
+
 	}
 }
 
@@ -61,6 +67,11 @@ void UInteractWidgetComponent::OnOverlapEnd(UPrimitiveComponent* OverlappedComp,
 			Subsystem->RemoveMappingContext(InteractMappingContext);
 		}
 
+		if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(Player->InputComponent))
+		{
+			EnhancedInputComponent->RemoveBinding(*BindedAction);
+		}
+
 		if (InteractWidget)
 		{
 			InteractWidget->RemoveFromParent();
@@ -71,5 +82,26 @@ void UInteractWidgetComponent::OnOverlapEnd(UPrimitiveComponent* OverlappedComp,
 
 void UInteractWidgetComponent::Interract()
 {
-	//TO DO : link with the use of whatever has the component
+	if (APuzzleLever* Lever = Cast<APuzzleLever>(GetOwner()))
+	{
+		Lever->Activate();
+	}
+	else if (ADeadBody* Body = Cast<ADeadBody>(GetOwner()))
+	{		
+		ARedemptionPlayer* Player = Cast<ARedemptionPlayer>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+
+		if (!Player)
+		{
+			return;
+		}
+
+		UHealthComponent* healthComp = Player->GetHealthComponent();
+		
+		if (healthComp)
+		{
+			healthComp->SetHealth(2);
+		}
+
+		Body->Destroy();
+	}
 }

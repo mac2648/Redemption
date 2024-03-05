@@ -6,21 +6,33 @@
 #include "EnemyCharacter.h"
 #include "Rat.generated.h"
 
+class USoundCue;
 UCLASS()
 class REDEMPTION_API ARat : public AEnemyCharacter
 {
 	GENERATED_BODY()
 
+
 protected:
-	//component used as temporary because the rat meh is not a skeletal component yet
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* StaticMesh;
+
+	UPROPERTY(BlueprintReadOnly)
+	bool IsChasing = false;
+
+private:
+	UPROPERTY(EditAnywhere, Category = "Audio")
+	USoundCue* RatAttackSound;
 
 public:
 	ARat();
 
+	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION(BlueprintCallable)
+	bool GetIsChasing() const { return IsChasing; }
+
 protected:
 	virtual void BeginPlay() override;
+
 
 	//function to deal damage to player when overlaping it
 	UFUNCTION()

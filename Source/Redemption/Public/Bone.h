@@ -7,6 +7,7 @@
 #include "Bone.generated.h"
 
 class UBoxComponent;
+class URotatingMovementComponent;
 
 UCLASS()
 class REDEMPTION_API ABone : public AActor
@@ -19,6 +20,9 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* BoneMesh;
+
+	UPROPERTY(EditAnywhere)
+	URotatingMovementComponent* RotationComp;
 
 public:	
 	// Sets default values for this actor's properties
