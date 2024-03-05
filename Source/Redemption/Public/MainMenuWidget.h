@@ -14,6 +14,9 @@ UCLASS()
 class REDEMPTION_API UMainMenuWidget : public UUserWidget
 {
 	GENERATED_BODY()
+
+public:
+	virtual void NativeConstruct() override;
 	
 protected:
 	UPROPERTY(BlueprintReadOnly,meta = (BindWidget))
@@ -27,7 +30,5 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void Quit();
 
-public:
-	virtual void NativeConstruct() override;
 };
 
