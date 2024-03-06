@@ -9,6 +9,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Blueprint/UserWidget.h"
 #include "PowerUpComponent.h"
+#include "../RedemptionGameMode.h"
 
 // Sets default values for this component's properties
 UHealthComponent::UHealthComponent() :
@@ -66,7 +67,17 @@ void UHealthComponent::SetHealth(float const NewHealth)
 void UHealthComponent::Die()
 {
 	URedemptionGameInstance* Instance = Cast<URedemptionGameInstance>(GetOwner()->GetGameInstance());
-	Instance->SetPlayerDiedLocation();
+
+    if (Instance)
+    {
+        Instance->SetPlayerDiedLocation();
+    }
+
+    if (ARedemptionGameMode* GameMode = Cast<ARedemptionGameMode>(UGameplayStatics::GetGameMode(GetWorld())))
+    {
+        GameMode->DestroyDeadBodies();
+    }
+
 	GameOver();
 }
 

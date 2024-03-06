@@ -54,7 +54,43 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputAction* CrouchAction;
 
-	
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	const UInputAction* SprintAction;
+
+private:
+	// Stamina settings
+	UPROPERTY(VisibleAnywhere, Category = "Stamina")
+	float Stamina;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Stamina")
+	float MaxStamina;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Stamina")
+	float StaminaDepletionRate;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Stamina")
+	float StaminaRegenerationRate;
+
+	UPROPERTY(VisibleAnywhere, Category = "Stamina")
+	bool bCanSprint;
+
+	UPROPERTY(VisibleAnywhere, Category = "Stamina")
+	bool bIsSprinting;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Stamina")
+	float MaxSprintSpeed;
+
+	// HUD widget for stamina
+	UPROPERTY(EditAnywhere, Category = "HUD")
+	TSubclassOf<UUserWidget> StaminaWidgetClass;
+
+	UPROPERTY()
+	UUserWidget* StaminaWidget;
+
+	// Functions
+	void StartSprinting();
+	void StopSprinting();
+	void UpdateStaminaWidget(float StaminaPercent);
 
 public:
 	ARedemptionPlayer();

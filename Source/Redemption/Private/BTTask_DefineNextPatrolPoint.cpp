@@ -3,7 +3,7 @@
 
 #include "BTTask_DefineNextPatrolPoint.h"
 #include "AIController.h"
-#include "Rat.h"
+#include "EnemyCharacter.h"
 #include "PatrolComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "PatrolPathIndicator.h"
@@ -15,7 +15,7 @@ UBTTask_DefineNextPatrolPoint::UBTTask_DefineNextPatrolPoint()
 
 EBTNodeResult::Type UBTTask_DefineNextPatrolPoint::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	if (UPatrolComponent* PatrolComp = Cast<ARat>(OwnerComp.GetAIOwner()->GetPawn())->GetPatrolComponent())
+	if (UPatrolComponent* PatrolComp = Cast<AEnemyCharacter>(OwnerComp.GetAIOwner()->GetPawn())->GetPatrolComponent())
 	{
 		if (UBlackboardComponent* BBComp = OwnerComp.GetBlackboardComponent())
 		{
