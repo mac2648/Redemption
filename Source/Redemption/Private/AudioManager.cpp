@@ -81,3 +81,24 @@ void AAudioManager::PlayCombatMusic()
         MusicComponent->Play();
     }
 }
+
+void AAudioManager::OnPlayerSpotted()
+{
+    // Cancel any existing timer to reset the music, ensuring combat music plays for at least 5 seconds
+    GetWorld()->GetTimerManager().ClearTimer(MusicResetTimerHandle);
+
+    // Switch to combat music
+    PlayCombatMusic();
+
+    // Start a timer to reset the music after 5 seconds
+    GetWorld()->GetTimerManager().SetTimer(MusicResetTimerHandle, this, &AAudioManager::ResetAmbientMusic, 5.0f, false);
+}
+
+void AAudioManager::ResetAmbientMusic()
+{
+    // Stop the combat music
+    MusicComponent->Stop();
+
+    // Play the ambient music again
+    PlayAmbientMusic();
+}

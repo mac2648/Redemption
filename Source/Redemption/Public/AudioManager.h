@@ -36,6 +36,7 @@ private:
 
     // Timer handle for playing random ambient sounds
     FTimerHandle RandomSoundTimerHandle;
+    
 public:
     // Sets default values for this actor's properties
     AAudioManager();
@@ -62,4 +63,11 @@ public:
     // Function to start random ambient sounds playing
     void StartRandomAmbientSounds();
 
+    // Function to handle player being spotted
+    void OnPlayerSpotted();
+
+    // Function to reset ambient music after delay
+    void ResetAmbientMusic();
+
+    FTimerHandle MusicResetTimerHandle;
 };

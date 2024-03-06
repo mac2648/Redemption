@@ -14,8 +14,11 @@
 #include "Components/WidgetComponent.h"
 #include "HealthComponent.h"
 #include "HealthBarWidget.h"
+#include "AudioManager.h" // Can't forward declare this one
+#include "Kismet/GameplayStatics.h"
 
 #define POWER_UP_ACTION PowerUpComp->GetUsePowerAction()
+
 
 ARedemptionPlayer::ARedemptionPlayer()
 {
@@ -132,6 +135,7 @@ void ARedemptionPlayer::Tick(float DeltaTime)
 	// Update the HUD with the new stamina value
 	UpdateStaminaWidget(Stamina / MaxStamina);
 	// Show/hide the stamina widget based on sprinting and stamina value
+	/**
 	if (bIsSprinting || Stamina != MaxStamina)
 	{
 		// Show
@@ -141,7 +145,7 @@ void ARedemptionPlayer::Tick(float DeltaTime)
 	{
 		// Hide
 		StaminaWidget->SetVisibility(ESlateVisibility::Hidden);
-	}
+	}*/
 }
 
 // Called to bind functionality to input
@@ -254,4 +258,15 @@ void ARedemptionPlayer::StopSprinting()
 void ARedemptionPlayer::UpdateStaminaWidget(float StamPercent)
 {
 	// Will affect the HUD elements eventually.
+}
+
+void ARedemptionPlayer::OnPlayerSpotted()
+{
+	// Get a reference to the audio manager
+	AAudioManager* AudioManager = Cast<AAudioManager>(UGameplayStatics::GetActorOfClass(GetWorld(), AAudioManager::StaticClass()));
+
+	if (AudioManager)
+	{
+		AudioManager->OnPlayerSpotted();
+	}
 }
