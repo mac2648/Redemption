@@ -95,7 +95,7 @@ private:
 public:
 	ARedemptionPlayer();
 	UHealthComponent* GetHealthComponent() const { return HealthComp; }
-
+	UPowerUpComponent* GetPowerUpComponent() const { return PowerUpComp; }
 
 	UCameraComponent* GetFPPCamera() { return FPPCamera; }
 
