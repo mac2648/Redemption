@@ -24,8 +24,8 @@ ARedemptionPlayer::ARedemptionPlayer()
 	// Stamina settings
 	MaxStamina = 100.0f;
 	Stamina = MaxStamina;
-	MaxSprintSpeed = 600.0f; // How fast you run
-	StaminaDepletionRate = 75.0f; // per second while sprinting
+	MaxSprintSpeed = 450.0f; // How fast you run
+	StaminaDepletionRate = 65.0f; // per second while sprinting
 	StaminaRegenerationRate = 15.0f; // per second while not sprinting
 	bCanSprint = true;
 
@@ -131,6 +131,17 @@ void ARedemptionPlayer::Tick(float DeltaTime)
 
 	// Update the HUD with the new stamina value
 	UpdateStaminaWidget(Stamina / MaxStamina);
+	// Show/hide the stamina widget based on sprinting and stamina value
+	if (bIsSprinting || Stamina != MaxStamina)
+	{
+		// Show
+		StaminaWidget->SetVisibility(ESlateVisibility::Visible);
+	}
+	else
+	{
+		// Hide
+		StaminaWidget->SetVisibility(ESlateVisibility::Hidden);
+	}
 }
 
 // Called to bind functionality to input
