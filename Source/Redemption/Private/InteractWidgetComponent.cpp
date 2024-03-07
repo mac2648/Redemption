@@ -102,6 +102,8 @@ void UInteractWidgetComponent::Interract()
 			healthComp->SetHealth(2);
 		}
 
+		Body->CreateChangePowerUpWidget();
+
 		Body->Destroy();
 	}
 }

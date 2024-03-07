@@ -18,20 +18,43 @@ void UChangePowerUpWidget::NativeConstruct()
 	if (ARedemptionPlayer* Player = Cast<ARedemptionPlayer>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0)))
 	{
 		PlayerPowerUpComp = Player->GetPowerUpComponent();
+		if (APlayerController* PlayerController = Cast<APlayerController>(Player->GetController()))
+		{
+			PlayerController->SetInputMode(FInputModeUIOnly());
+			PlayerController->SetShowMouseCursor(true);
+		}
 	}
 }
 
 void UChangePowerUpWidget::ActivateBonePower()
 {
+	UE_LOG(LogTemp, Warning, TEXT("BONE"))
 	PlayerPowerUpComp->ChangeActivePowerUp(EActivePowerUp::BoneThrow);
+	Delete();
 }
 
 void UChangePowerUpWidget::ActivateParryPower()
 {
 	PlayerPowerUpComp->ChangeActivePowerUp(EActivePowerUp::Parry);
+	Delete();
 }
 
 void UChangePowerUpWidget::ActivateHoverPower()
 {
 	PlayerPowerUpComp->ChangeActivePowerUp(EActivePowerUp::Hover);
+	Delete();
+}
+
+void UChangePowerUpWidget::Delete()
+{
+	if (ARedemptionPlayer* Player = Cast<ARedemptionPlayer>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0)))
+	{
+		if (APlayerController* PlayerController = Cast<APlayerController>(Player->GetController()))
+		{
+			PlayerController->SetInputMode(FInputModeGameOnly());
+			PlayerController->SetShowMouseCursor(false);
+		}
+	}
+
+	RemoveFromParent();
 }

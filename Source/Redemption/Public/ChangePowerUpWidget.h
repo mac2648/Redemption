@@ -33,7 +33,14 @@ protected:
 public:
 	virtual void NativeConstruct() override;
 	
+	UFUNCTION()
 	void ActivateBonePower();
+
+	UFUNCTION()
 	void ActivateParryPower();
+
+	UFUNCTION()
 	void ActivateHoverPower();
+
+	void Delete();
 };

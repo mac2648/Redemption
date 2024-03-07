@@ -19,10 +19,15 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	UInteractWidgetComponent* InteractComp;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUserWidget> ChangePowerUpWidgetClass;
 	
 public:	
 	// Sets default values for this actor's properties
 	ADeadBody();
+
+	void CreateChangePowerUpWidget();
 
 protected:
 	// Called when the game starts or when spawned
