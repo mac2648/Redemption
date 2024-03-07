@@ -27,7 +27,7 @@ protected:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> SoundWaveClass;
 
-	AActor* SoundWave;
+	TArray<AActor*> SoundWave;
 
 public:	
 	// Sets default values for this actor's properties
@@ -47,5 +47,5 @@ protected:
 	//function created to be able to use timers. it just destroys the bone
 	void DestroyBone() { Destroy(); }
 
-	void DestroySoundWave() { SoundWave->Destroy(); }
+	void DestroySoundWave() { SoundWave[0]->Destroy(); SoundWave.RemoveAt(0); }
 };
