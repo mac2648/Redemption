@@ -53,7 +53,13 @@ void ABone::OnBoneBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* Othe
 		RotationComp->RotationRate = FRotator(0.0, 0.0, 0.0);
 		UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 1.5f, this);
 
+		SoundWave = GetWorld()->SpawnActor<AActor>(SoundWaveClass, GetActorLocation(), FRotator::ZeroRotator);
+
 		FTimerHandle DestroyHandle;
 		GetWorld()->GetTimerManager().SetTimer(DestroyHandle, this, &ABone::DestroyBone, 2.0, false);
+
+		FTimerHandle DestroyHandle2;
+		GetWorld()->GetTimerManager().SetTimer(DestroyHandle2, this, &ABone::DestroySoundWave, 2.0, false);
 	}
 }
+

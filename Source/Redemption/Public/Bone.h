@@ -24,6 +24,11 @@ protected:
 	UPROPERTY(EditAnywhere)
 	URotatingMovementComponent* RotationComp;
 
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AActor> SoundWaveClass;
+
+	AActor* SoundWave;
+
 public:	
 	// Sets default values for this actor's properties
 	ABone();
@@ -41,4 +46,6 @@ protected:
 
 	//function created to be able to use timers. it just destroys the bone
 	void DestroyBone() { Destroy(); }
+
+	void DestroySoundWave() { SoundWave->Destroy(); }
 };

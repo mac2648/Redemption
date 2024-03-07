@@ -54,7 +54,7 @@ protected:
 	float ParryEnergy = PARRY_MAX_ENERGY;
 	UParryBarWidget* ParryBar = nullptr;
 
-	EActivePowerUp CurrentPowerUp = EActivePowerUp::Parry;
+	EActivePowerUp CurrentPowerUp = EActivePowerUp::BoneThrow;
 
 	bool IsParrying = false;
 
