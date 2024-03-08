@@ -92,6 +92,8 @@ private:
 	void StopSprinting();
 	void UpdateStaminaWidget(float StaminaPercent);
 
+	void OnPlayerSpotted();
+
 public:
 	ARedemptionPlayer();
 	UHealthComponent* GetHealthComponent() const { return HealthComp; }
