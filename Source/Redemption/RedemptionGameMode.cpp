@@ -44,6 +44,11 @@ void ARedemptionGameMode::Tick(float DeltaTime)
     {
         HandleGameStateChange(EGameState::Safe);
         SafeMusic = true;
+
+        if (MyAudioManager)
+        {
+            MyAudioManager->ResetCombatState();
+        }
     }
     else if (!Safe && SafeMusic)
     {

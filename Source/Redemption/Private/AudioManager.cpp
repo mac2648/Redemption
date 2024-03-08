@@ -65,40 +65,40 @@ void AAudioManager::StartRandomAmbientSounds()
 // Implementation to start playing ambient music
 void AAudioManager::PlayAmbientMusic()
 {
-    if (AmbientMusicCue != nullptr)
+    if (AmbientMusicCue != nullptr && !bIsInCombat)
     {
         MusicComponent->SetSound(AmbientMusicCue);
         MusicComponent->Play();
     }
 }
 
-// Implementation to switch to combat music
 void AAudioManager::PlayCombatMusic()
 {
-    if (CombatMusicCue != nullptr)
+    // Only switch to combat music if we're not already in combat mode
+    if (CombatMusicCue != nullptr && !bIsInCombat)
     {
+        bIsInCombat = true;
+        // Clear any pending switch back to ambient music
+        GetWorldTimerManager().ClearTimer(MusicDelayTimerHandle);
+
+        // Set the combat music and play it
         MusicComponent->SetSound(CombatMusicCue);
         MusicComponent->Play();
     }
 }
 
-void AAudioManager::OnPlayerSpotted()
+void AAudioManager::StartMusicDelayTimer()
 {
-    // Cancel any existing timer to reset the music, ensuring combat music plays for at least 5 seconds
-    GetWorld()->GetTimerManager().ClearTimer(MusicResetTimerHandle);
-
-    // Switch to combat music
-    PlayCombatMusic();
-
-    // Start a timer to reset the music after 5 seconds
-    GetWorld()->GetTimerManager().SetTimer(MusicResetTimerHandle, this, &AAudioManager::ResetAmbientMusic, 5.0f, false);
+    GetWorldTimerManager().SetTimer(MusicDelayTimerHandle, this, &AAudioManager::PlayAmbientMusic, 5.0f, false);
 }
 
-void AAudioManager::ResetAmbientMusic()
+void AAudioManager::ResetCombatState()
 {
-    // Stop the combat music
-    MusicComponent->Stop();
-
-    // Play the ambient music again
-    PlayAmbientMusic();
+    // Only proceed if we're currently in combat
+    if (bIsInCombat)
+    {
+        bIsInCombat = false;
+        // Start or reset the delay timer for switching back to ambient music
+        StartMusicDelayTimer();
+    }
 }
