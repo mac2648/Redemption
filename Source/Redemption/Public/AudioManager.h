@@ -36,6 +36,9 @@ private:
 
     // Timer handle for playing random ambient sounds
     FTimerHandle RandomSoundTimerHandle;
+
+    bool bIsInCombat = false;
+    FTimerHandle MusicDelayTimerHandle;
 public:
     // Sets default values for this actor's properties
     AAudioManager();
@@ -59,7 +62,12 @@ public:
     // Function to play combat music
     void PlayCombatMusic();
 
+    void StartMusicDelayTimer();
+
+    void ResetCombatState();
+
     // Function to start random ambient sounds playing
     void StartRandomAmbientSounds();
 
+    FTimerHandle MusicResetTimerHandle;
 };
