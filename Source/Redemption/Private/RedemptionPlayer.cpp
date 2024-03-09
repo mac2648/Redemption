@@ -14,6 +14,7 @@
 #include "Components/WidgetComponent.h"
 #include "HealthComponent.h"
 #include "HealthBarWidget.h"
+#include "StaminaBarWidget.h"
 
 
 #define POWER_UP_ACTION PowerUpComp->GetUsePowerAction()
@@ -98,7 +99,7 @@ void ARedemptionPlayer::BeginPlay()
 	// Creating the stamina widget for the hud
 	if (StaminaWidgetClass != nullptr)
 	{
-		StaminaWidget = CreateWidget<UUserWidget>(GetWorld(), StaminaWidgetClass);
+		StaminaWidget = CreateWidget<UStaminaBarWidget>(GetWorld(), StaminaWidgetClass);
 		if (StaminaWidget != nullptr)
 		{
 			StaminaWidget->AddToViewport();
@@ -134,7 +135,6 @@ void ARedemptionPlayer::Tick(float DeltaTime)
 	// Update the HUD with the new stamina value
 	UpdateStaminaWidget(Stamina / MaxStamina);
 	// Show/hide the stamina widget based on sprinting and stamina value
-	/**
 	if (bIsSprinting || Stamina != MaxStamina)
 	{
 		// Show
@@ -144,7 +144,7 @@ void ARedemptionPlayer::Tick(float DeltaTime)
 	{
 		// Hide
 		StaminaWidget->SetVisibility(ESlateVisibility::Hidden);
-	}*/
+	}
 
 }
 
@@ -257,5 +257,5 @@ void ARedemptionPlayer::StopSprinting()
 
 void ARedemptionPlayer::UpdateStaminaWidget(float StamPercent)
 {
-	// Will affect the HUD elements eventually.
+	StaminaWidget->SetBarValuePercent(StamPercent);
 }
