@@ -134,9 +134,7 @@ void ARedemptionPlayer::Tick(float DeltaTime)
 	// Update the HUD with the new stamina value
 	UpdateStaminaWidget(Stamina / MaxStamina);
 	// Show/hide the stamina widget based on sprinting and stamina value
-
 	/**
-
 	if (bIsSprinting || Stamina != MaxStamina)
 	{
 		// Show
@@ -146,9 +144,8 @@ void ARedemptionPlayer::Tick(float DeltaTime)
 	{
 		// Hide
 		StaminaWidget->SetVisibility(ESlateVisibility::Hidden);
-
 	}*/
-	
+
 }
 
 // Called to bind functionality to input
