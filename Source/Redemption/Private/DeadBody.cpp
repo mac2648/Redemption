@@ -4,6 +4,8 @@
 #include "DeadBody.h"
 #include "InteractWidgetComponent.h"
 #include "Components/BoxComponent.h"
+#include "Blueprint/UserWidget.h"
+#include "ChangePowerUpWidget.h"
 
 // Sets default values
 ADeadBody::ADeadBody()
@@ -15,6 +17,12 @@ ADeadBody::ADeadBody()
 
 	InteractComp = CreateDefaultSubobject<UInteractWidgetComponent>(TEXT("Interact Comp"));
 	InteractComp->GetBoxComp()->SetupAttachment(GetRootComponent());
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> PowerUpWidgetFinder(TEXT("/Game/UI/BP_ChangePowerUpWidget"));
+	if (PowerUpWidgetFinder.Succeeded())
+	{
+		ChangePowerUpWidgetClass = PowerUpWidgetFinder.Class;
+	}
 }
 
 // Called when the game starts or when spawned
@@ -31,3 +39,11 @@ void ADeadBody::Tick(float DeltaTime)
 
 }
 
+void ADeadBody::CreateChangePowerUpWidget()
+{
+	if (ChangePowerUpWidgetClass)
+	{
+		UChangePowerUpWidget* PowerUpWidget = CreateWidget<UChangePowerUpWidget>(GetWorld(), ChangePowerUpWidgetClass);
+		PowerUpWidget->AddToViewport();
+	}
+}
