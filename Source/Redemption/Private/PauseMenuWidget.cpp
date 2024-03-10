@@ -41,7 +41,7 @@ void UPauseMenuWidget::NativeConstruct()
 
 	APlayerController* Controller = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	Controller->SetInputMode(FInputModeUIOnly());
-	Controller->SetShowMouseCursor(true)
+	Controller->SetShowMouseCursor(true);
 
 	
 }
