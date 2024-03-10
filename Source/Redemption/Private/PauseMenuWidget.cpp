@@ -23,8 +23,9 @@ void UPauseMenuWidget::Resume()
 
 void UPauseMenuWidget::Exit()
 {
-	//UE_LOG(LogTemp, Warning, TEXT("START"));
+	//Opens the "MainMenu" Map
 	UGameplayStatics::OpenLevel(GetWorld(), "MainMenu");
+
 	APlayerController* Controller = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	Controller->SetInputMode(FInputModeGameOnly());
 	Controller->bShowMouseCursor = false;
@@ -34,12 +35,14 @@ void UPauseMenuWidget::Exit()
 
 void UPauseMenuWidget::NativeConstruct()
 {
+
 	ResumeButton->OnClicked.AddDynamic(this, &UPauseMenuWidget::Resume);
 	ExitButton->OnClicked.AddDynamic(this, &UPauseMenuWidget::Exit);
 
 	APlayerController* Controller = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	Controller->SetInputMode(FInputModeUIOnly());
-	Controller->SetShowMouseCursor(true);
+	Controller->SetShowMouseCursor(true)
+
 	
 }
 
