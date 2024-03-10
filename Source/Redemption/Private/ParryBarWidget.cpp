@@ -10,8 +10,8 @@ void UParryBarWidget::NativeConstruct()
 	Super::NativeConstruct();
 	EnergyBar->SetFillColorAndOpacity(FullParry);
 
-	FullParry = FColor(180.0, 93.0, 161.0, 255.0);
-	LowParry = FColor(217.0, 91.0, 154.0, 255.0);
+	FullParry = FColor(180.0, 93.0, 161.0, 210.0);
+	LowParry = FColor(217.0, 91.0, 154.0, 210);
 }
 
 void UParryBarWidget::SetBarValuePercent(float Value)
