@@ -4,10 +4,14 @@
 #include "ParryBarWidget.h"
 #include "Components/ProgressBar.h"
 
+
 void UParryBarWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
-	EnergyBar->SetFillColorAndOpacity(FColor::Green);
+	EnergyBar->SetFillColorAndOpacity(FullParry);
+
+	FullParry = FColor(180.0, 93.0, 161.0, 210.0);
+	LowParry = FColor(217.0, 91.0, 154.0, 210);
 }
 
 void UParryBarWidget::SetBarValuePercent(float Value)
@@ -16,10 +20,10 @@ void UParryBarWidget::SetBarValuePercent(float Value)
 	
 	if (Value <= 0.20)
 	{
-		EnergyBar->SetFillColorAndOpacity(FColor::Red);
+		EnergyBar->SetFillColorAndOpacity(LowParry);
 	}
 	else
 	{
-		EnergyBar->SetFillColorAndOpacity(FColor::Green);
+		EnergyBar->SetFillColorAndOpacity(FullParry);
 	}
 }

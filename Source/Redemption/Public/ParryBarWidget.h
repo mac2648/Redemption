@@ -18,8 +18,14 @@ class REDEMPTION_API UParryBarWidget : public UUserWidget
 protected:
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	UProgressBar* EnergyBar;
+
+	UPROPERTY(EditAnywhere)
+	FColor FullParry;
+
+	UPROPERTY(EditAnywhere)
+	FColor LowParry;
 	
 public:
 	virtual void NativeConstruct() override;
-	void SetBarValuePercent(float const value);
+	virtual void SetBarValuePercent(float const value);
 };

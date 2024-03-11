@@ -14,6 +14,7 @@ class UInputAction;
 struct FInputActionValue;
 class UPowerUpComponent;
 class UHealthComponent;
+class UStaminaBarWidget;
 
 UCLASS()
 class REDEMPTION_API ARedemptionPlayer : public ACharacter
@@ -82,10 +83,10 @@ private:
 
 	// HUD widget for stamina
 	UPROPERTY(EditAnywhere, Category = "HUD")
-	TSubclassOf<UUserWidget> StaminaWidgetClass;
+	TSubclassOf<UStaminaBarWidget> StaminaWidgetClass;
 
 	UPROPERTY()
-	UUserWidget* StaminaWidget;
+	UStaminaBarWidget* StaminaWidget;
 
 	// Functions
 	void StartSprinting();
