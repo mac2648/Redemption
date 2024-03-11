@@ -7,6 +7,8 @@
 #include "GameFramework/DamageType.h"
 #include "GameFramework/Pawn.h"
 
+#define ATTACK_DISTANCE 80
+
 UBTTask_Attack::UBTTask_Attack()
 {
 	NodeName = "Attack";
@@ -21,7 +23,7 @@ EBTNodeResult::Type UBTTask_Attack::ExecuteTask(UBehaviorTreeComponent& OwnerCom
 		FVector PlayerDirection = PlayerActor->GetActorLocation() - OwnerPawn->GetActorLocation();
 		PlayerDirection.Normalize();
 
-		FVector AttackPosition = OwnerPawn->GetActorLocation() + PlayerDirection * 80;
+		FVector AttackPosition = OwnerPawn->GetActorLocation() + PlayerDirection * ATTACK_DISTANCE;
 
 		OwnerComp.GetBlackboardComponent()->SetValueAsVector(NextLocation.SelectedKeyName, AttackPosition);
 		OwnerComp.GetBlackboardComponent()->SetValueAsFloat(WaitTime.SelectedKeyName, StunDuration);
