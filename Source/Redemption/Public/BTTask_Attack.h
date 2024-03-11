@@ -25,6 +25,9 @@ protected:
 	FBlackboardKeySelector IsStuned;
 
 	UPROPERTY(EditAnywhere)
+	FBlackboardKeySelector Player;
+
+	UPROPERTY(EditAnywhere)
 	float StunDuration;
 
 
