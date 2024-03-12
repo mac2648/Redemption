@@ -58,6 +58,12 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	const UInputAction* SprintAction;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	const UInputAction* PauseAction;
+
+
+
+
 private:
 	// Stamina settings
 	UPROPERTY(VisibleAnywhere, Category = "Stamina")
@@ -88,6 +94,10 @@ private:
 	UPROPERTY()
 	UStaminaBarWidget* StaminaWidget;
 
+	UPROPERTY(EditAnywhere, Category = "HUD")
+	TSubclassOf<UUserWidget> PauseWidgetClass;
+
+
 	// Functions
 	void StartSprinting();
 	void StopSprinting();
@@ -99,7 +109,6 @@ public:
 	ARedemptionPlayer();
 	UHealthComponent* GetHealthComponent() const { return HealthComp; }
 	UPowerUpComponent* GetPowerUpComponent() const { return PowerUpComp; }
-
 	UCameraComponent* GetFPPCamera() { return FPPCamera; }
 
 protected:
@@ -109,6 +118,7 @@ protected:
 	void Look(const FInputActionValue& Value);
 	void StartCrouch();
 	void EndCrouch();
+	void LauchPauseMenu();
 
 public:	
 	virtual void Tick(float DeltaTime) override;

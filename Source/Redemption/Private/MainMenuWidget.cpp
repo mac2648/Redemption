@@ -12,7 +12,7 @@ void UMainMenuWidget::Start()
 	UGameplayStatics::OpenLevel(GetWorld(), "Prototype_Level1");
 	APlayerController* Controller = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	Controller->SetInputMode(FInputModeGameOnly());
-
+	Controller->bShowMouseCursor = false;
 }
 
 void UMainMenuWidget::Quit()

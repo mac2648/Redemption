@@ -14,7 +14,11 @@
 #include "Components/WidgetComponent.h"
 #include "HealthComponent.h"
 #include "HealthBarWidget.h"
+#include "PauseMenuWidget.h"
+#include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "StaminaBarWidget.h"
+
 
 
 #define POWER_UP_ACTION PowerUpComp->GetUsePowerAction()
@@ -170,6 +174,8 @@ void ARedemptionPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 
 		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Started, this, &ARedemptionPlayer::StartSprinting);
 		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Completed, this, &ARedemptionPlayer::StopSprinting);
+
+		EnhancedInputComponent->BindAction(PauseAction, ETriggerEvent::Started, this, &ARedemptionPlayer::LauchPauseMenu);
 	}
 }
 
@@ -257,5 +263,17 @@ void ARedemptionPlayer::StopSprinting()
 
 void ARedemptionPlayer::UpdateStaminaWidget(float StamPercent)
 {
-	StaminaWidget->SetBarValuePercent(StamPercent);
+  StaminaWidget->SetBarValuePercent(StamPercent);
+	// Will affect the HUD elements eventually.
+}
+
+void ARedemptionPlayer::LauchPauseMenu()
+{
+	UPauseMenuWidget* UserInterface = CreateWidget<UPauseMenuWidget>(GetWorld(), PauseWidgetClass);
+	UserInterface->AddToViewport();
+	UGameplayStatics::SetGamePaused(GetWorld(), true);
+	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+	PlayerController->SetInputMode(FInputModeUIOnly());
+	PlayerController->bShowMouseCursor = true;
+	
 }

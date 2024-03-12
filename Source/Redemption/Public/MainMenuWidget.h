@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Desc	1♦4ription page of Project Settings.
 
 #pragma once
 
@@ -15,14 +15,18 @@ class REDEMPTION_API UMainMenuWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
-public:
-	virtual void NativeConstruct() override;
+
 	
 protected:
 	UPROPERTY(BlueprintReadOnly,meta = (BindWidget))
 	UButton* StartButton;
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	UButton* QuitButton;
+
+public:
+	virtual void NativeConstruct() override;
+
+protected:
 	
 	UFUNCTION(BlueprintCallable)
 	void Start();
