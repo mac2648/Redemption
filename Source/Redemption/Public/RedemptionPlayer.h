@@ -14,6 +14,7 @@ class UInputAction;
 struct FInputActionValue;
 class UPowerUpComponent;
 class UHealthComponent;
+class UStaminaBarWidget;
 
 UCLASS()
 class REDEMPTION_API ARedemptionPlayer : public ACharacter
@@ -88,10 +89,10 @@ private:
 
 	// HUD widget for stamina
 	UPROPERTY(EditAnywhere, Category = "HUD")
-	TSubclassOf<UUserWidget> StaminaWidgetClass;
+	TSubclassOf<UStaminaBarWidget> StaminaWidgetClass;
 
 	UPROPERTY()
-	UUserWidget* StaminaWidget;
+	UStaminaBarWidget* StaminaWidget;
 
 	UPROPERTY(EditAnywhere, Category = "HUD")
 	TSubclassOf<UUserWidget> PauseWidgetClass;
@@ -102,10 +103,12 @@ private:
 	void StopSprinting();
 	void UpdateStaminaWidget(float StaminaPercent);
 
+	void OnPlayerSpotted();
+
 public:
 	ARedemptionPlayer();
 	UHealthComponent* GetHealthComponent() const { return HealthComp; }
-
+	UPowerUpComponent* GetPowerUpComponent() const { return PowerUpComp; }
 	UCameraComponent* GetFPPCamera() { return FPPCamera; }
 
 protected:
