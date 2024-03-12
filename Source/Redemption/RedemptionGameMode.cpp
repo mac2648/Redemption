@@ -69,7 +69,7 @@ void ARedemptionGameMode::HandleGameStateChange(EGameState NewState)
     switch (NewState)
     {
     case EGameState::Safe:
-        MyAudioManager->PlayAmbientMusic();
+        MyAudioManager->ResetCombatState();
         break;
 
     case EGameState::InCombat:
@@ -119,18 +119,12 @@ void ARedemptionGameMode::HandlePlayerSightUpdate()
     if (Safe && !SafeMusic)
     {
         SafeMusic = true;
-        UE_LOG(LogTemp, Warning, TEXT("CALM"))
         HandleGameStateChange(EGameState::Safe);
-        
-        if (MyAudioManager)
-        {
-            MyAudioManager->ResetCombatState();
-        }
+
     }
     else if (!Safe && SafeMusic)
     {
         SafeMusic = false;
-        UE_LOG(LogTemp, Warning, TEXT("DANGER MUSIC"))
         HandleGameStateChange(EGameState::InCombat);
     }
 }
