@@ -21,6 +21,10 @@ class REDEMPTION_API ARedemptionPlayer : public ACharacter
 {
 	GENERATED_BODY()
 
+public:
+	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
+	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return TPPCamera; }
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	USpringArmComponent* CameraBoom;
@@ -102,6 +106,10 @@ public:
 
 	UCameraComponent* GetFPPCamera() { return FPPCamera; }
 
+	virtual void Tick(float DeltaTime) override;
+
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
 protected:
 	virtual void BeginPlay() override;
 
@@ -110,12 +118,5 @@ protected:
 	void StartCrouch();
 	void EndCrouch();
 
-public:	
-	virtual void Tick(float DeltaTime) override;
 
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-public:
-	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
-	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return TPPCamera; }
 };
