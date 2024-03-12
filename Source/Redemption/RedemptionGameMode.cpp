@@ -5,7 +5,7 @@
 #include "UObject/ConstructorHelpers.h"
 #include "AudioManager.h" 
 #include "Kismet/GameplayStatics.h" 
-#include "EnemyCharacter.h"
+#include "LandEnemyController.h"
 #include "AIController.h"
 #include "RedemptionGameInstance.h"
 #include "BehaviorTree/BlackboardComponent.h"
@@ -14,47 +14,17 @@
 ARedemptionGameMode::ARedemptionGameMode()
 {
 	// set default pawn class to our Blueprinted character
-    PrimaryActorTick.bCanEverTick = true;
+    PrimaryActorTick.bCanEverTick = false;
 	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/ThirdPerson/Blueprints/BP_ThirdPersonCharacter"));
 	if (PlayerPawnBPClass.Class != NULL)
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
-
-
 }
 
 void ARedemptionGameMode::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
-    bool Safe = true;
-    for (AEnemyCharacter* Curr : Enemies)
-    {
-        
-        AAIController* Enem = Cast<AAIController>(Curr->GetController());
-        UObject* ptr = Enem->GetBlackboardComponent()->GetValueAsObject("Player");
-        if (ptr != nullptr)
-        {
-            Safe = false;
-            break;
-        }
-    }
-
-    if (Safe && !SafeMusic)
-    {
-        HandleGameStateChange(EGameState::Safe);
-        SafeMusic = true;
-
-        if (MyAudioManager)
-        {
-            MyAudioManager->ResetCombatState();
-        }
-    }
-    else if (!Safe && SafeMusic)
-    {
-        HandleGameStateChange(EGameState::InCombat);
-        SafeMusic = false;
-    }
 }
 
 void ARedemptionGameMode::BeginPlay()
@@ -62,11 +32,16 @@ void ARedemptionGameMode::BeginPlay()
     Super::BeginPlay();
     MyAudioManager = Cast<AAudioManager>(UGameplayStatics::GetActorOfClass(GetWorld(), AAudioManager::StaticClass()));
     TArray<AActor*> EnemiesActors;
-    UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemyCharacter::StaticClass(), EnemiesActors);
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ALandEnemyController::StaticClass(), EnemiesActors);
 
     for (AActor* Current : EnemiesActors)
     {
-        Enemies.Push(Cast<AEnemyCharacter>(Current));
+        Enemies.Push(Cast<ALandEnemyController>(Current));
+    }
+
+    for (ALandEnemyController* Current : Enemies)
+    {
+        Current->OnPlayerSightUpdate.AddDynamic(this, &ARedemptionGameMode::HandlePlayerSightUpdate);
     }
 
     if (MyAudioManager)
@@ -81,9 +56,6 @@ void ARedemptionGameMode::BeginPlay()
     {
         GetWorld()->SpawnActor<AActor>(DeadBodyClass, PlayerBodyPosition, FRotator::ZeroRotator);
     }
-
-
-
 }
 
 void ARedemptionGameMode::HandleGameStateChange(EGameState NewState)
@@ -97,7 +69,7 @@ void ARedemptionGameMode::HandleGameStateChange(EGameState NewState)
     switch (NewState)
     {
     case EGameState::Safe:
-        MyAudioManager->PlayAmbientMusic();
+        MyAudioManager->ResetCombatState();
         break;
 
     case EGameState::InCombat:
@@ -128,5 +100,31 @@ void ARedemptionGameMode::DestroyDeadBodies()
     for (ADeadBody* Body : DeadBodies)
     {
         Body->Destroy();
+    }
+}
+
+void ARedemptionGameMode::HandlePlayerSightUpdate()
+{
+    bool Safe = true;
+    for (ALandEnemyController* Curr : Enemies)
+    {
+        UObject* ptr = Curr->GetBlackboardComponent()->GetValueAsObject("Player");
+        if (ptr != nullptr)
+        {
+            Safe = false;
+            break;
+        }
+    }
+
+    if (Safe && !SafeMusic)
+    {
+        SafeMusic = true;
+        HandleGameStateChange(EGameState::Safe);
+
+    }
+    else if (!Safe && SafeMusic)
+    {
+        SafeMusic = false;
+        HandleGameStateChange(EGameState::InCombat);
     }
 }
