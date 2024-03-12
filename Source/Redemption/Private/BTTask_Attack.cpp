@@ -7,6 +7,8 @@
 #include "GameFramework/DamageType.h"
 #include "GameFramework/Pawn.h"
 
+#define ATTACK_DISTANCE 80
+
 UBTTask_Attack::UBTTask_Attack()
 {
 	NodeName = "Attack";
@@ -16,12 +18,19 @@ UBTTask_Attack::UBTTask_Attack()
 EBTNodeResult::Type UBTTask_Attack::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
 	APawn* OwnerPawn = OwnerComp.GetAIOwner()->GetPawn();
+	if (AActor* PlayerActor = Cast<AActor>(OwnerComp.GetBlackboardComponent()->GetValueAsObject(Player.SelectedKeyName)))
+	{
+		FVector PlayerDirection = PlayerActor->GetActorLocation() - OwnerPawn->GetActorLocation();
+		PlayerDirection.Normalize();
 
-	FVector AttackPosition = OwnerPawn->GetActorLocation() + OwnerPawn->GetActorForwardVector() * 80;
+		FVector AttackPosition = OwnerPawn->GetActorLocation() + PlayerDirection * ATTACK_DISTANCE;
 
-	OwnerComp.GetBlackboardComponent()->SetValueAsVector(NextLocation.SelectedKeyName, AttackPosition);
-	OwnerComp.GetBlackboardComponent()->SetValueAsFloat(WaitTime.SelectedKeyName, StunDuration);
-	OwnerComp.GetBlackboardComponent()->SetValueAsBool(IsStuned.SelectedKeyName, true);
+		OwnerComp.GetBlackboardComponent()->SetValueAsVector(NextLocation.SelectedKeyName, AttackPosition);
+		OwnerComp.GetBlackboardComponent()->SetValueAsFloat(WaitTime.SelectedKeyName, StunDuration);
+		OwnerComp.GetBlackboardComponent()->SetValueAsBool(IsStuned.SelectedKeyName, true);
 
-	return EBTNodeResult::Succeeded;
+		return EBTNodeResult::Succeeded;
+	}
+
+	return EBTNodeResult::Failed;
 }
