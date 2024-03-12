@@ -9,8 +9,8 @@
 
 void UPauseMenuWidget::Resume()
 {
-	// Hide the pause menu widget
-	SetVisibility(ESlateVisibility::Hidden);
+	// Hide the pause menu widget               
+	RemoveFromParent();
 
 	// Unpause the game
 	UGameplayStatics::SetGamePaused(GetWorld(), false);
@@ -27,7 +27,7 @@ void UPauseMenuWidget::Exit()
 	UGameplayStatics::OpenLevel(GetWorld(), "MainMenu");
 
 	APlayerController* Controller = UGameplayStatics::GetPlayerController(GetWorld(), 0);
-	Controller->SetInputMode(FInputModeGameOnly());
+	Controller->SetInputMode(FInputModeUIOnly());
 	Controller->bShowMouseCursor = false;
 
 }
