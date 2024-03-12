@@ -52,6 +52,7 @@ void ALandEnemyController::UpdateSight(AActor* Actor, FAIStimulus Stimulus)
 			GetBlackboardComponent()->SetValueAsVector("LastSeenLocation", Stimulus.StimulusLocation);
 			GetBlackboardComponent()->ClearValue("Player");
 		}
+		OnPlayerSightUpdate.Broadcast();
 	}
 }
 

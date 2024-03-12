@@ -22,7 +22,7 @@ private:
 	bool SafeMusic = true;
 
 public:
-	TArray<class AEnemyCharacter*> Enemies;
+	TArray<class ALandEnemyController*> Enemies;
 	ARedemptionGameMode();
 	virtual void Tick(float DeltaTime) override;
 	virtual void BeginPlay();
@@ -33,5 +33,9 @@ public:
 	};
 	void HandleGameStateChange(EGameState NewState);
 	void DestroyDeadBodies();
+
+protected:
+	UFUNCTION()
+	void HandlePlayerSightUpdate();
 
 };

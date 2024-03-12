@@ -11,7 +11,7 @@
 void ARatController::UpdateSight(AActor* Actor, FAIStimulus Stimulus)
 {
 	if (Actor == UGameplayStatics::GetPlayerPawn(GetWorld(), 0))
-	{
+	{ 
 		if (Stimulus.WasSuccessfullySensed())
 		{
 			GetBlackboardComponent()->SetValueAsObject("Player", Actor);
@@ -29,5 +29,6 @@ void ARatController::UpdateSight(AActor* Actor, FAIStimulus Stimulus)
 				MoveComp->MaxWalkSpeed = 150;
 			}
 		}
+		OnPlayerSightUpdate.Broadcast();
 	}
 }
