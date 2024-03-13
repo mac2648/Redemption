@@ -66,6 +66,7 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	void UsePowerUp(const FInputActionValue& Value);
 
+	UFUNCTION(BlueprintCallable)
 	EActivePowerUp GetActivePowerUp() const { return CurrentPowerUp; }
 
 	UInputAction* GetUsePowerAction() const { return UsePowerUpAction; }
