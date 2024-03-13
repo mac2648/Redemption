@@ -25,6 +25,8 @@ void ASkullNPC::BeginPlay()
 
 void ASkullNPC::Talk()
 {
+	IsTalking = true;
+
 	TalkIndex++;
 
 	if (DialogueWidgetClass != nullptr && DialogueWidget == nullptr)
@@ -51,6 +53,7 @@ void ASkullNPC::Talk()
 void ASkullNPC::ResetDialogue()
 {
 	TalkIndex = -1;
+	IsTalking = false;
 
 	if (DialogueWidget)
 	{

@@ -36,6 +36,10 @@ protected:
 	UPROPERTY(BlueprintReadOnly)
 	int32 TalkIndex = -1;
 
+private:
+
+	bool IsTalking = false;
+
 public:	
 	// Sets default values for this actor's properties
 	ASkullNPC();
@@ -46,6 +50,9 @@ public:
 	virtual void Talk() override;
 
 	void ResetDialogue();
+
+	UFUNCTION(BlueprintCallable)
+	bool GetIsTalking() { return IsTalking; }
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void SetDialogueText(const FString& Dialogue);
