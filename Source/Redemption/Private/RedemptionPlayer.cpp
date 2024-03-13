@@ -273,7 +273,6 @@ void ARedemptionPlayer::LauchPauseMenu()
 	UserInterface->AddToViewport();
 	UGameplayStatics::SetGamePaused(GetWorld(), true);
 	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
-	PlayerController->SetInputMode(FInputModeUIOnly());
 	PlayerController->bShowMouseCursor = true;
 	
 }
