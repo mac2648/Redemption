@@ -7,7 +7,7 @@
 #include "GameFramework/DamageType.h"
 #include "GameFramework/Pawn.h"
 
-#define ATTACK_DISTANCE 80
+#define ATTACK_DISTANCE 150
 
 UBTTask_Attack::UBTTask_Attack()
 {
