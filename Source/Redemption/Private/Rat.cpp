@@ -9,6 +9,8 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Sound/SoundCue.h"
 
+#define KNOWBACK_FORCE 800
+
 ARat::ARat()
 {
 
@@ -51,6 +53,6 @@ void ARat::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActo
 		knockbackDir.Normalize();
 
 
-		Player->GetCharacterMovement()->Velocity = knockbackDir * 500;
+		Player->GetCharacterMovement()->Velocity = knockbackDir * KNOWBACK_FORCE;
 	}
 }
