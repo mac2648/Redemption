@@ -24,11 +24,13 @@ void UMainMenuWidget::Quit()
 }
 
 
+
 void UMainMenuWidget::NativeConstruct()
 {
 
 	StartButton->OnClicked.AddDynamic(this, &UMainMenuWidget::Start);
 	QuitButton->OnClicked.AddDynamic(this, &UMainMenuWidget::Quit);
+	OptionsButton->OnClicked.AddDynamic(this, &UMainMenuWidget::Option);
 
 	APlayerController* Controller =  UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	Controller->SetInputMode(FInputModeUIOnly());
