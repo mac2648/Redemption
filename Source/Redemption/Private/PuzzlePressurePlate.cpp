@@ -44,7 +44,6 @@ void APuzzlePressurePlate::FirstOverlapCheck()
 
 	if (!OverlappingActors.IsEmpty())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("ahahahahahhah"))
 		IsActive = true;
 		OnActivate.Broadcast();
 	}
