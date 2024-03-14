@@ -96,8 +96,8 @@ void ARedemptionPlayer::BeginPlay()
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
-			Subsystem->AddMappingContext(DefaultMappingContext, 0);
-			Subsystem->AddMappingContext(TPPMappingContext, 1);
+			Subsystem->AddMappingContext(DefaultMappingContext, 1);
+			Subsystem->AddMappingContext(TPPMappingContext, 2);
 		}
 	}
 	// Creating the stamina widget for the hud
