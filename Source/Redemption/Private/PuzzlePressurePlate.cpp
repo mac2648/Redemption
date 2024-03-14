@@ -19,6 +19,9 @@ void APuzzlePressurePlate::BeginPlay()
 
 	BoxComp->OnComponentBeginOverlap.AddDynamic(this, &APuzzlePressurePlate::OnOverlapBegin);
 	BoxComp->OnComponentEndOverlap.AddDynamic(this, &APuzzlePressurePlate::OnOverlapEnd);
+
+	FTimerHandle StartCheckHandle;
+	GetWorldTimerManager().SetTimer(StartCheckHandle, this, &APuzzlePressurePlate::FirstOverlapCheck, 1);
 }
 
 void APuzzlePressurePlate::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -32,6 +35,19 @@ void APuzzlePressurePlate::Deactivate()
 
 	//gate will check if all are active so it does not matter that it is deactivating
 	OnActivate.Broadcast();
+}
+
+void APuzzlePressurePlate::FirstOverlapCheck()
+{
+	TArray<AActor*> OverlappingActors;
+	BoxComp->GetOverlappingActors(OverlappingActors);
+
+	if (!OverlappingActors.IsEmpty())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("ahahahahahhah"))
+		IsActive = true;
+		OnActivate.Broadcast();
+	}
 }
 
 void APuzzlePressurePlate::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)

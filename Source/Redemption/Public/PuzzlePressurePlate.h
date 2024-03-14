@@ -27,6 +27,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	void Deactivate();
+	void FirstOverlapCheck();
 
 	UFUNCTION()
 	void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
