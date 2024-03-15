@@ -35,4 +35,9 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void LoadGame();
+
+	UFUNCTION(BlueprintCallable)
+	void TransferInfoSaveToInstance();
+
+	void SetupSaveInfo();
 };
