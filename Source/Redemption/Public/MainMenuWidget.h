@@ -23,6 +23,15 @@ protected:
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	UButton* QuitButton;
 
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	UButton* OptionsButton;
+
+	
+	TSubclassOf<UUserWidget>OptionsMenuClass;
+
+
+
+
 public:
 	virtual void NativeConstruct() override;
 
@@ -34,5 +43,7 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void Quit();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void Option();
 };
 
