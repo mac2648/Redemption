@@ -32,6 +32,7 @@ void UPowerUpComponent::BeginPlay()
 	Super::BeginPlay();
 
 	ChangeMappingContext();
+	Player = Cast<ARedemptionPlayer>(GetOwner());
 }
 
 
@@ -73,6 +74,35 @@ void UPowerUpComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 			ParryBar->SetBarValuePercent(GetParryEnergyPercentage());
 		}
 	}
+
+	if (Player)
+	{
+		if (Player->CanJump()) // if player is on the ground
+		{
+			IsHovering = false;
+			CanHover = true;
+		}
+	}
+
+	if (IsHovering)
+	{
+		HoverEnergy -= PARRY_DEPLETION_RATE * DeltaTime;
+		if (HoverEnergy <= 0)
+		{
+			IsHovering = false;
+		}
+		if (Player)
+		{
+			if (!Player->CanJump())
+			{
+				Player->GetCharacterMovement()->Velocity.Z = 0;
+			}
+		}
+	}
+	else
+	{
+		HoverEnergy = PARRY_MAX_ENERGY;
+	}
 }
 
 void UPowerUpComponent::UsePowerUp(const FInputActionValue& Value)
@@ -83,15 +113,15 @@ void UPowerUpComponent::UsePowerUp(const FInputActionValue& Value)
 	}
 	else if (CurrentPowerUp == EActivePowerUp::Hover)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("HOVER!!!!!!"))
+		bool Hover = Value.Get<bool>();
+
+		ExecuteHoverPowerUp(Hover);
 	}
 	else if (CurrentPowerUp == EActivePowerUp::Parry)
 	{
 		bool Parry = Value.Get<bool>();
 
 		ExecuteParryPowerUp(Parry);
-
-		UE_LOG(LogTemp, Warning, TEXT("PARRY!!!!!!"))
 	}
 }
 
@@ -110,7 +140,7 @@ void UPowerUpComponent::ChangeMappingContext()
 
 		if (CurrentPowerUp == EActivePowerUp::Hover)
 		{
-			Subsystem->AddMappingContext(HoverMappingContext, 0);
+			Subsystem->AddMappingContext(HoverMappingContext, 3);
 		}
 
 		if (CurrentPowerUp == EActivePowerUp::Parry)
@@ -160,5 +190,30 @@ void UPowerUpComponent::ExecuteParryPowerUp(bool NewParry)
 		{
 			ParryBar->AddToViewport();
 		}
+	}
+}
+
+void UPowerUpComponent::ExecuteHoverPowerUp(bool NewHover)
+{
+
+	if (Player)
+	{
+		if (Player->CanJump())
+		{
+			Player->Jump();
+		}
+		else
+		{
+			if (CanHover && NewHover) //if trying to hover and can hover
+			{
+				IsHovering = NewHover;
+				CanHover = false;
+			}
+			else if (!CanHover && !NewHover) //if cannot hover and trying to stop hovering
+			{
+				IsHovering = NewHover;
+			}
+		}
+
 	}
 }

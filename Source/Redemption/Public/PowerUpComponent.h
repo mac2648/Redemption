@@ -16,6 +16,7 @@ class UInputMappingContext;
 struct FInputActionValue;
 class ABone;
 class UParryBarWidget;
+class ARedemptionPlayer;
 
 UENUM(BlueprintType)
 enum EActivePowerUp
@@ -52,11 +53,15 @@ protected:
 
 	float BoneCD = BONE_CD;
 	float ParryEnergy = PARRY_MAX_ENERGY;
+	float HoverEnergy = PARRY_MAX_ENERGY;
 	UParryBarWidget* ParryBar = nullptr;
+	ARedemptionPlayer* Player = nullptr;
 
 	EActivePowerUp CurrentPowerUp = EActivePowerUp::BoneThrow;
 
 	bool IsParrying = false;
+	bool IsHovering = false;
+	bool CanHover = true;
 
 public:	
 	// Sets default values for this component's properties
@@ -86,4 +91,6 @@ protected:
 	void ExecuteBonePowerUp();
 
 	void ExecuteParryPowerUp(bool NewParry);
+
+	void ExecuteHoverPowerUp(bool NewHover);
 };
