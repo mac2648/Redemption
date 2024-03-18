@@ -4,6 +4,7 @@
 #include "MainMenuWidget.h"
 #include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
+#include "RedemptionGameInstance.h"
 #include "Kismet/KismetSystemLibrary.h"
 
 void UMainMenuWidget::Start()
@@ -36,5 +37,5 @@ void UMainMenuWidget::NativeConstruct()
 	Controller->SetInputMode(FInputModeUIOnly());
 	Controller->SetShowMouseCursor(true);
 	
-
+	Cast<URedemptionGameInstance>(GetGameInstance())->LoadGame();
 }

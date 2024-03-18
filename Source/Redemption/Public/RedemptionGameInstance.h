@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 #include "RedemptionPlayer.h"
+#include "SaveData.h"
 #include "Kismet/GameplayStatics.h"
 #include "RedemptionGameInstance.generated.h"
 
@@ -20,8 +21,23 @@ protected:
 	
 	FVector PlayerDiedLocation = FVector::ZeroVector;
 
+	UPROPERTY(BlueprintReadWrite)
+	FSaveInfo SaveInfo;
+
+
 public:
 
 	FVector GetPlayerDiedLocation();
 	void SetPlayerDiedLocation();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void SaveGame();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void LoadGame();
+
+	UFUNCTION(BlueprintCallable)
+	void TransferInfoSaveToInstance();
+
+	void SetupSaveInfo();
 };
