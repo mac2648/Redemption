@@ -32,7 +32,7 @@ public:
 		InCombat
 	};
 	void HandleGameStateChange(EGameState NewState);
-	void DestroyDeadBodies();
+	void DestroyInteractableActors();
 
 protected:
 	UFUNCTION()

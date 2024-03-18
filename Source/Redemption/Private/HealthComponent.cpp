@@ -75,7 +75,7 @@ void UHealthComponent::Die()
 
     if (ARedemptionGameMode* GameMode = Cast<ARedemptionGameMode>(UGameplayStatics::GetGameMode(GetWorld())))
     {
-        GameMode->DestroyDeadBodies();
+        GameMode->DestroyInteractableActors();
     }
 
 	GameOver();
