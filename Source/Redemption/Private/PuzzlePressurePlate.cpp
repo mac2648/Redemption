@@ -42,10 +42,17 @@ void APuzzlePressurePlate::FirstOverlapCheck()
 	TArray<AActor*> OverlappingActors;
 	BoxComp->GetOverlappingActors(OverlappingActors);
 
-	if (!OverlappingActors.IsEmpty())
+	UE_LOG(LogTemp, Warning, TEXT("%d"), OverlappingActors.IsEmpty());
+	UE_LOG(LogTemp, Warning, TEXT("%s"), *OverlappingActors[0]->GetName());
+
+	for (AActor* Current : OverlappingActors)
 	{
-		IsActive = true;
-		OnActivate.Broadcast();
+		if (Current != this)
+		{
+			IsActive = true;
+			OnActivate.Broadcast();
+			break;
+		}
 	}
 }
 

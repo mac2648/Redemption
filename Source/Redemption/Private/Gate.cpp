@@ -2,10 +2,11 @@
 
 #include "Gate.h"
 #include "Interactable.h"
+#include "Kismet/GameplayStatics.h"
 #include "Math.h"
 
 #define ROTATION_INTERVAL 0.005
-#define DOOR_SPEED 60
+#define DOOR_SPEED 80
 
 // Sets default values
 AGate::AGate()
@@ -70,6 +71,7 @@ void AGate::CheckOpenConditions()
 	if (ShouldOpen && !IsOpen)
 	{
 		//SOUND -> play here
+		UGameplayStatics::SpawnSound2D(this, DoorOpenSoundBase, 0.7f);
 		IsOpen = true;
 		FTimerHandle RotationHandle;
 		GetWorld()->GetTimerManager().SetTimer(RotationHandle, this, &AGate::RotateGate, ROTATION_INTERVAL, false);
@@ -77,6 +79,7 @@ void AGate::CheckOpenConditions()
 	else if (!ShouldOpen && IsOpen)
 	{
 		//SOUND -> play here
+		UGameplayStatics::SpawnSound2D(this, DoorCloseSoundBase, 0.7f);
 		IsOpen = false;
 		FTimerHandle RotationHandle;
 		GetWorld()->GetTimerManager().SetTimer(RotationHandle, this, &AGate::RotateGate, ROTATION_INTERVAL, false);
