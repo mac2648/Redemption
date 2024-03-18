@@ -11,6 +11,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "HealthComponent.h"
 #include "SkullNPC.h"
+#include "Components/CapsuleComponent.h"
 
 #define GET_PLAYER_CONTROLLER Cast<APlayerController>(Player->GetController())
 #define GET_ENHANCED_INPUT_LOCAL_PLAYER_SUBSYSTEM ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GET_PLAYER_CONTROLLER->GetLocalPlayer())
@@ -32,6 +33,9 @@ void UInteractWidgetComponent::BeginPlay()
 	BoxComp->OnComponentBeginOverlap.AddDynamic(this, &UInteractWidgetComponent::OnOverlapBegin);
 	BoxComp->OnComponentEndOverlap.AddDynamic(this, &UInteractWidgetComponent::OnOverlapEnd);
 	BoxComp->SetWorldLocation(GetOwner()->GetActorLocation());
+
+	FTimerHandle FirstCheckHandle;
+	GetWorld()->GetTimerManager().SetTimer(FirstCheckHandle, this, &UInteractWidgetComponent::FirstCheck, 0.2);
 }
 
 void UInteractWidgetComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -54,8 +58,6 @@ void UInteractWidgetComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedCom
 			InteractWidget = CreateWidget<UUserWidget>(GetWorld(), InteractWidgetClass);
 			InteractWidget->AddToViewport();
 		}
-
-
 	}
 }
 
@@ -127,6 +129,20 @@ void UInteractWidgetComponent::Interract()
 		{
 			InteractWidget->RemoveFromParent();
 			InteractWidget = nullptr;
+		}
+	}
+}
+
+void UInteractWidgetComponent::FirstCheck()
+{
+	TArray<AActor*> OverlappingActors;
+	BoxComp->GetOverlappingActors(OverlappingActors);
+
+	for (AActor* Current : OverlappingActors)
+	{
+		if (ARedemptionPlayer* Player = Cast<ARedemptionPlayer>(Current))
+		{
+			OnOverlapBegin(BoxComp, Player, Player->GetCapsuleComponent(), 0, false, FHitResult());
 		}
 	}
 }
