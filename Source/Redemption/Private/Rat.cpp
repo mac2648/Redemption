@@ -9,7 +9,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Sound/SoundCue.h"
 
-#define KNOWBACK_FORCE 800
+#define KNOWBACK_FORCE 900
 
 ARat::ARat()
 {
