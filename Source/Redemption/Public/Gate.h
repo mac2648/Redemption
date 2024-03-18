@@ -7,6 +7,7 @@
 #include "Gate.generated.h"
 
 class AInteractable;
+class USoundBase;
 
 UCLASS()
 class REDEMPTION_API AGate : public AActor
@@ -31,6 +32,12 @@ protected:
 	FRotator ClosedRotation = FRotator::ZeroRotator;
 
 	bool IsOpen = false;
+
+	UPROPERTY(EditAnywhere)
+	USoundBase* DoorOpenSoundBase;
+
+	UPROPERTY(EditAnywhere)
+	USoundBase* DoorCloseSoundBase;
 	
 public:	
 	// Sets default values for this actor's properties

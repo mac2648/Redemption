@@ -11,6 +11,8 @@ AInteractable::AInteractable()
 
 	BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Base Mesh"));
 	PuzzleMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Puzzle Mesh"));
+
+	PuzzleMesh->SetupAttachment(BaseMesh);
 }
 
 // Called when the game starts or when spawned
