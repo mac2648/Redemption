@@ -47,7 +47,10 @@ void ASkullNPC::Talk()
 	{
 		DialogueWidget->RemoveFromParent();
 		DialogueWidget = nullptr;
+		FinishTalk();
 	}
+
+	
 }
 
 void ASkullNPC::ResetDialogue()
