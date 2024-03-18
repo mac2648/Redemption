@@ -10,6 +10,8 @@
 #include "RedemptionGameInstance.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "DeadBody.h"
+#include "RedemptionUtils.h"
+#include "InteractWidgetComponent.h"
 
 ARedemptionGameMode::ARedemptionGameMode()
 {
@@ -81,25 +83,15 @@ void ARedemptionGameMode::HandleGameStateChange(EGameState NewState)
     }
 }
 
-void ARedemptionGameMode::DestroyDeadBodies()
+void ARedemptionGameMode::DestroyInteractableActors()
 {
-    TArray<AActor*> DeadBodiesActors;
+    TArray<AActor*> InteractableActors;
 
-    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ADeadBody::StaticClass(), DeadBodiesActors);
+    RedemptionUtils::GetAllActorsWithComponentByClass<UInteractWidgetComponent>(GetWorld(), InteractableActors);
 
-    TArray<ADeadBody*> DeadBodies;
-
-    for (AActor* Actor : DeadBodiesActors)
+    for (AActor* Current : InteractableActors)
     {
-        if (ADeadBody* Body = Cast<ADeadBody>(Actor))
-        {
-            DeadBodies.Add(Body);
-        }
-    }
-
-    for (ADeadBody* Body : DeadBodies)
-    {
-        Body->Destroy();
+        Current->Destroy();
     }
 }
 
