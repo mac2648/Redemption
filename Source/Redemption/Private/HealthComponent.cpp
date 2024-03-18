@@ -72,6 +72,7 @@ void UHealthComponent::Die()
     {
         Instance->SetPlayerDiedLocation();
         Instance->SetupSaveInfo();
+        Instance->SaveGame();
     }
 
     if (ARedemptionGameMode* GameMode = Cast<ARedemptionGameMode>(UGameplayStatics::GetGameMode(GetWorld())))
