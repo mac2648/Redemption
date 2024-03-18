@@ -142,6 +142,7 @@ void UInteractWidgetComponent::FirstCheck()
 	{
 		if (ARedemptionPlayer* Player = Cast<ARedemptionPlayer>(Current))
 		{
+			//if we ever use other parameters on the OnOverlapBegin we may need to change this
 			OnOverlapBegin(BoxComp, Player, Player->GetCapsuleComponent(), 0, false, FHitResult());
 		}
 	}
