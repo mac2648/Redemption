@@ -13,7 +13,7 @@ FVector URedemptionGameInstance::GetPlayerDiedLocation()
 void URedemptionGameInstance::SetPlayerDiedLocation()
 {
 	ACharacter* myCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
-	PlayerDiedLocation = myCharacter->GetActorLocation() - FVector(0, 0, 74);
+	PlayerDiedLocation = myCharacter->GetActorLocation();
 }
 
 void URedemptionGameInstance::TransferInfoSaveToInstance()

@@ -26,10 +26,11 @@ void UPauseMenuWidget::Exit()
 	//Opens the "MainMenu" Map
 	UGameplayStatics::OpenLevel(GetWorld(), "MainMenu");
 
+	/*
 	APlayerController* Controller = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	Controller->SetInputMode(FInputModeUIOnly());
 	Controller->bShowMouseCursor = false;
-
+	*/
 }
 
 

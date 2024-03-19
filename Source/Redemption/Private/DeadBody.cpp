@@ -11,12 +11,14 @@
 ADeadBody::ADeadBody()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bCanEverTick = true;
 
 	Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Body Mesh"));
 
 	InteractComp = CreateDefaultSubobject<UInteractWidgetComponent>(TEXT("Interact Comp"));
-	InteractComp->GetBoxComp()->SetupAttachment(GetRootComponent());
+
+	BoxComp = InteractComp->GetBoxComp();
+	BoxComp->SetupAttachment(GetRootComponent());
 
 	static ConstructorHelpers::FClassFinder<UUserWidget> PowerUpWidgetFinder(TEXT("/Game/UI/BP_ChangePowerUpWidget"));
 	if (PowerUpWidgetFinder.Succeeded())
@@ -37,6 +39,7 @@ void ADeadBody::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	BoxComp->SetWorldLocation(GetActorLocation());
 }
 
 void ADeadBody::CreateChangePowerUpWidget()

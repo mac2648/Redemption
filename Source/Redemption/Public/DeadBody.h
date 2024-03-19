@@ -7,6 +7,7 @@
 #include "DeadBody.generated.h"
 
 class UInteractWidgetComponent;
+class UBoxComponent;
 
 UCLASS()
 class REDEMPTION_API ADeadBody : public AActor
@@ -22,6 +23,8 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUserWidget> ChangePowerUpWidgetClass;
+
+	UBoxComponent* BoxComp = nullptr;
 	
 public:	
 	// Sets default values for this actor's properties

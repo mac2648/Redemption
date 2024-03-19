@@ -37,7 +37,7 @@ private:
     // Timer handle for playing random ambient sounds
     FTimerHandle RandomSoundTimerHandle;
 
-    bool bIsInCombat = false;
+    bool bIsInCombat = true;
     FTimerHandle MusicDelayTimerHandle;
 public:
     // Sets default values for this actor's properties

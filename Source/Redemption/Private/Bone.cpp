@@ -5,6 +5,7 @@
 #include "Perception/AISenseConfig_Hearing.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/RotatingMovementComponent.h"
+#include "InteractWidgetComponent.h"
 
 // Sets default values
 ABone::ABone()
@@ -48,7 +49,7 @@ void ABone::OnBoneBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* Othe
 		return;
 	}
 
-	if (OtherActor != UGameplayStatics::GetPlayerPawn(GetWorld(), 0))
+	if (OtherActor != UGameplayStatics::GetPlayerPawn(GetWorld(), 0) && !Cast<UInteractWidgetComponent>(OtherComp))
 	{
 		RotationComp->RotationRate = FRotator(0.0, 0.0, 0.0);
 		UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 1.5f, this);

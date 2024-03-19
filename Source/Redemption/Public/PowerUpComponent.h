@@ -57,7 +57,7 @@ protected:
 	UParryBarWidget* ParryBar = nullptr;
 	ARedemptionPlayer* Player = nullptr;
 
-	EActivePowerUp CurrentPowerUp = EActivePowerUp::BoneThrow;
+	EActivePowerUp CurrentPowerUp = EActivePowerUp::None;
 
 	bool IsParrying = false;
 	bool IsHovering = false;

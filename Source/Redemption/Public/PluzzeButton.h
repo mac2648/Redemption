@@ -7,6 +7,7 @@
 #include "PluzzeButton.generated.h"
 
 class UBoxComponent;
+class UMaterialInstance;
 /**
  * 
  */
@@ -18,6 +19,9 @@ class REDEMPTION_API APluzzeButton : public AInteractable
 protected:
 	UPROPERTY(EditAnywhere)
 	UBoxComponent* BoxComp;
+
+	UPROPERTY(EditAnywhere, category = "material")
+	UMaterialInstance* ActivateMaterial;
 
 public:
 	APluzzeButton();
