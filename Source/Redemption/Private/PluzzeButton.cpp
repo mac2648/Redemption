@@ -3,6 +3,7 @@
 
 #include "PluzzeButton.h"
 #include "Components/BoxComponent.h"
+#include "Materials/MaterialInstance.h"
 
 APluzzeButton::APluzzeButton()
 {
@@ -21,5 +22,6 @@ void APluzzeButton::BeginPlay()
 
 void APluzzeButton::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	PuzzleMesh->SetMaterial(0, ActivateMaterial);
 	Activate();
 }
