@@ -204,6 +204,10 @@ void ARedemptionPlayer::Move(const FInputActionValue& Value)
 		{
 			UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 0.25f, this);
 		}
+		else if (bIsSprinting)
+		{
+			UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 1, this);
+		}
 		else
 		{
 			UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 0.5f, this);
@@ -246,7 +250,6 @@ void ARedemptionPlayer::EndCrouch()
 
 void ARedemptionPlayer::StartSprinting()
 {
-	UE_LOG(LogTemp, Warning, TEXT("StartSprinting called"));
 	if (Stamina > 0 && bCanSprint)
 	{
 		bIsSprinting = true;
@@ -256,7 +259,6 @@ void ARedemptionPlayer::StartSprinting()
 
 void ARedemptionPlayer::StopSprinting()
 {
-	UE_LOG(LogTemp, Warning, TEXT("StopSprinting called"));
 	bIsSprinting = false;
 	GetCharacterMovement()->MaxWalkSpeed = 250.f;
 }
