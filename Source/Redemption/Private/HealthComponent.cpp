@@ -36,11 +36,6 @@ void UHealthComponent::BeginPlay()
 void UHealthComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	if (UHealthBarWidget* const widget = Cast<UHealthBarWidget>(WidgetComponent->GetUserWidgetObject()))
-	{
-		widget->SetBarValuePercent(Health / MaxHealth);
-	}
 }
 
 float UHealthComponent::GetHealth() const

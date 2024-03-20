@@ -13,7 +13,6 @@
 #include "PowerUpComponent.h"
 #include "Components/WidgetComponent.h"
 #include "HealthComponent.h"
-#include "HealthBarWidget.h"
 #include "PauseMenuWidget.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetSystemLibrary.h"
