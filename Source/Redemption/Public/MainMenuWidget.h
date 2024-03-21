@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "BaseLocalizationWidget.h"
 #include "MainMenuWidget.generated.h"
 class UButton;
 
@@ -11,7 +11,7 @@ class UButton;
  * 
  */
 UCLASS()
-class REDEMPTION_API UMainMenuWidget : public UUserWidget
+class REDEMPTION_API UMainMenuWidget : public UBaseLocalizationWidget
 {
 	GENERATED_BODY()
 

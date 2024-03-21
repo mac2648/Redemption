@@ -28,6 +28,7 @@ void UMainMenuWidget::Quit()
 
 void UMainMenuWidget::NativeConstruct()
 {
+	Super::NativeConstruct();
 
 	StartButton->OnClicked.AddDynamic(this, &UMainMenuWidget::Start);
 	QuitButton->OnClicked.AddDynamic(this, &UMainMenuWidget::Quit);
