@@ -40,7 +40,6 @@ void ASkullNPC::Talk()
 
 	if (TalkIndex < Dialogues.Num())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *Dialogues[TalkIndex]);
 		SetDialogueText(Dialogues[TalkIndex]);
 	}
 	else

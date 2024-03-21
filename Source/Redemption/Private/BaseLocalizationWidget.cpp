@@ -4,6 +4,7 @@
 #include "BaseLocalizationWidget.h"
 #include "Internationalization/Internationalization.h"
 #include "Internationalization/Culture.h"
+#include "Components/TextBlock.h"
 
 
 void UBaseLocalizationWidget::NativeConstruct()

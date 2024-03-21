@@ -17,6 +17,10 @@ class REDEMPTION_API UBaseLocalizationWidget : public UUserWidget, public IInter
 	
 public:
 
+	
+
+public:
+
 	virtual void NativeConstruct() override;
 
 	virtual void SetFontPerLanguage();
