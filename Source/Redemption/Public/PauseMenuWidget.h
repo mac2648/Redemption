@@ -3,14 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "BaseLocalizationWidget.h"
 #include "PauseMenuWidget.generated.h"
+
 class UButton;
 /**
  * 
  */
 UCLASS()
-class REDEMPTION_API UPauseMenuWidget : public UUserWidget
+class REDEMPTION_API UPauseMenuWidget : public UBaseLocalizationWidget
 {
 	GENERATED_BODY()
 

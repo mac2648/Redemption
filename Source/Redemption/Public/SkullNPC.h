@@ -31,7 +31,7 @@ protected:
 	UUserWidget* DialogueWidget;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<FString> Dialogues;
+	TArray<FText> Dialogues;
 
 	UPROPERTY(BlueprintReadOnly)
 	int32 TalkIndex = -1;
@@ -55,7 +55,7 @@ public:
 	bool GetIsTalking() { return IsTalking; }
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void SetDialogueText(const FString& Dialogue);
+	void SetDialogueText(const FText& Dialogue);
 
 protected:
 	// Called when the game starts or when spawned
