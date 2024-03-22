@@ -3,13 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/GameModeBase.h"
+#include "LocalizationGameMode.h"
 #include "RedemptionGameMode.generated.h"
 
 class AAudioManager;
 
 UCLASS(minimalapi)
-class ARedemptionGameMode : public AGameModeBase
+class ARedemptionGameMode : public ALocalizationGameMode
 {
 	GENERATED_BODY()
 

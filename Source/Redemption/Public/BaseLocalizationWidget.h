@@ -10,18 +10,19 @@
 /**
  * 
  */
+
+class UFont;
+
 UCLASS()
 class REDEMPTION_API UBaseLocalizationWidget : public UUserWidget, public IInterface_Localization
 {
 	GENERATED_BODY()
-	
-public:
 
-	
 
 public:
 
 	virtual void NativeConstruct() override;
 
-	virtual void SetFontPerLanguage();
+	UFUNCTION(BlueprintCallable)
+	virtual UFont* SetFontPerLanguage() const;
 };

@@ -2,9 +2,11 @@
 
 
 #include "Interface_Localization.h"
+#include "Engine/Font.h"
 
 // Add default functionality here for any IInterface_Localization functions that are not pure virtual.
 
-void IInterface_Localization::SetFontPerLanguage()
+UFont* IInterface_Localization::SetFontPerLanguage() const
 {
+	return nullptr;
 }

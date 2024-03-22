@@ -12,6 +12,7 @@
 #include "DeadBody.h"
 #include "RedemptionUtils.h"
 #include "InteractWidgetComponent.h"
+#include "FontManager.h"
 
 ARedemptionGameMode::ARedemptionGameMode()
 {
@@ -35,6 +36,7 @@ void ARedemptionGameMode::BeginPlay()
     MyAudioManager = Cast<AAudioManager>(UGameplayStatics::GetActorOfClass(GetWorld(), AAudioManager::StaticClass()));
     TArray<AActor*> EnemiesActors;
     UGameplayStatics::GetAllActorsOfClass(GetWorld(), ALandEnemyController::StaticClass(), EnemiesActors);
+
 
     for (AActor* Current : EnemiesActors)
     {

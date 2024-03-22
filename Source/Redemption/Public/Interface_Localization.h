@@ -6,6 +6,8 @@
 #include "UObject/Interface.h"
 #include "Interface_Localization.generated.h"
 
+class UFont;
+
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
 class UInterface_Localization : public UInterface
@@ -23,5 +25,5 @@ class REDEMPTION_API IInterface_Localization
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 
-	virtual void SetFontPerLanguage();
+	virtual UFont* SetFontPerLanguage() const;
 };
