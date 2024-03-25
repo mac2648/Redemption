@@ -32,11 +32,14 @@ private:
 	float Health;
 	UUserWidget* CurrentVignetteWidget = nullptr;
 
+	bool IsInvunerable = false;
+
 public:	
 	float GetHealth() const;
 	float GetMaxHealth() const;
 	void SetHealth(float const NewHealth);
 	void Die();
+	void ResetInvunerability() { IsInvunerable = false; }
 
 	UFUNCTION(BlueprintCallable)
 	void GameOver();
