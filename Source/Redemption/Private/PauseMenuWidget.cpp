@@ -5,6 +5,7 @@
 #include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "..\RedemptionGameMode.h"
 
 
 void UPauseMenuWidget::Resume()
@@ -23,6 +24,11 @@ void UPauseMenuWidget::Resume()
 
 void UPauseMenuWidget::Exit()
 {
+	if (ARedemptionGameMode* GameMode = Cast<ARedemptionGameMode>(UGameplayStatics::GetGameMode(GetWorld())))
+	{
+		GameMode->DestroyInteractableActors();
+	}
+
 	//Opens the "MainMenu" Map
 	UGameplayStatics::OpenLevel(GetWorld(), "MainMenu");
 
