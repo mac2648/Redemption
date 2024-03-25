@@ -13,7 +13,10 @@ UCLASS()
 class REDEMPTION_API ARatController : public ALandEnemyController
 {
 	GENERATED_BODY()
+private:
+	float PlayerSeenTime = 0.0f;
+	FTimerHandle ChaseTimer;
 protected:
-
+	void StartChase();
 	virtual void UpdateSight(AActor* Actor, FAIStimulus Stimulus) override;
 };
