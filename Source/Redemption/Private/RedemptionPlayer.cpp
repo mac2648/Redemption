@@ -35,24 +35,10 @@ ARedemptionPlayer::ARedemptionPlayer()
 	StaminaRegenerationRate = 15.0f; // per second while not sprinting
 	bCanSprint = true;
 
-
-	if (UWidgetComponent* WidgetComponent = HealthComp->GetWidgetComp())
+	static ConstructorHelpers::FObjectFinder<UInputAction> SprintActionFinder(TEXT("/Game/Player/Input/Actions/IA_Sprint"));
+	if (SprintActionFinder.Succeeded())
 	{
-		WidgetComponent->SetupAttachment(RootComponent);
-		WidgetComponent->SetWidgetSpace(EWidgetSpace::Screen);
-		WidgetComponent->SetRelativeLocation(defs::HealthBarZ);
-		static ConstructorHelpers::FClassFinder<UUserWidget> WidgetClass{ TEXT("/Game/UI/BP_HealthBar") };
-		if (WidgetClass.Succeeded())
-		{
-			WidgetComponent->SetWidgetClass((WidgetClass.Class));
-		}
-		static ConstructorHelpers::FObjectFinder<UInputAction> SprintActionFinder(TEXT("/Game/Player/Input/Actions/IA_Sprint"));
-		if (SprintActionFinder.Succeeded())
-		{
-			SprintAction = SprintActionFinder.Object;
-			UE_LOG(LogTemp, Warning, TEXT("BINDED AND FOUND"));
-		}
-
+		SprintAction = SprintActionFinder.Object;
 	}
 
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
