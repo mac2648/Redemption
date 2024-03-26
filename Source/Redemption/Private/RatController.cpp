@@ -16,7 +16,7 @@ void ARatController::UpdateSight(AActor* Actor, FAIStimulus Stimulus)
         {
             if (!GetBlackboardComponent()->GetValueAsObject("Player"))
             {
-                GetWorldTimerManager().SetTimer(ChaseTimer, this, &ARatController::StartChase, 3.0f, false);
+                GetWorldTimerManager().SetTimer(ChaseTimer, this, &ARatController::StartChase, 0.8f, false);
             }
         }
         else
