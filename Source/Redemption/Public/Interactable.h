@@ -8,6 +8,8 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FInteractableActivate);
 
+class ALevelSequenceActor;
+
 UCLASS()
 class REDEMPTION_API AInteractable : public AActor
 {
@@ -24,6 +26,9 @@ protected:
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* PuzzleMesh;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	ALevelSequenceActor* LeverSequence;
+
 	bool IsActive = false;
 	
 public:	
@@ -33,6 +38,9 @@ public:
 	//function that will broadcast the OnActive event
 	virtual void Activate();
 	bool GetIsActive() { return IsActive; }
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void ShowSequence();
 
 protected:
 	// Called when the game starts or when spawned

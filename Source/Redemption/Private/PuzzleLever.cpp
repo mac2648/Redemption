@@ -21,6 +21,8 @@ void APuzzleLever::Activate()
 	IsRotating = true;
 
 	OnActivate.Broadcast();
+
+	ShowSequence();
 }
 
 void APuzzleLever::Tick(float DeltaTime)

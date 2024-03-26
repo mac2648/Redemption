@@ -6,7 +6,7 @@
 #include "Math.h"
 
 #define ROTATION_INTERVAL 0.005
-#define DOOR_SPEED 80
+#define DOOR_SPEED 180
 
 // Sets default values
 AGate::AGate()
