@@ -10,25 +10,38 @@
 
 void ARatController::UpdateSight(AActor* Actor, FAIStimulus Stimulus)
 {
-	if (Actor == UGameplayStatics::GetPlayerPawn(GetWorld(), 0))
-	{ 
-		if (Stimulus.WasSuccessfullySensed())
-		{
-			GetBlackboardComponent()->SetValueAsObject("Player", Actor);
-			if (UCharacterMovementComponent* MoveComp = Cast<ACharacter>(GetPawn())->GetCharacterMovement())
-			{
-				MoveComp->MaxWalkSpeed = 400;
-			}
-		}
-		else
-		{
-			GetBlackboardComponent()->SetValueAsVector("LastSeenLocation", Stimulus.StimulusLocation);
-			GetBlackboardComponent()->ClearValue("Player");
-			if (UCharacterMovementComponent* MoveComp = Cast<ACharacter>(GetPawn())->GetCharacterMovement())
-			{
-				MoveComp->MaxWalkSpeed = 150;
-			}
-		}
-		OnPlayerSightUpdate.Broadcast();
-	}
+    if (Actor == UGameplayStatics::GetPlayerPawn(GetWorld(), 0))
+    {
+        if (Stimulus.WasSuccessfullySensed())
+        {
+            if (!GetBlackboardComponent()->GetValueAsObject("Player"))
+            {
+                GetWorldTimerManager().SetTimer(ChaseTimer, this, &ARatController::StartChase, 0.8f, false);
+            }
+        }
+        else
+        {
+            GetBlackboardComponent()->SetValueAsVector("LastSeenLocation", Stimulus.StimulusLocation);
+            GetBlackboardComponent()->ClearValue("Player");
+            GetWorldTimerManager().ClearTimer(ChaseTimer);
+            if (UCharacterMovementComponent* MoveComp = Cast<ACharacter>(GetPawn())->GetCharacterMovement())
+            {
+                MoveComp->MaxWalkSpeed = 150;
+            }
+        }
+
+        OnPlayerSightUpdate.Broadcast();
+    }
+}
+
+void ARatController::StartChase()
+{
+    if (AActor* Player = UGameplayStatics::GetPlayerPawn(GetWorld(), 0))
+    {
+        GetBlackboardComponent()->SetValueAsObject("Player", Player);
+        if (UCharacterMovementComponent* MoveComp = Cast<ACharacter>(GetPawn())->GetCharacterMovement())
+        {
+            MoveComp->MaxWalkSpeed = 400;
+        }
+    }
 }

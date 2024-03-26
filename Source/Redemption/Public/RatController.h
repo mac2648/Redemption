@@ -13,7 +13,9 @@ UCLASS()
 class REDEMPTION_API ARatController : public ALandEnemyController
 {
 	GENERATED_BODY()
+private:
+	FTimerHandle ChaseTimer;
 protected:
-
+	void StartChase();
 	virtual void UpdateSight(AActor* Actor, FAIStimulus Stimulus) override;
 };
