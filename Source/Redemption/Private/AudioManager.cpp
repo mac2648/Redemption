@@ -75,13 +75,14 @@ void AAudioManager::PlayAmbientMusic()
 
 void AAudioManager::PlayCombatMusic()
 {
+    // Clear any pending switch back to ambient music, even if we are not restarting the music
+    GetWorldTimerManager().ClearTimer(MusicDelayTimerHandle);
+
     // Only switch to combat music if we're not already in combat mode
     if (CombatMusicCue != nullptr && !bIsInCombat)
     {
         bIsInCombat = true;
-        // Clear any pending switch back to ambient music
-        GetWorldTimerManager().ClearTimer(MusicDelayTimerHandle);
-
+        
         // Set the combat music and play it
         MusicComponent->SetSound(CombatMusicCue);
         MusicComponent->Play();
