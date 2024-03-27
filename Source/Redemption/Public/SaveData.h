@@ -18,6 +18,13 @@ struct FSaveInfo
 	UPROPERTY(BlueprintReadWrite)
 	FVector PlayerDiedLocation = FVector::ZeroVector;
 
+	UPROPERTY(BlueprintReadWrite)
+	float SFXValue;
+
+	UPROPERTY(BlueprintReadWrite)
+	float MusicValue;
+
+
 };
 
 UCLASS()
