@@ -24,6 +24,8 @@ protected:
 	UPROPERTY(BlueprintReadWrite)
 	FSaveInfo SaveInfo;
 
+	float SFXValue;
+	float MusicValue;
 
 public:
 
@@ -40,4 +42,18 @@ public:
 	void TransferInfoSaveToInstance();
 
 	void SetupSaveInfo();
+
+	UFUNCTION(BlueprintCallable)
+	float GetSFXValue() const { return SFXValue; }
+
+	UFUNCTION(BlueprintCallable)
+	float GetMusicValue() const { return MusicValue; }
+
+	
+
+	UFUNCTION(BlueprintCallable)
+	void SetSFXValue(float NewSFXValue) { SFXValue = NewSFXValue; }
+
+	UFUNCTION(BlueprintCallable)
+	void SetMusicValue(float NewMusicValue) { MusicValue = NewMusicValue; }
 };
