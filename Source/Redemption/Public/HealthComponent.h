@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Math/Vector.h"
-#include "HealthBarWidget.h"
 #include "HealthComponent.generated.h"
 
 class UWidgetComponent;
