@@ -1,0 +1,764 @@
+﻿# Game Korean translation.
+# Fill out your copyright notice in the Description page of Project Settings.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Game\n"
+"POT-Creation-Date: 2024-03-28 13:22\n"
+"PO-Revision-Date: 2024-03-28 13:22\n"
+"Language-Team: \n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Key:	7735A6464A328BFE7EB94FAE70573387
+#. SourceLocation:	/Game/Assets/Blueprints/BP_DeathTalkSkull.Default__BP_DeathTalkSkull_C.Dialogues(0).Dialogues
+#: /Game/Assets/Blueprints/BP_DeathTalkSkull.Default__BP_DeathTalkSkull_C.Dialogues(0).Dialogues
+msgctxt ",7735A6464A328BFE7EB94FAE70573387"
+msgid "Looks like you are stuck"
+msgstr "저런, 갇힌 거 같네."
+
+#. Key:	0FD185DA44DF0340639EF1AD3D1597A2
+#. SourceLocation:	/Game/Assets/Blueprints/BP_DeathTalkSkull.Default__BP_DeathTalkSkull_C.Dialogues(1).Dialogues
+#: /Game/Assets/Blueprints/BP_DeathTalkSkull.Default__BP_DeathTalkSkull_C.Dialogues(1).Dialogues
+msgctxt ",0FD185DA44DF0340639EF1AD3D1597A2"
+msgid "I will put you out of your misery"
+msgstr "이 비극에서 빠져나가게 해주지."
+
+#. Key:	4C81347B4EE07DD5F97D17B072B3C1C5
+#. SourceLocation:	/Game/Assets/Blueprints/BP_SkullNPC.Default__BP_SkullNPC_C.Dialogues(0).Dialogues
+#: /Game/Assets/Blueprints/BP_SkullNPC.Default__BP_SkullNPC_C.Dialogues(0).Dialogues
+msgctxt ",4C81347B4EE07DD5F97D17B072B3C1C5"
+msgid "Hey"
+msgstr "이봐."
+
+#. Key:	72F763B14C91200A1C7FC5A70C153F94
+#. SourceLocation:	/Game/Assets/Blueprints/BP_SkullNPC.Default__BP_SkullNPC_C.Dialogues(1).Dialogues
+#: /Game/Assets/Blueprints/BP_SkullNPC.Default__BP_SkullNPC_C.Dialogues(1).Dialogues
+msgctxt ",72F763B14C91200A1C7FC5A70C153F94"
+msgid "You better be careful."
+msgstr "조심하는 게 좋을 거야."
+
+#. Key:	4435683745075B95C28BE0B58FF7488C
+#. SourceLocation:	/Game/Assets/Blueprints/BP_SkullNPC.Default__BP_SkullNPC_C.Dialogues(2).Dialogues
+#: /Game/Assets/Blueprints/BP_SkullNPC.Default__BP_SkullNPC_C.Dialogues(2).Dialogues
+msgctxt ",4435683745075B95C28BE0B58FF7488C"
+msgid "There are crazy creatures."
+msgstr "저기 미친 녀석들이 있어."
+
+#. Key:	F38B6F4543F25D735199D5A275FE9422
+#. SourceLocation:	/Game/Assets/Blueprints/BP_SkullNPC.Default__BP_SkullNPC_C.Dialogues(3).Dialogues
+#: /Game/Assets/Blueprints/BP_SkullNPC.Default__BP_SkullNPC_C.Dialogues(3).Dialogues
+msgctxt ",F38B6F4543F25D735199D5A275FE9422"
+msgid "I hope you survive. "
+msgstr "잘 살아나가면 좋겠군."
+
+#. Key:	41E81A9849C4232063CC80A4F55FBA36
+#. SourceLocation:	/Game/Assets/Blueprints/TEST.TEST_C:WidgetTree.TextBlock_0.Text
+#: /Game/Assets/Blueprints/TEST.TEST_C:WidgetTree.TextBlock_0.Text
+msgctxt ",41E81A9849C4232063CC80A4F55FBA36"
+msgid "test"
+msgstr "테스트"
+
+#. Key:	E78049184005565794C1D2AE3323F994
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(0).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(0).Dialogues
+msgctxt ",E78049184005565794C1D2AE3323F994"
+msgid "Did that stoney fella hit you?"
+msgstr "저 돌같은 녀석이 쳤어?"
+
+#. Key:	170B5DB44EA230E6CEDB3CACFAC8445C
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(1).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(1).Dialogues
+msgctxt ",170B5DB44EA230E6CEDB3CACFAC8445C"
+msgid "Well he's not got the best aim.."
+msgstr "글쎄 녀석이 잘 던지는 것 같진 않아."
+
+#. Key:	998AC72C401B2D73C8CED488121837B1
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(2).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(2).Dialogues
+msgctxt ",998AC72C401B2D73C8CED488121837B1"
+msgid "I know you're short but you could always be shorter by crouching (CTRL)"
+msgstr "네가 작은 놈인 건 알지만, CTRL을 눌러 더 작아질 수도 있지."
+
+#. Key:	16C546124875F465A19B99A020537BF8
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(3).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(3).Dialogues
+msgctxt ",16C546124875F465A19B99A020537BF8"
+msgid "doubt he'll hit you down there."
+msgstr "저기에 있는 놈이 널 칠 것같진 않아."
+
+#. Key:	51200E1943A90F301CAB83AD70CBE2C2
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(4).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(4).Dialogues
+msgctxt ",51200E1943A90F301CAB83AD70CBE2C2"
+msgid "If you get hurt out here, "
+msgstr "만약 여기서 다쳤다면,"
+
+#. Key:	1EA5C4BD488257004FBBC792064D46DB
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(5).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(5).Dialogues
+msgctxt ",1EA5C4BD488257004FBBC792064D46DB"
+msgid "take a bite out of a corpse. "
+msgstr "이 시체를 한 입만 먹어봐."
+
+#. Key:	72C7BAFC438EA8BB7C580981FE0F5D51
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(6).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(6).Dialogues
+msgctxt ",72C7BAFC438EA8BB7C580981FE0F5D51"
+msgid "Maybe that'll give you the fuel to go on"
+msgstr "아마도 더 나아갈 수 있는 힘을 줄 수도 있지."
+
+#. Key:	7966615549023FB0517F698A4FF8B080
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(7).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(7).Dialogues
+msgctxt ",7966615549023FB0517F698A4FF8B080"
+msgid " and maybe try a different strategy?"
+msgstr "그리고 아마 다른 방법을 생각해보는 게 좋을 수도?"
+
+#. Key:	ED4B1D074A5B17081709FE9CCD519DFC
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(0).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(0).Dialogues
+msgctxt ",ED4B1D074A5B17081709FE9CCD519DFC"
+msgid "I've been laying this way"
+msgstr "여기에 좀 오래 있었어."
+
+#. Key:	D7412A0D4F22CDB6E320CA826EABB88B
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(1).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(1).Dialogues
+msgctxt ",D7412A0D4F22CDB6E320CA826EABB88B"
+msgid "for years looking at the stars."
+msgstr "여기서 오랫동안 별들을 보고 있었지."
+
+#. Key:	A4FCFE07471620B9FC273997391FDD2B
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(2).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(2).Dialogues
+msgctxt ",A4FCFE07471620B9FC273997391FDD2B"
+msgid "But what I really want to know"
+msgstr "하지만 내가 진짜 알고 싶은 건"
+
+#. Key:	3CE923204A29668FA61AF8A900CB547F
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(3).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(3).Dialogues
+msgctxt ",3CE923204A29668FA61AF8A900CB547F"
+msgid "is what is that gargoyle sitting on?"
+msgstr "도대체 가고일은 어디에 앉는 걸까."
+
+#. Key:	4B34340344963A832962C4A6FBD7FD95
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(4).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(4).Dialogues
+msgctxt ",4B34340344963A832962C4A6FBD7FD95"
+msgid "Too bad we can't reach.."
+msgstr "저기 갈 수 없다는 게 아쉽네..."
+
+#. Key:	15AB25CD4888F2D83B915CB0E520537A
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(0).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(0).Dialogues
+msgctxt "Level1-1,15AB25CD4888F2D83B915CB0E520537A"
+msgid "Hey man, you have the look "
+msgstr "이봐."
+
+#. Key:	96D62BA146A17D558107B79432A4932C
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(1).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(1).Dialogues
+msgctxt "Level1-1,96D62BA146A17D558107B79432A4932C"
+msgid "of a newbie 'round here."
+msgstr "여기에 처음 온 거같이 보이네."
+
+#. Key:	2CB23BCE4D8BF40DB922F3AEA9735A01
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(2).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(2).Dialogues
+msgctxt ",2CB23BCE4D8BF40DB922F3AEA9735A01"
+msgid "I'm a one of the more lively skulls."
+msgstr "난 좀 떠들어대는 해골들 중 하나긴 해."
+
+#. Key:	254C78AC4D2979C6590C2795827242EB
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(3).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(3).Dialogues
+msgctxt "Level1-1,254C78AC4D2979C6590C2795827242EB"
+msgid "But you better be careful."
+msgstr "하지만 조심하는 게 좋을 거야."
+
+#. Key:	62AB9C8D43B3057EC7A0AEB340A26F21
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(4).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(4).Dialogues
+msgctxt ",62AB9C8D43B3057EC7A0AEB340A26F21"
+msgid "There's buncha angry creatures here."
+msgstr "여기 날뛰는 녀석들이 있지."
+
+#. Key:	458C396B40B96BBCF5236880C21C6108
+#. SourceLocation:	/Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(5).Dialogues
+#: /Game/Levels/Level1-1.Level1-1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(5).Dialogues
+msgctxt ",458C396B40B96BBCF5236880C21C6108"
+msgid "I hope you survive. "
+msgstr "잘 살아나가면 좋겠군."
+
+#. Key:	0170D6C844FEAA5398F0EDA198E43AD8
+#. SourceLocation:	/Game/Levels/Level1-2.Level1-2:PersistentLevel.BP_SkullNPC_C_1.Dialogues(0).Dialogues
+#: /Game/Levels/Level1-2.Level1-2:PersistentLevel.BP_SkullNPC_C_1.Dialogues(0).Dialogues
+msgctxt "Level1-2,0170D6C844FEAA5398F0EDA198E43AD8"
+msgid "We've got an infestation of rats!"
+msgstr "쥐들이 우글거리고 있어!"
+
+#. Key:	3EE99E71479A7321F9313CA8B91C2E81
+#. SourceLocation:	/Game/Levels/Level1-2.Level1-2:PersistentLevel.BP_SkullNPC_C_1.Dialogues(1).Dialogues
+#: /Game/Levels/Level1-2.Level1-2:PersistentLevel.BP_SkullNPC_C_1.Dialogues(1).Dialogues
+msgctxt "Level1-2,3EE99E71479A7321F9313CA8B91C2E81"
+msgid "Hate those things, "
+msgstr "이놈들이 싫어."
+
+#. Key:	0C1FA6864EC4818E95DF939E33CC2489
+#. SourceLocation:	/Game/Levels/Level1-2.Level1-2:PersistentLevel.BP_SkullNPC_C_1.Dialogues(2).Dialogues
+#: /Game/Levels/Level1-2.Level1-2:PersistentLevel.BP_SkullNPC_C_1.Dialogues(2).Dialogues
+msgctxt ",0C1FA6864EC4818E95DF939E33CC2489"
+msgid "making just a little bit of noise-"
+msgstr "그냥 약간의 소리를 만들어봐."
+
+#. Key:	A52A9FB24F3C56C97B4954929CB93E76
+#. SourceLocation:	/Game/Levels/Level1-2.Level1-2:PersistentLevel.BP_SkullNPC_C_1.Dialogues(3).Dialogues
+#: /Game/Levels/Level1-2.Level1-2:PersistentLevel.BP_SkullNPC_C_1.Dialogues(3).Dialogues
+msgctxt ",A52A9FB24F3C56C97B4954929CB93E76"
+msgid "will set them right off. "
+msgstr "그곳으로 바로 가버릴 걸."
+
+#. Key:	547906574CB0FC05E285D7AEF7B61528
+#. SourceLocation:	/Game/Levels/Level1-2.Level1-2:PersistentLevel.BP_SkullNPC_C_1.Dialogues(4).Dialogues
+#: /Game/Levels/Level1-2.Level1-2:PersistentLevel.BP_SkullNPC_C_1.Dialogues(4).Dialogues
+msgctxt ",547906574CB0FC05E285D7AEF7B61528"
+msgid "Do me a favor will ya?"
+msgstr "부탁이 하나 있는데 들어줘."
+
+#. Key:	301C9D3D4D44B73D0FD9379F8342C543
+#. SourceLocation:	/Game/Levels/Level1-2.Level1-2:PersistentLevel.BP_SkullNPC_C_1.Dialogues(5).Dialogues
+#: /Game/Levels/Level1-2.Level1-2:PersistentLevel.BP_SkullNPC_C_1.Dialogues(5).Dialogues
+msgctxt ",301C9D3D4D44B73D0FD9379F8342C543"
+msgid "Just mess with 'em from the saftey of this cliff."
+msgstr "이 안전한 곳에서 한 번 장난쳐봐."
+
+#. Key:	2270D1624FC6151CD27FC49F05DE30B0
+#. SourceLocation:	/Game/Levels/Level1-2.Level1-2:PersistentLevel.BP_SkullNPC_C_1.Dialogues(6).Dialogues
+#: /Game/Levels/Level1-2.Level1-2:PersistentLevel.BP_SkullNPC_C_1.Dialogues(6).Dialogues
+msgctxt ",2270D1624FC6151CD27FC49F05DE30B0"
+msgid "Throw some bones and make 'em run 'round."
+msgstr "뼈를 던져 저 녀석들이 돌아다니게 해봐."
+
+#. Key:	8FBE90A9430F775EA522DDBF4D1CE1C5
+#. SourceLocation:	/Game/Levels/Level1-2.Level1-2:PersistentLevel.BP_SkullNPC_C_1.Dialogues(7).Dialogues
+#: /Game/Levels/Level1-2.Level1-2:PersistentLevel.BP_SkullNPC_C_1.Dialogues(7).Dialogues
+msgctxt ",8FBE90A9430F775EA522DDBF4D1CE1C5"
+msgid "...just don't throw me please."
+msgstr "...그치만 나한텐 던지지말라고."
+
+#. Key:	24D87908401D47BE9BDDBAB0B9B06B6C
+#. SourceLocation:	/Game/Levels/Level1-3.Level1-3:PersistentLevel.BP_SkullNPC_C_1.Dialogues(0).Dialogues
+#: /Game/Levels/Level1-3.Level1-3:PersistentLevel.BP_SkullNPC_C_1.Dialogues(0).Dialogues
+msgctxt ",24D87908401D47BE9BDDBAB0B9B06B6C"
+msgid "What?"
+msgstr "뭐야?"
+
+#. Key:	8E6EF758484D6CC1A2F8B0A019DB48F7
+#. SourceLocation:	/Game/Levels/Level1-3.Level1-3:PersistentLevel.BP_SkullNPC_C_1.Dialogues(1).Dialogues
+#: /Game/Levels/Level1-3.Level1-3:PersistentLevel.BP_SkullNPC_C_1.Dialogues(1).Dialogues
+msgctxt ",8E6EF758484D6CC1A2F8B0A019DB48F7"
+msgid "How did you find me?"
+msgstr "어떻게 날 찾은거야?"
+
+#. Key:	F1A2DFE049F46BD708BB2AB7F22C6EF1
+#. SourceLocation:	/Game/Levels/Level1-3.Level1-3:PersistentLevel.BP_SkullNPC_C_1.Dialogues(2).Dialogues
+#: /Game/Levels/Level1-3.Level1-3:PersistentLevel.BP_SkullNPC_C_1.Dialogues(2).Dialogues
+msgctxt ",F1A2DFE049F46BD708BB2AB7F22C6EF1"
+msgid "Get out of here."
+msgstr "저리 꺼져."
+
+#. Key:	EC81FE084B62D9CFB2326BACA7958A92
+#. SourceLocation:	/Game/Levels/Level1-3.Level1-3:PersistentLevel.BP_SkullNPC_C_2.Dialogues(0).Dialogues
+#: /Game/Levels/Level1-3.Level1-3:PersistentLevel.BP_SkullNPC_C_2.Dialogues(0).Dialogues
+msgctxt "Level1-3,EC81FE084B62D9CFB2326BACA7958A92"
+msgid "It will not be easy."
+msgstr "쉽진 않을 거야."
+
+#. Key:	2E1F19374A2801930590AC8E2A790090
+#. SourceLocation:	/Game/Levels/Level1-3.Level1-3:PersistentLevel.BP_SkullNPC_C_2.Dialogues(1).Dialogues
+#: /Game/Levels/Level1-3.Level1-3:PersistentLevel.BP_SkullNPC_C_2.Dialogues(1).Dialogues
+msgctxt "Level1-3,2E1F19374A2801930590AC8E2A790090"
+msgid "I hope you can escape from them."
+msgstr "그 녀석들에게서 잘 탈출했으면 좋겠네."
+
+#. Key:	3E3BC9BC47A490F29B18B1A83D623207
+#. SourceLocation:	/Game/Levels/Level1-3.Level1-3:PersistentLevel.BP_SkullNPC_C_2.Dialogues(2).Dialogues
+#: /Game/Levels/Level1-3.Level1-3:PersistentLevel.BP_SkullNPC_C_2.Dialogues(2).Dialogues
+msgctxt ",3E3BC9BC47A490F29B18B1A83D623207"
+msgid "Good luck."
+msgstr "행운을 빌어."
+
+#. Key:	DA9A89BA4ED15CDE54DF1381785754FC
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_0.Dialogues(0).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_0.Dialogues(0).Dialogues
+msgctxt ",DA9A89BA4ED15CDE54DF1381785754FC"
+msgid "Did that stoney fella hit you?"
+msgstr "저 돌같은 녀석이 쳤어?"
+
+#. Key:	9A2CEB1C454F8857F71A46B1F2DFDB00
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_0.Dialogues(1).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_0.Dialogues(1).Dialogues
+msgctxt ",9A2CEB1C454F8857F71A46B1F2DFDB00"
+msgid "Well he's not got the best aim.."
+msgstr "글쎄 녀석이 잘 던지는 것 같진 않아."
+
+#. Key:	0022224A4D367D446D0F8BBC91B4A370
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_0.Dialogues(2).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_0.Dialogues(2).Dialogues
+msgctxt ",0022224A4D367D446D0F8BBC91B4A370"
+msgid "I know you're short but you could always be shorter by crouching (CTRL)"
+msgstr "네가 작은 놈인 건 알지만, CTRL을 눌러 더 작아질 수도 있지."
+
+#. Key:	2B193007434B4D6B894348926C36EC74
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_0.Dialogues(3).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_0.Dialogues(3).Dialogues
+msgctxt ",2B193007434B4D6B894348926C36EC74"
+msgid "doubt he'll hit you down there."
+msgstr "저기에 있는 놈이 널 칠 것같진 않아."
+
+#. Key:	191319F34D1AD10CB9A4A4AB59B3897E
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_0.Dialogues(4).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_0.Dialogues(4).Dialogues
+msgctxt ",191319F34D1AD10CB9A4A4AB59B3897E"
+msgid "If you get hurt out here, "
+msgstr "만약 여기서 다쳤다면,"
+
+#. Key:	BC4E7DB243AD4BA6CA91E2A43EC4FA5D
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_0.Dialogues(5).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_0.Dialogues(5).Dialogues
+msgctxt ",BC4E7DB243AD4BA6CA91E2A43EC4FA5D"
+msgid "take a bite out of a corpse. "
+msgstr "이 시체를 한 입만 먹어봐."
+
+#. Key:	C77D1865430C753A17CF118C561A737D
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_0.Dialogues(6).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_0.Dialogues(6).Dialogues
+msgctxt ",C77D1865430C753A17CF118C561A737D"
+msgid "Maybe that'll give you the fuel to go on"
+msgstr "아마도 더 나아갈 수 있는 힘을 줄 수도 있지."
+
+#. Key:	2F2157F540C292B072C66DB6DC9E961C
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_0.Dialogues(7).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_0.Dialogues(7).Dialogues
+msgctxt ",2F2157F540C292B072C66DB6DC9E961C"
+msgid " and maybe try a different strategy?"
+msgstr "그리고 아마 다른 방법을 생각해보는 게 좋을 수도?"
+
+#. Key:	90C6698E4328B00143EF878ADD07D0C0
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(0).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(0).Dialogues
+msgctxt "Level1,90C6698E4328B00143EF878ADD07D0C0"
+msgid "Hey man, you have the look "
+msgstr "이봐."
+
+#. Key:	964EAB8E49BF952194642CAF71C9EAB9
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(1).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(1).Dialogues
+msgctxt ",964EAB8E49BF952194642CAF71C9EAB9"
+msgid "of a newbie 'round here."
+msgstr "여기에 처음 온 거같이 보이네."
+
+#. Key:	15F10CD444543091D564D1892B7D8290
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(2).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(2).Dialogues
+msgctxt ",15F10CD444543091D564D1892B7D8290"
+msgid "I'm a one of the more lively skulls."
+msgstr "난 좀 떠들어대는 해골들 중 하나긴 해."
+
+#. Key:	34F9D5554D88FC770BB732802102B819
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(3).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(3).Dialogues
+msgctxt ",34F9D5554D88FC770BB732802102B819"
+msgid "But you better be careful."
+msgstr "하지만 조심하는 게 좋을 거야."
+
+#. Key:	597E4DBA44CB80E4EB1D09BAADCE4B64
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(4).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(4).Dialogues
+msgctxt ",597E4DBA44CB80E4EB1D09BAADCE4B64"
+msgid "There's buncha angry creatures here."
+msgstr "여기 날뛰는 녀석들이 있지."
+
+#. Key:	A35DD5B14399399FEE2A29A8DAFE2A1C
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(5).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_1.Dialogues(5).Dialogues
+msgctxt ",A35DD5B14399399FEE2A29A8DAFE2A1C"
+msgid "I hope you survive. "
+msgstr "잘 살아나가면 좋겠군."
+
+#. Key:	0D541B844E85D0EDE9D1B6882A145530
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(0).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(0).Dialogues
+msgctxt "Level1,0D541B844E85D0EDE9D1B6882A145530"
+msgid "I've been laying this way"
+msgstr "여기에 좀 오래 있었어."
+
+#. Key:	8FB570B0435FD0DACD9665B587C89B5B
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(1).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(1).Dialogues
+msgctxt ",8FB570B0435FD0DACD9665B587C89B5B"
+msgid "for years looking at the stars."
+msgstr "여기서 오랫동안 별들을 보고 있었지."
+
+#. Key:	900236074A6C2B8CFAAF50B53F3DD26F
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(2).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(2).Dialogues
+msgctxt ",900236074A6C2B8CFAAF50B53F3DD26F"
+msgid "But what I really want to know"
+msgstr "하지만 내가 진짜 알고 싶은 건"
+
+#. Key:	2F62ED8E41143A9EE919DF87956B62A2
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(3).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(3).Dialogues
+msgctxt ",2F62ED8E41143A9EE919DF87956B62A2"
+msgid "is what is that gargoyle sitting on?"
+msgstr "도대체 가고일은 어디에 앉는 걸까."
+
+#. Key:	D06709F249EBA30A3FC845BD4A87D4DE
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(4).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_2.Dialogues(4).Dialogues
+msgctxt ",D06709F249EBA30A3FC845BD4A87D4DE"
+msgid "Too bad we can't reach.."
+msgstr "저기 갈 수 없다는 게 아쉽네..."
+
+#. Key:	27278526450A6E4A386203B7892E322C
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(0).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(0).Dialogues
+msgctxt ",27278526450A6E4A386203B7892E322C"
+msgid "We've got an infestation of rats!"
+msgstr "쥐들이 우글거리고 있어!"
+
+#. Key:	76A0424B474580BD9A99CB88C298B340
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(1).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(1).Dialogues
+msgctxt ",76A0424B474580BD9A99CB88C298B340"
+msgid "Hate those things, "
+msgstr "이놈들이 싫어."
+
+#. Key:	5E6A16A64663CD5329217BBBB259712A
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(2).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(2).Dialogues
+msgctxt ",5E6A16A64663CD5329217BBBB259712A"
+msgid "making just a little bit of noise-"
+msgstr "그냥 약간의 소리를 만들어봐."
+
+#. Key:	C4719E1846557E9E09E690A12F8EADDB
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(3).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(3).Dialogues
+msgctxt ",C4719E1846557E9E09E690A12F8EADDB"
+msgid "will set them right off. "
+msgstr "그곳으로 바로 가버릴 걸."
+
+#. Key:	830BC810472C904A3E5E629AD9C974A7
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(4).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(4).Dialogues
+msgctxt ",830BC810472C904A3E5E629AD9C974A7"
+msgid "Do me a favor will ya?"
+msgstr "부탁이 하나 있는데 들어줘."
+
+#. Key:	A35C697A49D4015A4EFC0B8F8534FED8
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(5).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(5).Dialogues
+msgctxt ",A35C697A49D4015A4EFC0B8F8534FED8"
+msgid "Just mess with 'em from the saftey of this cliff."
+msgstr "이 안전한 곳에서 한 번 장난쳐봐."
+
+#. Key:	8BBF226941AB383E68D6538334D3EB17
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(6).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(6).Dialogues
+msgctxt ",8BBF226941AB383E68D6538334D3EB17"
+msgid "Throw some bones and make 'em run 'round."
+msgstr "뼈를 던져 저 녀석들이 돌아다니게 해봐."
+
+#. Key:	2AAA72B84100F75BC744958579C57F85
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(7).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_3.Dialogues(7).Dialogues
+msgctxt ",2AAA72B84100F75BC744958579C57F85"
+msgid "...just don't throw me please."
+msgstr "...그치만 나한텐 던지지말라고."
+
+#. Key:	EFF07C7949C00DF78E55D6B9166D2104
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_4.Dialogues(0).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_4.Dialogues(0).Dialogues
+msgctxt ",EFF07C7949C00DF78E55D6B9166D2104"
+msgid "What?"
+msgstr "뭐야?"
+
+#. Key:	B9E6D9EE4A198B0E0561F88F234BC739
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_4.Dialogues(1).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_4.Dialogues(1).Dialogues
+msgctxt ",B9E6D9EE4A198B0E0561F88F234BC739"
+msgid "How did you find me?"
+msgstr "어떻게 날 찾은거야?"
+
+#. Key:	C8D63DE046A4AA4EE3C3FB9E8C33C3E5
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_4.Dialogues(2).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_4.Dialogues(2).Dialogues
+msgctxt ",C8D63DE046A4AA4EE3C3FB9E8C33C3E5"
+msgid "Get out of here."
+msgstr "저리 꺼져."
+
+#. Key:	B39440364941DCBD820FE7819215A8DC
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_5.Dialogues(0).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_5.Dialogues(0).Dialogues
+msgctxt ",B39440364941DCBD820FE7819215A8DC"
+msgid "It will not be easy."
+msgstr "쉽진 않을 거야."
+
+#. Key:	BAF2CCFC49EC0F0D36E74BAE9913CF7D
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_5.Dialogues(1).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_5.Dialogues(1).Dialogues
+msgctxt ",BAF2CCFC49EC0F0D36E74BAE9913CF7D"
+msgid "I hope you can escape from them."
+msgstr "그 녀석들에게서 잘 탈출했으면 좋겠군."
+
+#. Key:	C5F2EEB44740E35E89A249ADA61E5F11
+#. SourceLocation:	/Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_5.Dialogues(2).Dialogues
+#: /Game/Levels/Level1.Level1:PersistentLevel.BP_SkullNPC_C_5.Dialogues(2).Dialogues
+msgctxt ",C5F2EEB44740E35E89A249ADA61E5F11"
+msgid "Good luck."
+msgstr "행운을 빌어."
+
+#. Key:	502A0D9F4BC6B0C0910C8FBA9CA8C02A
+#. SourceLocation:	/Game/UI/BP_ChangePowerUpWidget.BP_ChangePowerUpWidget_C:WidgetTree.Bone.Text
+#: /Game/UI/BP_ChangePowerUpWidget.BP_ChangePowerUpWidget_C:WidgetTree.Bone.Text
+msgctxt ",502A0D9F4BC6B0C0910C8FBA9CA8C02A"
+msgid "BONE"
+msgstr "뼈던지기"
+
+#. Key:	422977EF4B0A5937D8092AAEB4D9B1EA
+#. SourceLocation:	/Game/UI/BP_ChangePowerUpWidget.BP_ChangePowerUpWidget_C:WidgetTree.Hover.Text
+#: /Game/UI/BP_ChangePowerUpWidget.BP_ChangePowerUpWidget_C:WidgetTree.Hover.Text
+msgctxt ",422977EF4B0A5937D8092AAEB4D9B1EA"
+msgid "HOVER"
+msgstr "멀리점프"
+
+#. Key:	6B5BC72B42EAB085A49BC79657393835
+#. SourceLocation:	/Game/UI/BP_ChangePowerUpWidget.BP_ChangePowerUpWidget_C:WidgetTree.Instruction.Text
+#: /Game/UI/BP_ChangePowerUpWidget.BP_ChangePowerUpWidget_C:WidgetTree.Instruction.Text
+msgctxt ",6B5BC72B42EAB085A49BC79657393835"
+msgid "Choose your powerup."
+msgstr "파워업 스킬을 고르시오."
+
+#. Key:	160169C9466AA5AFEA8A459AB0E063B1
+#. SourceLocation:	/Game/UI/BP_ChangePowerUpWidget.BP_ChangePowerUpWidget_C:WidgetTree.Parry.Text
+#: /Game/UI/BP_ChangePowerUpWidget.BP_ChangePowerUpWidget_C:WidgetTree.Parry.Text
+msgctxt ",160169C9466AA5AFEA8A459AB0E063B1"
+msgid "PARRY"
+msgstr "공격무효"
+
+#. Key:	20C6817C4A5C73133128F991D0B53D79
+#. SourceLocation:	/Game/UI/BP_ChangePowerUpWidget.BP_ChangePowerUpWidget_C:WidgetTree.Powerup.Text
+#: /Game/UI/BP_ChangePowerUpWidget.BP_ChangePowerUpWidget_C:WidgetTree.Powerup.Text
+msgctxt ",20C6817C4A5C73133128F991D0B53D79"
+msgid "PowerUp"
+msgstr "파워업"
+
+#. Key:	B9484DCE48CD33C5BA2EA28205EEA45A
+#. SourceLocation:	/Game/UI/BP_Credits.BP_Credits_C:WidgetTree.Credits_Txt.Text
+#: /Game/UI/BP_Credits.BP_Credits_C:WidgetTree.Credits_Txt.Text
+msgctxt ",B9484DCE48CD33C5BA2EA28205EEA45A"
+msgid "Game Designer \r\nRyan\r\nNandish\r\n\r\nLevel Designer\r\nRyan\r\nNandish\r\nSoomin\r\n\r\nEnvironement Artist\r\nSoomin\r\n\r\nCharacter Artist\r\nSoomin\r\n\r\nAnimator, Rigger\r\nSoomin\r\n\r\nAI Programmer \r\nMarcelo \r\n\r\nGamePlay Programmer\r\nMarcelo\r\nSoomin\r\nNandish\r\nRyan\r\n\r\nUI Programmer\r\nNandish\r\nSoomin\r\nMarcelo\r\nRyan\r\nDeepak\r\n\r\nUI Designer\r\nSoomin\r\nNandish\r\n\r\nSound Engineer\r\nRyan\r\n\r\nVFX Artist\r\nSoomin "
+msgstr "Game Designer\r\nRyan\r\nNandish\r\n\r\nLevel Designer\r\nRyan\r\nNandish\r\nSoomin\r\n\r\nEnvironment Artist\r\nSoomin\r\n\r\nCharacter Artist\r\nSoomin\r\n\r\nAnimator, Rigger\r\nSoomin\r\n\r\nAI Programmer \r\nMarcelo \r\n\r\nGamePlay Programmer\r\nMarcelo\r\nSoomin\r\nNandish\r\nRyan\r\n\r\nUI Programmer\r\nNandish\r\nSoomin\r\nMarcelo\r\nRyan\r\nDeepak\r\n\r\nUI Designer\r\nSoomin\r\nNandish\r\n\r\nSound Engineer\r\nRyan\r\n\r\nVFX Artist\r\nSoomin "
+
+#. Key:	A47CF485412D85EDE22031A82414977B
+#. SourceLocation:	/Game/UI/BP_DialogueUI.BP_DialogueUI_C:WidgetTree.DialogueText.Text
+#: /Game/UI/BP_DialogueUI.BP_DialogueUI_C:WidgetTree.DialogueText.Text
+msgctxt ",A47CF485412D85EDE22031A82414977B"
+msgid "Dialogue Example"
+msgstr "대화문 예시"
+
+#. Key:	D6DF59FB4292EB0AFAA4A2BDA9776FCD
+#. SourceLocation:	/Game/UI/BP_GameOver.BP_GameOver_C:WidgetTree.T_Exit.Text
+#: /Game/UI/BP_GameOver.BP_GameOver_C:WidgetTree.T_Exit.Text
+msgctxt ",D6DF59FB4292EB0AFAA4A2BDA9776FCD"
+msgid "EXIT"
+msgstr "종료"
+
+#. Key:	7FBC47A5465A79F2C929E6927D10655F
+#. SourceLocation:	/Game/UI/BP_GameOver.BP_GameOver_C:WidgetTree.T_GameOver.Text
+#: /Game/UI/BP_GameOver.BP_GameOver_C:WidgetTree.T_GameOver.Text
+msgctxt ",7FBC47A5465A79F2C929E6927D10655F"
+msgid "Game Over"
+msgstr "게임 오버"
+
+#. Key:	488BEA284E72F4CC1E6E1B8E3D759534
+#. SourceLocation:	/Game/UI/BP_GameOver.BP_GameOver_C:WidgetTree.T_Menu.Text
+#: /Game/UI/BP_GameOver.BP_GameOver_C:WidgetTree.T_Menu.Text
+msgctxt ",488BEA284E72F4CC1E6E1B8E3D759534"
+msgid "MENU"
+msgstr "메뉴"
+
+#. Key:	4B5D988C4FEA122B684A1A86F9CC09DE
+#. SourceLocation:	/Game/UI/BP_GameOver.BP_GameOver_C:WidgetTree.T_Options.Text
+#: /Game/UI/BP_GameOver.BP_GameOver_C:WidgetTree.T_Options.Text
+msgctxt ",4B5D988C4FEA122B684A1A86F9CC09DE"
+msgid "OPTIONS"
+msgstr "옵션"
+
+#. Key:	BD5619E2433A03413044C4B24DD93641
+#. SourceLocation:	/Game/UI/BP_GameOver.BP_GameOver_C:WidgetTree.T_Restart.Text
+#: /Game/UI/BP_GameOver.BP_GameOver_C:WidgetTree.T_Restart.Text
+msgctxt ",BD5619E2433A03413044C4B24DD93641"
+msgid "RESTART"
+msgstr "재시작"
+
+#. Key:	3B9D5E0C4D5B986FF7633B825BE6B927
+#. SourceLocation:	/Game/UI/BP_InGameOptions.BP_InGameOptions_C:WidgetTree.T_Back.Text
+#: /Game/UI/BP_InGameOptions.BP_InGameOptions_C:WidgetTree.T_Back.Text
+msgctxt ",3B9D5E0C4D5B986FF7633B825BE6B927"
+msgid "BACK"
+msgstr "이전"
+
+#. Key:	AC1731AD4C055FC650201681AA032C24
+#. SourceLocation:	/Game/UI/BP_InGameOptions.BP_InGameOptions_C:WidgetTree.T_Options.Text
+#: /Game/UI/BP_InGameOptions.BP_InGameOptions_C:WidgetTree.T_Options.Text
+msgctxt ",AC1731AD4C055FC650201681AA032C24"
+msgid "Options"
+msgstr "옵션"
+
+#. Key:	60C9F99147AF4251950B5DB30D92E801
+#. SourceLocation:	/Game/UI/BP_InGameOptions.BP_InGameOptions_C:WidgetTree.T_Sound.Text
+#: /Game/UI/BP_InGameOptions.BP_InGameOptions_C:WidgetTree.T_Sound.Text
+msgctxt ",60C9F99147AF4251950B5DB30D92E801"
+msgid "SOUND"
+msgstr "사운드"
+
+#. Key:	FA5CD1934B5CE30E8580DB836D252E53
+#. SourceLocation:	/Game/UI/BP_MainMenuWidget.BP_MainMenuWidget_C:WidgetTree.TextBlock_0.Text
+#: /Game/UI/BP_MainMenuWidget.BP_MainMenuWidget_C:WidgetTree.TextBlock_0.Text
+msgctxt ",FA5CD1934B5CE30E8580DB836D252E53"
+msgid "Start"
+msgstr "시작"
+
+#. Key:	66DDA80C456E6AE43FA86AB08E6AE439
+#. SourceLocation:	/Game/UI/BP_MainMenuWidget.BP_MainMenuWidget_C:WidgetTree.TextBlock_1.Text
+#: /Game/UI/BP_MainMenuWidget.BP_MainMenuWidget_C:WidgetTree.TextBlock_1.Text
+msgctxt ",66DDA80C456E6AE43FA86AB08E6AE439"
+msgid "Options"
+msgstr "옵션"
+
+#. Key:	B54C9D714AB8DBF940209DA2102CCB36
+#. SourceLocation:	/Game/UI/BP_MainMenuWidget.BP_MainMenuWidget_C:WidgetTree.TextBlock_2.Text
+#: /Game/UI/BP_MainMenuWidget.BP_MainMenuWidget_C:WidgetTree.TextBlock_2.Text
+msgctxt ",B54C9D714AB8DBF940209DA2102CCB36"
+msgid "Quit"
+msgstr "종료"
+
+#. Key:	0E31D46243DED165169F0587C0245D01
+#. SourceLocation:	/Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_back.Text
+#: /Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_back.Text
+msgctxt ",0E31D46243DED165169F0587C0245D01"
+msgid "BACK"
+msgstr "이전"
+
+#. Key:	66881F1D499A00CFC188A1A30BA3E190
+#. SourceLocation:	/Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_control.Text
+#: /Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_control.Text
+msgctxt ",66881F1D499A00CFC188A1A30BA3E190"
+msgid "CONTROLS"
+msgstr "조작법"
+
+#. Key:	BE89BB2E4C4D236B7637758DB0F5C07C
+#. SourceLocation:	/Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_credit.Text
+#: /Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_credit.Text
+msgctxt ",BE89BB2E4C4D236B7637758DB0F5C07C"
+msgid "CREDITS"
+msgstr "제작진"
+
+#. Key:	48AAD9A846C67B0E71B779B535A110BB
+#. SourceLocation:	/Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_GraphicMode.Text
+#: /Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_GraphicMode.Text
+msgctxt ",48AAD9A846C67B0E71B779B535A110BB"
+msgid "GRAPHIC MODE"
+msgstr "창 모드"
+
+#. Key:	261C596E4F8BD981D13731A1538EF2F6
+#. SourceLocation:	/Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_language.Text
+#: /Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_language.Text
+msgctxt ",261C596E4F8BD981D13731A1538EF2F6"
+msgid "LANGUAGE"
+msgstr "언어"
+
+#. Key:	BF4E65F04944EE2A923E5B8D50D0B9EC
+#. SourceLocation:	/Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_music.Text
+#: /Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_music.Text
+msgctxt ",BF4E65F04944EE2A923E5B8D50D0B9EC"
+msgid "MUSIC"
+msgstr "배경 음악"
+
+#. Key:	D116BCB349876238D33C8FA3F03CECA5
+#. SourceLocation:	/Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_Options.Text
+#: /Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_Options.Text
+msgctxt ",D116BCB349876238D33C8FA3F03CECA5"
+msgid "Options"
+msgstr "옵션"
+
+#. Key:	B3B7A7164B93FB196BC2CA9260150EE6
+#. SourceLocation:	/Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_resolution.Text
+#: /Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_resolution.Text
+msgctxt ",B3B7A7164B93FB196BC2CA9260150EE6"
+msgid "RESOLUTION"
+msgstr "해상도"
+
+#. Key:	5F4B7C154BF94CBDD3BDBCB87E3C490C
+#. SourceLocation:	/Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_SFX.Text
+#: /Game/UI/BP_OptionScreen.BP_OptionScreen_C:WidgetTree.T_SFX.Text
+msgctxt ",5F4B7C154BF94CBDD3BDBCB87E3C490C"
+msgid "SFX"
+msgstr "음향 효과"
+
+#. Key:	168AC00446429D27DAC4DF94AD38E0C7
+#. SourceLocation:	/Game/UI/BP_PauseMenu.BP_PauseMenu_C:WidgetTree.PlayAgain.Text
+#: /Game/UI/BP_PauseMenu.BP_PauseMenu_C:WidgetTree.PlayAgain.Text
+msgctxt ",168AC00446429D27DAC4DF94AD38E0C7"
+msgid "RESUME"
+msgstr "게임 재개"
+
+#. Key:	5BBFB1E04A96C53FEA64BE9C084C6479
+#. SourceLocation:	/Game/UI/BP_PauseMenu.BP_PauseMenu_C:WidgetTree.Restart_4.Text
+#: /Game/UI/BP_PauseMenu.BP_PauseMenu_C:WidgetTree.Restart_4.Text
+msgctxt ",5BBFB1E04A96C53FEA64BE9C084C6479"
+msgid "QUIT"
+msgstr "종료"
+
+#. Key:	6DE2E0034EB86A4F5BDE59BF90014776
+#. SourceLocation:	/Game/UI/BP_PauseMenu.BP_PauseMenu_C:WidgetTree.TextBlock_267.Text
+#: /Game/UI/BP_PauseMenu.BP_PauseMenu_C:WidgetTree.TextBlock_267.Text
+msgctxt ",6DE2E0034EB86A4F5BDE59BF90014776"
+msgid "Pause Menu"
+msgstr "일시정지 메뉴"
+
+#. Key:	F96884BD4E955913FA5EBC818F1FF3F6
+#. SourceLocation:	/Game/UI/BP_WinScreen.BP_WinScreen_C:WidgetTree.T_Option.Text
+#: /Game/UI/BP_WinScreen.BP_WinScreen_C:WidgetTree.T_Option.Text
+msgctxt ",F96884BD4E955913FA5EBC818F1FF3F6"
+msgid "OPTIONS"
+msgstr "옵션"
+
+#. Key:	9AC4245349D063830F62CFB61630352A
+#. SourceLocation:	/Game/UI/BP_WinScreen.BP_WinScreen_C:WidgetTree.T_PlayAgain.Text
+#: /Game/UI/BP_WinScreen.BP_WinScreen_C:WidgetTree.T_PlayAgain.Text
+msgctxt ",9AC4245349D063830F62CFB61630352A"
+msgid "PLAY AGAIN"
+msgstr "재시작"
+
+#. Key:	4882DB56472D3A02BC5D0F93E682C17D
+#. SourceLocation:	/Game/UI/BP_WinScreen.BP_WinScreen_C:WidgetTree.T_Win.Text
+#: /Game/UI/BP_WinScreen.BP_WinScreen_C:WidgetTree.T_Win.Text
+msgctxt ",4882DB56472D3A02BC5D0F93E682C17D"
+msgid "You Win"
+msgstr "승리"
+
+#. Key:	377D47EB47792C14CE67428F0BFBE5FD
+#. SourceLocation:	/Game/UI/ButtonPromptHUD.ButtonPromptHUD_C:WidgetTree.FKeyHUD.Text
+#: /Game/UI/ButtonPromptHUD.ButtonPromptHUD_C:WidgetTree.FKeyHUD.Text
+msgctxt ",377D47EB47792C14CE67428F0BFBE5FD"
+msgid "Press (F) to Interact"
+msgstr "F를 눌러 상호작용"
+
