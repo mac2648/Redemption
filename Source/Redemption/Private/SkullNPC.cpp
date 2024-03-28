@@ -3,6 +3,8 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "Blueprint/UserWidget.h"
 #include "InteractWidgetComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
 
 // Sets default values
 ASkullNPC::ASkullNPC()
@@ -29,6 +31,7 @@ void ASkullNPC::Talk()
 
 	TalkIndex++;
 
+
 	if (DialogueWidgetClass != nullptr && DialogueWidget == nullptr)
 	{
 		DialogueWidget = CreateWidget<UUserWidget>(GetWorld(), DialogueWidgetClass);
@@ -40,7 +43,15 @@ void ASkullNPC::Talk()
 
 	if (TalkIndex < Dialogues.Num())
 	{
+
 		SetDialogueText(Dialogues[TalkIndex]);
+		
+		
+			
+		TalkCount = Dialogues[TalkIndex].ToString().Len() / Frequency;
+		GetWorld()->GetTimerManager().SetTimer(NhanhaTimer, this,&ASkullNPC::MakeNhanha, 0.2, true);
+
+		
 	}
 	else
 	{
@@ -73,3 +84,12 @@ void ASkullNPC::Tick(float DeltaTime)
 
 }
 
+void ASkullNPC::MakeNhanha()
+{
+	static ConstructorHelpers::FObjectFinder<USoundCue> SoundFinder(TEXT("/Game/Assets/Sounds/Characters/Rat/RatAttack_Cue"));
+	if (SoundFinder.Succeeded() && TalkCount >= 0)
+	{
+		UGameplayStatics::PlaySound2D(GetWorld(), SoundFinder.Object);
+		TalkCount -= 1;
+	}
+}

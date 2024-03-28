@@ -36,10 +36,12 @@ protected:
 	UPROPERTY(BlueprintReadOnly)
 	int32 TalkIndex = -1;
 
+	int Frequency;
+
 private:
 
 	bool IsTalking = false;
-
+	FTimerHandle NhanhaTimer;
 public:	
 	// Sets default values for this actor's properties
 	ASkullNPC();
@@ -56,6 +58,8 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void SetDialogueText(const FText& Dialogue);
+
+	void MakeNhanha();
 
 protected:
 	// Called when the game starts or when spawned
