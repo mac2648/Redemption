@@ -17,10 +17,14 @@
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "StaminaBarWidget.h"
+#include "Sound/SoundCue.h"
 
 
 
 #define POWER_UP_ACTION PowerUpComp->GetUsePowerAction()
+#define SPRINT_STEP_TIMER 0.15
+#define WALK_STEP_TIMER 0.8
+#define CROUCH_STEP_TIMER 0.9
 
 
 ARedemptionPlayer::ARedemptionPlayer()
@@ -39,6 +43,12 @@ ARedemptionPlayer::ARedemptionPlayer()
 	if (SprintActionFinder.Succeeded())
 	{
 		SprintAction = SprintActionFinder.Object;
+	}
+
+	static ConstructorHelpers::FObjectFinder<USoundCue> SoundActionFinder(TEXT("/Game/Assets/Sounds/Characters/Player/Steps"));
+	if (SprintActionFinder.Succeeded())
+	{
+		FootStepsCue = SoundActionFinder.Object;
 	}
 
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
@@ -145,9 +155,10 @@ void ARedemptionPlayer::Tick(float DeltaTime)
 		StaminaWidget->SetVisibility(ESlateVisibility::Hidden);
 	}
 
-	if (GetCharacterMovement()->Velocity == FVector::ZeroVector) 
+	if (GetCharacterMovement()->Velocity == FVector::ZeroVector)
 	{
-		PlayerNoise = 0;
+		GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
+    PlayerNoise = 0;
 	}
 
 }
@@ -215,6 +226,26 @@ void ARedemptionPlayer::Move(const FInputActionValue& Value)
 			UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 0.5f, this);
 			PlayerNoise = 0.5;
 		}
+
+		if (!FootStepsHandle.IsValid())
+		{
+			if (bIsCrouched)
+			{
+				StepVolume = 0.35;
+				GetWorld()->GetTimerManager().SetTimer(FootStepsHandle, this, &ARedemptionPlayer::StepSound, CROUCH_STEP_TIMER, true);
+			}
+			else if (bIsSprinting)
+			{
+				StepVolume = 1.5;
+				GetWorld()->GetTimerManager().SetTimer(FootStepsHandle, this, &ARedemptionPlayer::StepSound, SPRINT_STEP_TIMER, true);
+			}
+			else
+			{
+				StepVolume = 0.75;
+				GetWorld()->GetTimerManager().SetTimer(FootStepsHandle, this, &ARedemptionPlayer::StepSound, WALK_STEP_TIMER, true);
+			}
+			
+		}
 	}
 }
 
@@ -239,6 +270,8 @@ void ARedemptionPlayer::StartCrouch()
 	FPPCamera->AddWorldOffset(offset);
 
 	GetCapsuleComponent()->SetCapsuleSize(42.f, 60.0f);
+
+	GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
 }
 
 void ARedemptionPlayer::EndCrouch()
@@ -249,6 +282,7 @@ void ARedemptionPlayer::EndCrouch()
 	FPPCamera->AddWorldOffset(offset);
 
 	GetCapsuleComponent()->SetCapsuleSize(42.f, 96.0f);
+	GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
 }
 
 void ARedemptionPlayer::StartSprinting()
@@ -257,18 +291,24 @@ void ARedemptionPlayer::StartSprinting()
 	{
 		bIsSprinting = true;
 		GetCharacterMovement()->MaxWalkSpeed = MaxSprintSpeed;
+		GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
 	}
 }
 
 void ARedemptionPlayer::StopSprinting()
 {
+	if (bIsSprinting)
+	{
+		GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
+	}
+
 	bIsSprinting = false;
 	GetCharacterMovement()->MaxWalkSpeed = 250.f;
 }
 
 void ARedemptionPlayer::UpdateStaminaWidget(float StamPercent)
 {
-  StaminaWidget->SetBarValuePercent(StamPercent);
+	StaminaWidget->SetBarValuePercent(StamPercent);
 	// Will affect the HUD elements eventually.
 }
 
@@ -280,4 +320,9 @@ void ARedemptionPlayer::LauchPauseMenu()
 	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	PlayerController->bShowMouseCursor = true;
 	
+}
+
+void ARedemptionPlayer::StepSound()
+{
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), FootStepsCue, GetActorLocation(), StepVolume);
 }

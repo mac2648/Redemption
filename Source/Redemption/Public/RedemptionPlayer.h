@@ -15,6 +15,7 @@ struct FInputActionValue;
 class UPowerUpComponent;
 class UHealthComponent;
 class UStaminaBarWidget;
+class USoundCue;
 
 UCLASS()
 class REDEMPTION_API ARedemptionPlayer : public ACharacter
@@ -65,8 +66,12 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	const UInputAction* PauseAction;
 
+	UPROPERTY(EditDefaultsOnly)
+	USoundCue* FootStepsCue = nullptr;
 
-
+	//time handle used for the footsteps timer
+	FTimerHandle FootStepsHandle;
+	float StepVolume = 1.0f;
 
 private:
 	// Stamina settings
@@ -135,6 +140,6 @@ protected:
 	void StartCrouch();
 	void EndCrouch();
 	void LauchPauseMenu();
-
+	void StepSound();
 
 };
