@@ -104,6 +104,16 @@ void ARedemptionPlayer::BeginPlay()
 			StaminaWidget->AddToViewport();
 		}
 	}
+
+	if (NoiseWidgetClass != nullptr)
+	{
+		UUserWidget* NoiseWidget = CreateWidget<UUserWidget>(GetWorld(), NoiseWidgetClass);
+
+		if (NoiseWidget != nullptr)
+		{
+			NoiseWidget->AddToViewport();
+		}
+	}
 }
 
 // Called every frame
@@ -148,7 +158,9 @@ void ARedemptionPlayer::Tick(float DeltaTime)
 	if (GetCharacterMovement()->Velocity == FVector::ZeroVector)
 	{
 		GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
+    PlayerNoise = 0;
 	}
+
 }
 
 // Called to bind functionality to input
@@ -202,14 +214,17 @@ void ARedemptionPlayer::Move(const FInputActionValue& Value)
 		if (bIsCrouched)
 		{
 			UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 0.25f, this);
+			PlayerNoise = 0.25;
 		}
 		else if (bIsSprinting)
 		{
 			UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 1, this);
+			PlayerNoise = 1;
 		}
 		else
 		{
 			UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 0.5f, this);
+			PlayerNoise = 0.5;
 		}
 
 		if (!FootStepsHandle.IsValid())

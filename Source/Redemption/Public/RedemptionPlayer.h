@@ -96,6 +96,10 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Stamina")
 	float MaxSprintSpeed;
 
+	//Player Noise Detection
+
+	float PlayerNoise = 0;
+
 	// HUD widget for stamina
 	UPROPERTY(EditAnywhere, Category = "HUD")
 	TSubclassOf<UStaminaBarWidget> StaminaWidgetClass;
@@ -106,13 +110,14 @@ private:
 	UPROPERTY(EditAnywhere, Category = "HUD")
 	TSubclassOf<UUserWidget> PauseWidgetClass;
 
+	// HUD Widget for Noise Detector
+	UPROPERTY(EditAnywhere, Category = "HUD")
+	TSubclassOf<UUserWidget> NoiseWidgetClass;
 
 	// Functions
 	void StartSprinting();
 	void StopSprinting();
 	void UpdateStaminaWidget(float StaminaPercent);
-
-	void OnPlayerSpotted();
 
 public:
 	ARedemptionPlayer();
@@ -123,6 +128,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UFUNCTION(BlueprintCallable)
+	float GetPlayerNoise() { return PlayerNoise; }
 
 protected:
 	virtual void BeginPlay() override;
