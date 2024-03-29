@@ -3,6 +3,8 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "Blueprint/UserWidget.h"
 #include "InteractWidgetComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundBase.h"
 
 // Sets default values
 ASkullNPC::ASkullNPC()
@@ -25,32 +27,37 @@ void ASkullNPC::BeginPlay()
 
 void ASkullNPC::Talk()
 {
-	IsTalking = true;
+    IsTalking = true;
+    TalkIndex++;
 
-	TalkIndex++;
+    if (DialogueWidgetClass != nullptr && DialogueWidget == nullptr)
+    {
+        DialogueWidget = CreateWidget<UUserWidget>(GetWorld(), DialogueWidgetClass);
+        if (DialogueWidget != nullptr)
+        {
+            DialogueWidget->AddToViewport();
+        }
+    }
 
-	if (DialogueWidgetClass != nullptr && DialogueWidget == nullptr)
-	{
-		DialogueWidget = CreateWidget<UUserWidget>(GetWorld(), DialogueWidgetClass);
-		if (DialogueWidget != nullptr)
-		{
-			DialogueWidget->AddToViewport();
-		}
-	}
+    if (TalkIndex < Dialogues.Num())
+    {
+        FText CurrentDialogue = Dialogues[TalkIndex];
+        SetDialogueText(CurrentDialogue);
 
-	if (TalkIndex < Dialogues.Num())
-	{
-		SetDialogueText(Dialogues[TalkIndex]);
-	}
-	else
-	{
-		DialogueWidget->RemoveFromParent();
-		DialogueWidget = nullptr;
-		FinishTalk();
-		IsTalking = false;
-	}
+        int32 NumLetters = CurrentDialogue.ToString().Len();
+        int32 NumSounds = NumLetters / 3; // Play a sound every 3 letters
 
-	
+        GetWorldTimerManager().ClearTimer(SoundTimerHandle); // Clear any existing timer
+
+        PlayNextSound(0, NumSounds); // Start playing the sounds
+    }
+    else
+    {
+        DialogueWidget->RemoveFromParent();
+        DialogueWidget = nullptr;
+        FinishTalk();
+        IsTalking = false;
+    }
 }
 
 void ASkullNPC::ResetDialogue()
@@ -73,3 +80,20 @@ void ASkullNPC::Tick(float DeltaTime)
 
 }
 
+void ASkullNPC::PlayNextSound(int32 CurrentSoundIndex, int32 TotalSounds)
+{
+    if (CurrentSoundIndex < TotalSounds)
+    {
+        if (XyloSounds != nullptr)
+        {
+            float RandomPitch = FMath::RandRange(0.5f, 1.5f);
+            UGameplayStatics::PlaySoundAtLocation(this, XyloSounds, GetActorLocation(), FRotator::ZeroRotator, 1.0f, RandomPitch);
+        }
+
+        // Schedule the next sound playback after a delay
+        GetWorldTimerManager().SetTimer(SoundTimerHandle, [this, CurrentSoundIndex, TotalSounds]()
+            {
+                PlayNextSound(CurrentSoundIndex + 1, TotalSounds);
+            }, 0.14f, false);
+    }
+}

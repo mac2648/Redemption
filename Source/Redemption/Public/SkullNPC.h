@@ -36,6 +36,11 @@ protected:
 	UPROPERTY(BlueprintReadOnly)
 	int32 TalkIndex = -1;
 
+	UPROPERTY(EditAnywhere, Category = "Sound")
+	USoundBase* XyloSounds;
+
+	FTimerHandle SoundTimerHandle;
+
 private:
 
 	bool IsTalking = false;
@@ -46,6 +51,8 @@ public:
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	void PlayNextSound(int32 CurrentSoundIndex, int32 TotalSounds);
 
 	virtual void Talk() override;
 
