@@ -42,6 +42,7 @@ void UPauseMenuWidget::Exit()
 
 void UPauseMenuWidget::NativeConstruct()
 {
+	Super::NativeConstruct();
 
 	ResumeButton->OnClicked.AddDynamic(this, &UPauseMenuWidget::Resume);
 	ExitButton->OnClicked.AddDynamic(this, &UPauseMenuWidget::Exit);

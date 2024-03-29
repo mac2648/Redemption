@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "BaseLocalizationWidget.h"
 #include "ChangePowerUpWidget.generated.h"
 
 
@@ -14,7 +14,7 @@ class UPowerUpComponent;
  * 
  */
 UCLASS()
-class REDEMPTION_API UChangePowerUpWidget : public UUserWidget
+class REDEMPTION_API UChangePowerUpWidget : public UBaseLocalizationWidget
 {
 	GENERATED_BODY()
 
