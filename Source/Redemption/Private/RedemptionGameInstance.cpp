@@ -23,6 +23,8 @@ void URedemptionGameInstance::TransferInfoSaveToInstance()
 
 	SFXValue = SaveInfo.SFXValue;
 	MusicValue = SaveInfo.MusicValue;
+	Resolution = SaveInfo.Resolution;
+	WindowMode = SaveInfo.WindowMode;
 }
 
 void URedemptionGameInstance::SetupSaveInfo()
@@ -30,4 +32,7 @@ void URedemptionGameInstance::SetupSaveInfo()
 	SaveInfo.PlayerDiedLocation = PlayerDiedLocation;
 	SaveInfo.SFXValue = SFXValue;
 	SaveInfo.MusicValue = MusicValue;
+	SaveInfo.Resolution = Resolution;
+	SaveInfo.WindowMode = WindowMode;
 }
+
