@@ -94,6 +94,6 @@ void ASkullNPC::PlayNextSound(int32 CurrentSoundIndex, int32 TotalSounds)
         GetWorldTimerManager().SetTimer(SoundTimerHandle, [this, CurrentSoundIndex, TotalSounds]()
             {
                 PlayNextSound(CurrentSoundIndex + 1, TotalSounds);
-            }, 0.14f, false);
+            }, 0.16f, false);
     }
 }
