@@ -26,6 +26,7 @@ void APuzzlePressurePlate::BeginPlay()
 
 void APuzzlePressurePlate::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	SwapMaterial();
 	Activate();
 }
 
@@ -33,6 +34,7 @@ void APuzzlePressurePlate::Deactivate()
 {
 	IsActive = false;
 
+	SwapMaterial();
 	//gate will check if all are active so it does not matter that it is deactivating
 	OnActivate.Broadcast();
 }
@@ -49,10 +51,23 @@ void APuzzlePressurePlate::FirstOverlapCheck()
 	{
 		if (Current != this)
 		{
+			SwapMaterial();
 			IsActive = true;
 			OnActivate.Broadcast();
 			break;
 		}
+	}
+}
+
+void APuzzlePressurePlate::SwapMaterial()
+{
+	UMaterialInstance* TempMaterial = Cast<UMaterialInstance>(PuzzleMesh->GetMaterial(0));
+	if (TempMaterial && AnotherMaterial)
+	{
+		//sets the current material to be the one not in use
+		PuzzleMesh->SetMaterial(0, AnotherMaterial);
+		//stores the material that was in use
+		AnotherMaterial = TempMaterial;
 	}
 }
 
