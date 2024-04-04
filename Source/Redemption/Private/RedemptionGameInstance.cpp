@@ -25,6 +25,7 @@ void URedemptionGameInstance::TransferInfoSaveToInstance()
 	MusicValue = SaveInfo.MusicValue;
 	Resolution = SaveInfo.Resolution;
 	WindowMode = SaveInfo.WindowMode;
+	IsVsync = SaveInfo.IsVsync;
 }
 
 void URedemptionGameInstance::SetupSaveInfo()
@@ -34,5 +35,6 @@ void URedemptionGameInstance::SetupSaveInfo()
 	SaveInfo.MusicValue = MusicValue;
 	SaveInfo.Resolution = Resolution;
 	SaveInfo.WindowMode = WindowMode;
+	SaveInfo.IsVsync = IsVsync;
 }
 
