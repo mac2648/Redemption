@@ -34,6 +34,7 @@ protected:
 	FVector InitialPos;
 	bool IsMoving = false;
 	bool IsGoingBack = false;
+	bool IsDeactivating = false;
 	
 public:	
 	AMovingPlatform();
@@ -46,4 +47,7 @@ protected:
 	UFUNCTION()
 	void CheckMoveConditions();
 	void Move(float DeltaTime);
+
+	void MoveToInitialPostion(float DeltaTime);
+	void MoveToTargetLocation(float DeltaTime);
 };

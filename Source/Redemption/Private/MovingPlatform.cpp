@@ -40,7 +40,10 @@ void AMovingPlatform::CheckMoveConditions()
 	{
 		if (!Key->GetIsActive())
 		{
+
 			IsMoving = false;
+			IsDeactivating = true;
+			
 			return;
 		}
 	}
@@ -54,36 +57,54 @@ void AMovingPlatform::Move(float DeltaTime)
 	{
 		if (!IsGoingBack)
 		{
-			FVector TargetDirection = (InitialPos + MoveDistance) - GetActorLocation();
-			TargetDirection.Normalize();
-			FVector NewLocation = GetActorLocation() + TargetDirection * Speed * DeltaTime;
-
-			SetActorLocation(NewLocation);
-
-			if ((InitialPos + MoveDistance - GetActorLocation()).Length() < ACCEPTANCE_DISTANCE)
-			{
-				if (IsLooping)
-				{
-					IsGoingBack = true;
-				}
-				else
-				{
-					IsMoving = false;
-				}
-			}
+			MoveToTargetLocation(DeltaTime);
 		}
 		else
 		{
-			FVector TargetDirection = InitialPos - GetActorLocation();
-			TargetDirection.Normalize();
-			FVector NewLocation = GetActorLocation() + TargetDirection * Speed * DeltaTime;
+			MoveToInitialPostion(DeltaTime);
+		}
+	}
+	else if (IsDeactivating)
+	{
+		MoveToInitialPostion(DeltaTime);
+	}
+}
 
-			SetActorLocation(NewLocation);
+void AMovingPlatform::MoveToInitialPostion(float DeltaTime)
+{
+	FVector TargetDirection = InitialPos - GetActorLocation();
+	TargetDirection.Normalize();
+	FVector NewLocation = GetActorLocation() + TargetDirection * Speed * DeltaTime;
 
-			if ((NewLocation - InitialPos).Length() < ACCEPTANCE_DISTANCE)
-			{
-				IsGoingBack = false;
-			}
+	SetActorLocation(NewLocation);
+
+	if ((NewLocation - InitialPos).Length() < ACCEPTANCE_DISTANCE)
+	{
+		IsGoingBack = false;
+		if (IsDeactivating)
+		{
+			IsDeactivating = false;
+		}
+	}
+}
+
+void AMovingPlatform::MoveToTargetLocation(float DeltaTime)
+{
+	FVector TargetDirection = (InitialPos + MoveDistance) - GetActorLocation();
+	TargetDirection.Normalize();
+	FVector NewLocation = GetActorLocation() + TargetDirection * Speed * DeltaTime;
+
+	SetActorLocation(NewLocation);
+
+	if ((InitialPos + MoveDistance - GetActorLocation()).Length() < ACCEPTANCE_DISTANCE)
+	{
+		if (IsLooping)
+		{
+			IsGoingBack = true;
+		}
+		else
+		{
+			IsMoving = false;
 		}
 	}
 }
