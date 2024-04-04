@@ -31,6 +31,10 @@ struct FSaveInfo
 
 	UPROPERTY(BlueprintReadWrite)
 	TEnumAsByte<EWindowMode::Type> WindowMode;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool IsVsync;
+
 };
 
 UCLASS()

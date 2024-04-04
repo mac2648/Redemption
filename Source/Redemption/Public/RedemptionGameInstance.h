@@ -31,6 +31,8 @@ protected:
 
 	EWindowMode::Type WindowMode;
 
+	bool IsVsync;
+
 public:
 
 	FVector GetPlayerDiedLocation();
@@ -60,6 +62,9 @@ public:
 	EWindowMode::Type GetWindowMode() const { return WindowMode; }
 
 	UFUNCTION(BlueprintCallable)
+	bool GetVsync() const { return IsVsync; }
+
+	UFUNCTION(BlueprintCallable)
 	void SetSFXValue(float NewSFXValue) { SFXValue = NewSFXValue; }
 
 	UFUNCTION(BlueprintCallable)
@@ -70,6 +75,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void SetWindowMode(EWindowMode::Type NewWindowMode) { WindowMode = NewWindowMode; }
+
+	UFUNCTION(BlueprintCallable)
+	void SetVsync(bool NewIsVsync) { IsVsync = NewIsVsync; }
 
 
 };
