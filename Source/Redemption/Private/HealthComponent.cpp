@@ -10,6 +10,7 @@
 #include "Blueprint/UserWidget.h"
 #include "PowerUpComponent.h"
 #include "../RedemptionGameMode.h"
+#include "Sound/SoundCue.h"
 
 #define INVUL_DURATION 1.5
 
@@ -105,6 +106,7 @@ void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDam
     }
 
     Health -= Damage;
+    UGameplayStatics::PlaySound2D(GetWorld(), PlayerHitCue,1.0f, 1.0f, 0.0f);
 
     if (Health <= 0)
     {

@@ -6,6 +6,7 @@
 #include "Interactable.h"
 #include "PluzzeButton.generated.h"
 
+class USoundCue;
 class UBoxComponent;
 class UMaterialInstance;
 /**
@@ -22,6 +23,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, category = "material")
 	UMaterialInstance* ActivateMaterial;
+
+	UPROPERTY(EditDefaultsOnly)
+	USoundCue* SwitchCue = nullptr;
 
 public:
 	APluzzeButton();

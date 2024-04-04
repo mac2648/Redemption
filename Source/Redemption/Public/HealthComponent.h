@@ -8,6 +8,7 @@
 #include "HealthComponent.generated.h"
 
 class UWidgetComponent;
+class USoundCue;
 
 namespace defs
 {
@@ -31,6 +32,9 @@ private:
 	float const MaxHealth{ 2.f };
 	float Health;
 	UUserWidget* CurrentVignetteWidget = nullptr;
+
+	UPROPERTY(EditDefaultsOnly)
+	USoundCue* PlayerHitCue = nullptr;
 
 	bool IsInvunerable = false;
 

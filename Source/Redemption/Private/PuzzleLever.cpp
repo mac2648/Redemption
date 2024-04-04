@@ -3,6 +3,8 @@
 
 #include "PuzzleLever.h"
 #include "InteractWidgetComponent.h"
+#include "Sound/SoundCue.h"
+#include <Kismet/GameplayStatics.h>
 
 APuzzleLever::APuzzleLever()
 {
@@ -21,7 +23,7 @@ void APuzzleLever::Activate()
 	IsRotating = true;
 
 	OnActivate.Broadcast();
-
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), SwitchCue, GetActorLocation());
 	ShowSequence();
 }
 

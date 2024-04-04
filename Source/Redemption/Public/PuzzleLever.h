@@ -6,6 +6,8 @@
 #include "Interactable.h"
 #include "PuzzleLever.generated.h"
 
+
+class USoundCue;
 class UInteractWidgetComponent;
 /**
  * 
@@ -18,6 +20,8 @@ class REDEMPTION_API APuzzleLever : public AInteractable
 protected:
 	UPROPERTY(EditAnywhere)
 	UInteractWidgetComponent* InteractComp;
+	UPROPERTY(EditDefaultsOnly)
+	USoundCue* SwitchCue = nullptr;
 
 	bool IsRotating = false;
 

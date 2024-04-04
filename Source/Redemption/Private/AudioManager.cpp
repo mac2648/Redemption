@@ -5,8 +5,8 @@
 
 
 // Constants for random sound intervals, this is in seconds
-const float MinRandomSoundInterval = 3.0f; 
-const float MaxRandomSoundInterval = 15.0f; 
+const float MinRandomSoundInterval = 8.0f; 
+const float MaxRandomSoundInterval = 55.0f; 
 
 // Sets default values
 AAudioManager::AAudioManager()
