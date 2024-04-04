@@ -54,11 +54,13 @@ void AMovingPlatform::Move(float DeltaTime)
 	{
 		if (!IsGoingBack)
 		{
-			FVector TargetLocation = InitialPos + MoveDistance;
-			FVector NewLocation = FMath::Lerp(GetActorLocation(), TargetLocation, Speed * DeltaTime);
+			FVector TargetDirection = (InitialPos + MoveDistance) - GetActorLocation();
+			TargetDirection.Normalize();
+			FVector NewLocation = GetActorLocation() + TargetDirection * Speed * DeltaTime;
+
 			SetActorLocation(NewLocation);
 
-			if ((NewLocation - TargetLocation).Length() < ACCEPTANCE_DISTANCE)
+			if ((InitialPos + MoveDistance - GetActorLocation()).Length() < ACCEPTANCE_DISTANCE)
 			{
 				if (IsLooping)
 				{
@@ -72,7 +74,10 @@ void AMovingPlatform::Move(float DeltaTime)
 		}
 		else
 		{
-			FVector NewLocation = FMath::Lerp(GetActorLocation(), InitialPos, Speed * DeltaTime);
+			FVector TargetDirection = InitialPos - GetActorLocation();
+			TargetDirection.Normalize();
+			FVector NewLocation = GetActorLocation() + TargetDirection * Speed * DeltaTime;
+
 			SetActorLocation(NewLocation);
 
 			if ((NewLocation - InitialPos).Length() < ACCEPTANCE_DISTANCE)
