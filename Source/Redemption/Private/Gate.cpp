@@ -70,7 +70,6 @@ void AGate::CheckOpenConditions()
 
 	if (ShouldOpen && !IsOpen)
 	{
-		//SOUND -> play here
 		UGameplayStatics::SpawnSound2D(this, DoorOpenSoundBase, 0.7f);
 		IsOpen = true;
 		FTimerHandle RotationHandle;
@@ -78,7 +77,6 @@ void AGate::CheckOpenConditions()
 	}
 	else if (!ShouldOpen && IsOpen)
 	{
-		//SOUND -> play here
 		UGameplayStatics::SpawnSound2D(this, DoorCloseSoundBase, 0.7f);
 		IsOpen = false;
 		FTimerHandle RotationHandle;
