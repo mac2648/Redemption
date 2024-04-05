@@ -1,8 +1,6 @@
 #include "MovingPlatform.h"
 #include "Interactable.h"
 
-#define ACCEPTANCE_DISTANCE 5
-
 // Sets default values
 AMovingPlatform::AMovingPlatform()
 {

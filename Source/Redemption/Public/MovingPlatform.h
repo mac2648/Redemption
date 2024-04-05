@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "MovingPlatform.generated.h"
 
+#define ACCEPTANCE_DISTANCE 5
+
 class AInteractable;
 
 UCLASS()
