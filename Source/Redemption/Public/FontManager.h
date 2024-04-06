@@ -28,6 +28,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UFont* GujaratiFont;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UFont* MalayalamFont;
+
 public:	
 	// Sets default values for this actor's properties
 	AFontManager();
