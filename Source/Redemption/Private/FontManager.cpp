@@ -47,6 +47,10 @@ UFont* AFontManager::GetFonts(FString Lang)
 	{
 		return GujaratiFont;
 	}
+	else if (Lang == "ml")
+	{
+		return MalayalamFont;
+	}
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("There is no language you want."));
