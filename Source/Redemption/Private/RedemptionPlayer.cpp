@@ -135,7 +135,11 @@ void ARedemptionPlayer::TickSprint(float DeltaTime)
 {
 	if (bIsSprinting && bCanSprint)
 	{
-		Stamina -= StaminaDepletionRate * DeltaTime;
+		if (CanJump())
+		{
+			Stamina -= StaminaDepletionRate * DeltaTime;
+		}
+
 		if (Stamina <= 0)
 		{
 			Stamina = 0;
@@ -311,23 +315,33 @@ void ARedemptionPlayer::EndCrouch()
 
 void ARedemptionPlayer::StartSprinting()
 {
-	if (Stamina > 0 && bCanSprint)
+	if (CanJump())
 	{
-		bIsSprinting = true;
-		GetCharacterMovement()->MaxWalkSpeed = MaxSprintSpeed;
-		GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
+		if (Stamina > 0 && bCanSprint)
+		{
+			bIsSprinting = true;
+			GetCharacterMovement()->MaxWalkSpeed = MaxSprintSpeed;
+			GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
+		}
 	}
 }
 
 void ARedemptionPlayer::StopSprinting()
 {
-	if (bIsSprinting)
+	if (CanJump())
 	{
-		GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
-	}
+		if (bIsSprinting)
+		{
+			GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
+		}
 
-	bIsSprinting = false;
-	GetCharacterMovement()->MaxWalkSpeed = 250.f;
+		bIsSprinting = false;
+		GetCharacterMovement()->MaxWalkSpeed = 250.f;
+	}
+	else
+	{
+		NeedToStopSprinting = true;
+	}
 }
 
 void ARedemptionPlayer::UpdateStaminaWidget(float StamPercent)
@@ -360,5 +374,11 @@ void ARedemptionPlayer::NotifyAIOfFall()
 		PlayerNoise = 0.8;
 		GetWorld()->GetTimerManager().ClearTimer(FallNoiseHandle);
 		FallNoiseFrames = 12;
+
+		if (NeedToStopSprinting)
+		{
+			StopSprinting();
+			NeedToStopSprinting = false;
+		}
 	}
 }

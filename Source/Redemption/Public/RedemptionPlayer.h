@@ -77,6 +77,8 @@ protected:
 	//the amount of frames the falling noise UI will be in the screen
 	int FallNoiseFrames = 0;
 
+	bool NeedToStopSprinting = false;
+
 private:
 	// Stamina settings
 	UPROPERTY(VisibleAnywhere, Category = "Stamina")
