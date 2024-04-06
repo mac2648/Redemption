@@ -73,6 +73,10 @@ protected:
 	FTimerHandle FootStepsHandle;
 	float StepVolume = 1.0f;
 
+	FTimerHandle FallNoiseHandle;
+	//the amount of frames the falling noise UI will be in the screen
+	int FallNoiseFrames = 0;
+
 private:
 	// Stamina settings
 	UPROPERTY(VisibleAnywhere, Category = "Stamina")
@@ -97,7 +101,6 @@ private:
 	float MaxSprintSpeed;
 
 	//Player Noise Detection
-
 	float PlayerNoise = 0;
 
 	// HUD widget for stamina
@@ -142,4 +145,11 @@ protected:
 	void LauchPauseMenu();
 	void StepSound();
 
+	//tick functions
+	void TickSprint(float DeltaTime);
+	void TickStamina();
+	void TickNoiseReporting();
+
+	//function used to find when the player reaches the ground
+	void NotifyAIOfFall();
 };

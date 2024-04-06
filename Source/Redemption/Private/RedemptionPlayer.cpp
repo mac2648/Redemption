@@ -121,6 +121,18 @@ void ARedemptionPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (FallNoiseFrames > 0)
+	{
+		FallNoiseFrames--;
+	}
+
+	TickSprint(DeltaTime);
+	TickStamina();
+	TickNoiseReporting();
+}
+
+void ARedemptionPlayer::TickSprint(float DeltaTime)
+{
 	if (bIsSprinting && bCanSprint)
 	{
 		Stamina -= StaminaDepletionRate * DeltaTime;
@@ -140,7 +152,10 @@ void ARedemptionPlayer::Tick(float DeltaTime)
 			bCanSprint = true; // Enable sprinting
 		}
 	}
+}
 
+void ARedemptionPlayer::TickStamina()
+{
 	// Update the HUD with the new stamina value
 	UpdateStaminaWidget(Stamina / MaxStamina);
 	// Show/hide the stamina widget based on sprinting and stamina value
@@ -154,13 +169,23 @@ void ARedemptionPlayer::Tick(float DeltaTime)
 		// Hide
 		StaminaWidget->SetVisibility(ESlateVisibility::Hidden);
 	}
+}
 
+void ARedemptionPlayer::TickNoiseReporting()
+{
 	if (GetCharacterMovement()->Velocity == FVector::ZeroVector)
 	{
 		GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
-    PlayerNoise = 0;
+		if (FallNoiseFrames <= 0)
+		{
+			PlayerNoise = 0;
+		}
 	}
 
+	if (!FallNoiseHandle.IsValid() && !CanJump())
+	{
+		GetWorld()->GetTimerManager().SetTimer(FallNoiseHandle, this, &ARedemptionPlayer::NotifyAIOfFall, 0.03, true);
+	}
 }
 
 // Called to bind functionality to input
@@ -244,7 +269,6 @@ void ARedemptionPlayer::Move(const FInputActionValue& Value)
 				StepVolume = 0.75;
 				GetWorld()->GetTimerManager().SetTimer(FootStepsHandle, this, &ARedemptionPlayer::StepSound, WALK_STEP_TIMER, true);
 			}
-			
 		}
 	}
 }
@@ -325,4 +349,16 @@ void ARedemptionPlayer::LauchPauseMenu()
 void ARedemptionPlayer::StepSound()
 {
 	UGameplayStatics::PlaySoundAtLocation(GetWorld(), FootStepsCue, GetActorLocation(), StepVolume);
+}
+
+void ARedemptionPlayer::NotifyAIOfFall()
+{
+	//if player arrives in the ground
+	if (CanJump())
+	{
+		UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 0.8f, this);
+		PlayerNoise = 0.8;
+		GetWorld()->GetTimerManager().ClearTimer(FallNoiseHandle);
+		FallNoiseFrames = 12;
+	}
 }
