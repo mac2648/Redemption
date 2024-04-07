@@ -13,6 +13,7 @@ EBTNodeResult::Type UBTask_ZombieAttack::ExecuteTask(UBehaviorTreeComponent& Own
 	if (UBlackboardComponent* BBComp = OwnerComp.GetBlackboardComponent())
 	{
 		BBComp->SetValueAsBool(IsAttacking.SelectedKeyName, true);
+		BBComp->SetValueAsBool(IsStunned.SelectedKeyName, true);
 		return EBTNodeResult::Succeeded;
 	}
 
