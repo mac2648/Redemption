@@ -27,7 +27,12 @@ bool UBTDeco_PlayerAndStunned::CalculateRawConditionValue(UBehaviorTreeComponent
 		return true;
 	}
 
-	
+	bool Attacking = OwnerComp.GetBlackboardComponent()->GetValueAsBool(IsAttacking.SelectedKeyName);
+
+	if (Attacking)
+	{
+		return true;
+	}
 
 	return false;
 }

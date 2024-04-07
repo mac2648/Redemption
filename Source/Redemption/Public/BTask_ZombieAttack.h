@@ -18,6 +18,9 @@ protected:
 	UPROPERTY(EditAnywhere)
 	FBlackboardKeySelector IsAttacking;
 
+	UPROPERTY(EditAnywhere)
+	FBlackboardKeySelector IsStunned;
+
 public:
 	UBTask_ZombieAttack();
 
