@@ -31,6 +31,8 @@ protected:
 
 	EWindowMode::Type WindowMode;
 
+	FString Culture;
+
 	bool IsVsync;
 
 public:
@@ -65,6 +67,9 @@ public:
 	bool GetVsync() const { return IsVsync; }
 
 	UFUNCTION(BlueprintCallable)
+	FString GetCulture() const { return Culture; }
+
+	UFUNCTION(BlueprintCallable)
 	void SetSFXValue(float NewSFXValue) { SFXValue = NewSFXValue; }
 
 	UFUNCTION(BlueprintCallable)
@@ -79,5 +84,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetVsync(bool NewIsVsync) { IsVsync = NewIsVsync; }
 
-
+	UFUNCTION(BlueprintCallable)
+	void SetCulture(FString NewCulture) { Culture = NewCulture; }
 };
