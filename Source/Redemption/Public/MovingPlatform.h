@@ -17,12 +17,18 @@ class REDEMPTION_API AMovingPlatform : public AActor
 
 protected:
 	//list of interactables that need to be activated for it to start moving
-	UPROPERTY(EditAnywhere, category = "Keys")
+	UPROPERTY(EditAnywhere, category = "Movement")
 	TArray<AInteractable*> Keys;
 
 	//if false the platform will move once and stop in the new position
 	UPROPERTY(EditAnywhere, category = "Movement")
 	bool IsLooping = true;
+
+	UPROPERTY(EditAnywhere, category = "Movement")
+	bool StopsWhenDeactivated = false;
+
+	UPROPERTY(EditAnywhere, category = "Movement")
+	bool NeedKey = true;
 
 	UPROPERTY(EditAnywhere, category = "Movement")
 	FVector MoveDistance;
@@ -33,7 +39,12 @@ protected:
 	UPROPERTY(EditAnywhere, category = "Movement")
 	float Speed = 200;
 
+	//wait time in seconds
+	UPROPERTY(EditAnywhere, category = "Movement")
+	float WaitTime = 1;
+
 	FVector InitialPos;
+	FTimerHandle TickHandle;
 	bool IsMoving = false;
 	bool IsGoingBack = false;
 	bool IsDeactivating = false;
@@ -52,4 +63,5 @@ protected:
 
 	void MoveToInitialPostion(float DeltaTime);
 	void MoveToTargetLocation(float DeltaTime);
+	void RestartTick() { PrimaryActorTick.SetTickFunctionEnable(true); }
 };
