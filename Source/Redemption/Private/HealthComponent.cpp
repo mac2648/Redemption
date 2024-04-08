@@ -54,6 +54,11 @@ void UHealthComponent::SetHealth(float const NewHealth)
 {
 	Health = NewHealth;
 
+    if (Health > MaxHealth)
+    {
+        Health = MaxHealth;
+    }
+
     if (Health > 1 && CurrentVignetteWidget)
     {
         CurrentVignetteWidget->RemoveFromViewport();

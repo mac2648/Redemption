@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Components/WidgetComponent.h"
+#include "DevTools.h"
 #include "RedemptionPlayer.generated.h"
 
 class USpringArmComponent;
@@ -65,6 +66,18 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	const UInputAction* PauseAction;
+
+	//No preprocessors here because UPROPERTY cannot be inside of one
+	//---------------------- PLAYTEST TOOLS VARIABLES -------------------------------------------------------------------------
+	UPROPERTY(EditDefaultsOnly, Category = "DevTools")
+	UInputAction* ChangePowerAction;
+
+	UPROPERTY(EditDefaultsOnly, Category = "DevTools")
+	UInputAction* RecoverHealthAction;
+
+	UPROPERTY(EditDefaultsOnly, Category = "DevTools")
+	TSubclassOf<UUserWidget> ChoosePowerUpWidgetClass;
+	//---------------------- END OF PLAYTEST TOOLS VARIABLES ------------------------------------------------------------------
 
 	UPROPERTY(EditDefaultsOnly)
 	USoundCue* FootStepsCue = nullptr;
@@ -146,6 +159,11 @@ protected:
 	void EndCrouch();
 	void LauchPauseMenu();
 	void StepSound();
+
+#ifdef PLAYTEST_TOOLS
+	void RecoverHealth();
+	void ChangePowerUp();
+#endif
 
 	//tick functions
 	void TickSprint(float DeltaTime);
