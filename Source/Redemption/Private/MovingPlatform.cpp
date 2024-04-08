@@ -34,13 +34,19 @@ void AMovingPlatform::Tick(float DeltaTime)
 
 void AMovingPlatform::CheckMoveConditions()
 {
+	//restarts the movement
+	PrimaryActorTick.SetTickFunctionEnable(true);
+
 	for (AInteractable* Key : Keys)
 	{
 		if (!Key->GetIsActive())
 		{
-
 			IsMoving = false;
-			IsDeactivating = true;
+
+			if (!StopsWhenDeactivated)
+			{
+				IsDeactivating = true;
+			}
 			
 			return;
 		}
@@ -51,7 +57,7 @@ void AMovingPlatform::CheckMoveConditions()
 
 void AMovingPlatform::Move(float DeltaTime)
 {
-	if (IsMoving)
+	if (IsMoving || !NeedKey)
 	{
 		if (!IsGoingBack)
 		{
@@ -83,6 +89,12 @@ void AMovingPlatform::MoveToInitialPostion(float DeltaTime)
 		{
 			IsDeactivating = false;
 		}
+
+		//stops movement
+		PrimaryActorTick.SetTickFunctionEnable(false);
+
+		//sets a timer for movement to start again
+		GetWorld()->GetTimerManager().SetTimer(TickHandle, this, &AMovingPlatform::RestartTick, WaitTime);
 	}
 }
 
@@ -103,6 +115,15 @@ void AMovingPlatform::MoveToTargetLocation(float DeltaTime)
 		else
 		{
 			IsMoving = false;
+		}
+
+		//stops movement
+		PrimaryActorTick.SetTickFunctionEnable(false);
+
+		if (IsLooping)
+		{
+			//sets a timer for movement to start again
+			GetWorld()->GetTimerManager().SetTimer(TickHandle, this, &AMovingPlatform::RestartTick, WaitTime);
 		}
 	}
 }
