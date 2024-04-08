@@ -216,6 +216,13 @@ void ARedemptionPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Completed, this, &ARedemptionPlayer::StopSprinting);
 
 		EnhancedInputComponent->BindAction(PauseAction, ETriggerEvent::Started, this, &ARedemptionPlayer::LauchPauseMenu);
+
+		#ifdef PLAYTEST_TOOLS
+
+		EnhancedInputComponent->BindAction(ChangePowerAction, ETriggerEvent::Started, this, &ARedemptionPlayer::ChangePowerUp);
+		EnhancedInputComponent->BindAction(RecoverHealthAction, ETriggerEvent::Started, this, &ARedemptionPlayer::RecoverHealth);
+
+		#endif
 	}
 }
 
@@ -382,3 +389,21 @@ void ARedemptionPlayer::NotifyAIOfFall()
 		}
 	}
 }
+
+#ifdef PLAYTEST_TOOLS
+
+void ARedemptionPlayer::RecoverHealth()
+{
+	HealthComp->SetHealth(2);
+}
+
+void ARedemptionPlayer::ChangePowerUp()
+{
+	if (ChoosePowerUpWidgetClass)
+	{
+		UUserWidget* PowerWidget = CreateWidget<UUserWidget>(GetWorld(), ChoosePowerUpWidgetClass);
+		PowerWidget->AddToViewport();
+	}
+}
+
+#endif
