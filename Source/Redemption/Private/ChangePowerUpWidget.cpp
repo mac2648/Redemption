@@ -28,7 +28,6 @@ void UChangePowerUpWidget::NativeConstruct()
 
 void UChangePowerUpWidget::ActivateBonePower()
 {
-	UE_LOG(LogTemp, Warning, TEXT("BONE"))
 	PlayerPowerUpComp->ChangeActivePowerUp(EActivePowerUp::BoneThrow);
 	Delete();
 }

@@ -122,10 +122,6 @@ void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDam
             {
                 CurrentVignetteWidget->AddToViewport();
             }
-            else
-            {
-                UE_LOG(LogTemp, Error, TEXT("Failed to create widget"));
-            }
         }
        
     }

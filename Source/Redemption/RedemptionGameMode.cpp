@@ -66,7 +66,6 @@ void ARedemptionGameMode::HandleGameStateChange(EGameState NewState)
 {
     if (!MyAudioManager)
     {
-        UE_LOG(LogTemp, Warning, TEXT("AudioManager is not initialized."));
         return;
     }
 
