@@ -21,6 +21,9 @@ protected:
 	UPROPERTY(EditAnywhere)
 	FBlackboardKeySelector IsStuned;
 
+	UPROPERTY(EditAnywhere)
+	FBlackboardKeySelector IsAttacking;
+
 public:
 	UBTDeco_PlayerAndStunned();
 	

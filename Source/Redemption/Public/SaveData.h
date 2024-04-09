@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/SaveGame.h"
+#include "GenericPlatform/GenericWindow.h"
 #include "SaveData.generated.h"
+
 
 /**
  * 
@@ -24,6 +26,14 @@ struct FSaveInfo
 	UPROPERTY(BlueprintReadWrite)
 	float MusicValue;
 
+	UPROPERTY(BlueprintReadWrite)
+	FIntPoint Resolution;
+
+	UPROPERTY(BlueprintReadWrite)
+	TEnumAsByte<EWindowMode::Type> WindowMode;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool IsVsync;
 
 };
 

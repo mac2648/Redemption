@@ -99,10 +99,6 @@ void ARedemptionCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 		// Changing Perspective
 
 	}
-	else
-	{
-		UE_LOG(LogTemplateCharacter, Error, TEXT("'%s' Failed to find an Enhanced Input component! This template is built to use the Enhanced Input system. If you intend to use the legacy system, then you will need to update this C++ file."), *GetNameSafe(this));
-	}
 }
 
 void ARedemptionCharacter::Move(const FInputActionValue& Value)
@@ -143,5 +139,4 @@ void ARedemptionCharacter::Look(const FInputActionValue& Value)
 
 void ARedemptionCharacter::Crouching()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Crouching!"));
 }

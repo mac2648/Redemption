@@ -80,6 +80,7 @@ public:
 	void ChangeActivePowerUp(EActivePowerUp NewPower);
 	bool GetIsParrying() const { return IsParrying; }
 	float GetParryEnergyPercentage() const { return ParryEnergy / PARRY_MAX_ENERGY; }
+	bool GetIsHovering() const { return IsHovering; }
 
 protected:
 	// Called when the game starts

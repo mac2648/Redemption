@@ -4,6 +4,8 @@
 #include "PluzzeButton.h"
 #include "Components/BoxComponent.h"
 #include "Materials/MaterialInstance.h"
+#include "Sound/SoundCue.h"
+#include <Kismet/GameplayStatics.h>
 
 APluzzeButton::APluzzeButton()
 {
@@ -22,6 +24,7 @@ void APluzzeButton::BeginPlay()
 
 void APluzzeButton::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), SwitchCue, GetActorLocation());
 	PuzzleMesh->SetMaterial(0, ActivateMaterial);
 	Activate();
 }

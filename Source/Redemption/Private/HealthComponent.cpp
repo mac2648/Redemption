@@ -10,6 +10,7 @@
 #include "Blueprint/UserWidget.h"
 #include "PowerUpComponent.h"
 #include "../RedemptionGameMode.h"
+#include "Sound/SoundCue.h"
 
 #define INVUL_DURATION 1.5
 
@@ -52,6 +53,11 @@ float UHealthComponent::GetMaxHealth() const
 void UHealthComponent::SetHealth(float const NewHealth)
 {
 	Health = NewHealth;
+
+    if (Health > MaxHealth)
+    {
+        Health = MaxHealth;
+    }
 
     if (Health > 1 && CurrentVignetteWidget)
     {
@@ -105,6 +111,7 @@ void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDam
     }
 
     Health -= Damage;
+    UGameplayStatics::PlaySound2D(GetWorld(), PlayerHitCue,1.0f, 1.0f, 0.0f);
 
     if (Health <= 0)
     {
@@ -118,11 +125,8 @@ void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDam
             CurrentVignetteWidget = CreateWidget<UUserWidget>(World, VignetteWidgetClass);
             if (CurrentVignetteWidget)
             {
-                CurrentVignetteWidget->AddToViewport();
-            }
-            else
-            {
-                UE_LOG(LogTemp, Error, TEXT("Failed to create widget"));
+                CurrentVignetteWidget->AddToViewport(0);
+                CurrentVignetteWidget->SetVisibility(ESlateVisibility::HitTestInvisible);
             }
         }
        

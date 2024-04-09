@@ -18,6 +18,9 @@ class REDEMPTION_API UBaseLocalizationWidget : public UUserWidget, public IInter
 {
 	GENERATED_BODY()
 
+public:
+	UPROPERTY(BlueprintReadWrite)
+	bool IsOnControllerMode = false;
 
 public:
 
@@ -25,4 +28,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	virtual UFont* SetFontPerLanguage() const;
+
+protected:
+	UFUNCTION(BlueprintCallable)
+	void SetButtonTint(class UButton* Button, struct FSlateColor NewColor);
 };

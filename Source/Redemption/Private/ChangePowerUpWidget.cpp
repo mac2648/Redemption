@@ -24,11 +24,11 @@ void UChangePowerUpWidget::NativeConstruct()
 			PlayerController->SetShowMouseCursor(true);
 		}
 	}
+	AddToViewport(1);
 }
 
 void UChangePowerUpWidget::ActivateBonePower()
 {
-	UE_LOG(LogTemp, Warning, TEXT("BONE"))
 	PlayerPowerUpComp->ChangeActivePowerUp(EActivePowerUp::BoneThrow);
 	Delete();
 }

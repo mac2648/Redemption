@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Components/WidgetComponent.h"
+#include "DevTools.h"
 #include "RedemptionPlayer.generated.h"
 
 class USpringArmComponent;
@@ -66,12 +67,30 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	const UInputAction* PauseAction;
 
+	//No preprocessors here because UPROPERTY cannot be inside of one
+	//---------------------- PLAYTEST TOOLS VARIABLES -------------------------------------------------------------------------
+	UPROPERTY(EditDefaultsOnly, Category = "DevTools")
+	UInputAction* ChangePowerAction;
+
+	UPROPERTY(EditDefaultsOnly, Category = "DevTools")
+	UInputAction* RecoverHealthAction;
+
+	UPROPERTY(EditDefaultsOnly, Category = "DevTools")
+	TSubclassOf<UUserWidget> ChoosePowerUpWidgetClass;
+	//---------------------- END OF PLAYTEST TOOLS VARIABLES ------------------------------------------------------------------
+
 	UPROPERTY(EditDefaultsOnly)
 	USoundCue* FootStepsCue = nullptr;
 
 	//time handle used for the footsteps timer
 	FTimerHandle FootStepsHandle;
 	float StepVolume = 1.0f;
+
+	FTimerHandle FallNoiseHandle;
+	//the amount of frames the falling noise UI will be in the screen
+	int FallNoiseFrames = 0;
+
+	bool NeedToStopSprinting = false;
 
 private:
 	// Stamina settings
@@ -97,7 +116,6 @@ private:
 	float MaxSprintSpeed;
 
 	//Player Noise Detection
-
 	float PlayerNoise = 0;
 
 	// HUD widget for stamina
@@ -142,4 +160,16 @@ protected:
 	void LauchPauseMenu();
 	void StepSound();
 
+#ifdef PLAYTEST_TOOLS
+	void RecoverHealth();
+	void ChangePowerUp();
+#endif
+
+	//tick functions
+	void TickSprint(float DeltaTime);
+	void TickStamina();
+	void TickNoiseReporting();
+
+	//function used to find when the player reaches the ground
+	void NotifyAIOfFall();
 };

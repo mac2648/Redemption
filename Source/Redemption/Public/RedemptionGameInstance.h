@@ -27,6 +27,14 @@ protected:
 	float SFXValue;
 	float MusicValue;
 
+	FIntPoint Resolution;
+
+	EWindowMode::Type WindowMode;
+
+	FString Culture;
+
+	bool IsVsync;
+
 public:
 
 	FVector GetPlayerDiedLocation();
@@ -49,11 +57,33 @@ public:
 	UFUNCTION(BlueprintCallable)
 	float GetMusicValue() const { return MusicValue; }
 
-	
+	UFUNCTION(BlueprintCallable)
+	FIntPoint GetResolution() const { return Resolution; }
+
+	UFUNCTION(BlueprintCallable)
+	EWindowMode::Type GetWindowMode() const { return WindowMode; }
+
+	UFUNCTION(BlueprintCallable)
+	bool GetVsync() const { return IsVsync; }
+
+	UFUNCTION(BlueprintCallable)
+	FString GetCulture() const { return Culture; }
 
 	UFUNCTION(BlueprintCallable)
 	void SetSFXValue(float NewSFXValue) { SFXValue = NewSFXValue; }
 
 	UFUNCTION(BlueprintCallable)
 	void SetMusicValue(float NewMusicValue) { MusicValue = NewMusicValue; }
+
+	UFUNCTION(BlueprintCallable)
+	void SetResolution(FIntPoint NewResolution) { Resolution = NewResolution; }
+
+	UFUNCTION(BlueprintCallable)
+	void SetWindowMode(EWindowMode::Type NewWindowMode) { WindowMode = NewWindowMode; }
+
+	UFUNCTION(BlueprintCallable)
+	void SetVsync(bool NewIsVsync) { IsVsync = NewIsVsync; }
+
+	UFUNCTION(BlueprintCallable)
+	void SetCulture(FString NewCulture) { Culture = NewCulture; }
 };

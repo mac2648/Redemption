@@ -121,9 +121,25 @@ void ARedemptionPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (FallNoiseFrames > 0)
+	{
+		FallNoiseFrames--;
+	}
+
+	TickSprint(DeltaTime);
+	TickStamina();
+	TickNoiseReporting();
+}
+
+void ARedemptionPlayer::TickSprint(float DeltaTime)
+{
 	if (bIsSprinting && bCanSprint)
 	{
-		Stamina -= StaminaDepletionRate * DeltaTime;
+		if (CanJump())
+		{
+			Stamina -= StaminaDepletionRate * DeltaTime;
+		}
+
 		if (Stamina <= 0)
 		{
 			Stamina = 0;
@@ -140,7 +156,10 @@ void ARedemptionPlayer::Tick(float DeltaTime)
 			bCanSprint = true; // Enable sprinting
 		}
 	}
+}
 
+void ARedemptionPlayer::TickStamina()
+{
 	// Update the HUD with the new stamina value
 	UpdateStaminaWidget(Stamina / MaxStamina);
 	// Show/hide the stamina widget based on sprinting and stamina value
@@ -154,13 +173,23 @@ void ARedemptionPlayer::Tick(float DeltaTime)
 		// Hide
 		StaminaWidget->SetVisibility(ESlateVisibility::Hidden);
 	}
+}
 
+void ARedemptionPlayer::TickNoiseReporting()
+{
 	if (GetCharacterMovement()->Velocity == FVector::ZeroVector)
 	{
 		GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
-    PlayerNoise = 0;
+		if (FallNoiseFrames <= 0)
+		{
+			PlayerNoise = 0;
+		}
 	}
 
+	if (!FallNoiseHandle.IsValid() && !CanJump())
+	{
+		GetWorld()->GetTimerManager().SetTimer(FallNoiseHandle, this, &ARedemptionPlayer::NotifyAIOfFall, 0.03, true);
+	}
 }
 
 // Called to bind functionality to input
@@ -187,6 +216,13 @@ void ARedemptionPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Completed, this, &ARedemptionPlayer::StopSprinting);
 
 		EnhancedInputComponent->BindAction(PauseAction, ETriggerEvent::Started, this, &ARedemptionPlayer::LauchPauseMenu);
+
+		#ifdef PLAYTEST_TOOLS
+
+		EnhancedInputComponent->BindAction(ChangePowerAction, ETriggerEvent::Started, this, &ARedemptionPlayer::ChangePowerUp);
+		EnhancedInputComponent->BindAction(RecoverHealthAction, ETriggerEvent::Started, this, &ARedemptionPlayer::RecoverHealth);
+
+		#endif
 	}
 }
 
@@ -244,7 +280,6 @@ void ARedemptionPlayer::Move(const FInputActionValue& Value)
 				StepVolume = 0.75;
 				GetWorld()->GetTimerManager().SetTimer(FootStepsHandle, this, &ARedemptionPlayer::StepSound, WALK_STEP_TIMER, true);
 			}
-			
 		}
 	}
 }
@@ -287,23 +322,33 @@ void ARedemptionPlayer::EndCrouch()
 
 void ARedemptionPlayer::StartSprinting()
 {
-	if (Stamina > 0 && bCanSprint)
+	if (CanJump())
 	{
-		bIsSprinting = true;
-		GetCharacterMovement()->MaxWalkSpeed = MaxSprintSpeed;
-		GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
+		if (Stamina > 0 && bCanSprint)
+		{
+			bIsSprinting = true;
+			GetCharacterMovement()->MaxWalkSpeed = MaxSprintSpeed;
+			GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
+		}
 	}
 }
 
 void ARedemptionPlayer::StopSprinting()
 {
-	if (bIsSprinting)
+	if (CanJump())
 	{
-		GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
-	}
+		if (bIsSprinting)
+		{
+			GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
+		}
 
-	bIsSprinting = false;
-	GetCharacterMovement()->MaxWalkSpeed = 250.f;
+		bIsSprinting = false;
+		GetCharacterMovement()->MaxWalkSpeed = 250.f;
+	}
+	else
+	{
+		NeedToStopSprinting = true;
+	}
 }
 
 void ARedemptionPlayer::UpdateStaminaWidget(float StamPercent)
@@ -326,3 +371,39 @@ void ARedemptionPlayer::StepSound()
 {
 	UGameplayStatics::PlaySoundAtLocation(GetWorld(), FootStepsCue, GetActorLocation(), StepVolume);
 }
+
+void ARedemptionPlayer::NotifyAIOfFall()
+{
+	//if player arrives in the ground
+	if (CanJump())
+	{
+		UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 0.8f, this);
+		PlayerNoise = 0.8;
+		GetWorld()->GetTimerManager().ClearTimer(FallNoiseHandle);
+		FallNoiseFrames = 12;
+
+		if (NeedToStopSprinting)
+		{
+			StopSprinting();
+			NeedToStopSprinting = false;
+		}
+	}
+}
+
+#ifdef PLAYTEST_TOOLS
+
+void ARedemptionPlayer::RecoverHealth()
+{
+	HealthComp->SetHealth(2);
+}
+
+void ARedemptionPlayer::ChangePowerUp()
+{
+	if (ChoosePowerUpWidgetClass)
+	{
+		UUserWidget* PowerWidget = CreateWidget<UUserWidget>(GetWorld(), ChoosePowerUpWidgetClass);
+		PowerWidget->AddToViewport();
+	}
+}
+
+#endif
