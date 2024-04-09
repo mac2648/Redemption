@@ -120,7 +120,8 @@ void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDam
             CurrentVignetteWidget = CreateWidget<UUserWidget>(World, VignetteWidgetClass);
             if (CurrentVignetteWidget)
             {
-                CurrentVignetteWidget->AddToViewport();
+                CurrentVignetteWidget->AddToViewport(0);
+                CurrentVignetteWidget->SetVisibility(ESlateVisibility::HitTestInvisible);
             }
             else
             {

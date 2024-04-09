@@ -24,6 +24,7 @@ void UChangePowerUpWidget::NativeConstruct()
 			PlayerController->SetShowMouseCursor(true);
 		}
 	}
+	AddToViewport(1);
 }
 
 void UChangePowerUpWidget::ActivateBonePower()
