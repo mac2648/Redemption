@@ -35,6 +35,12 @@ struct FSaveInfo
 	UPROPERTY(BlueprintReadWrite)
 	bool IsVsync;
 
+	UPROPERTY(BlueprintReadWrite)
+	bool CameraShake;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString Culture;
+
 };
 
 UCLASS()
