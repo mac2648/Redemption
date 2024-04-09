@@ -10,6 +10,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "FontManager.h"
 #include "Components/Button.h"
+#include "Components/CheckBox.h"
+#include "Components/Slider.h"
 
 
 void UBaseLocalizationWidget::NativeConstruct()
@@ -34,4 +36,30 @@ void UBaseLocalizationWidget::SetButtonTint(UButton* Button, FSlateColor NewColo
 	NewSlateBrush.TintColor = NewColor;
 	Style.SetNormal(NewSlateBrush);
 	Button->SetStyle(Style);
+}
+
+void UBaseLocalizationWidget::SetCheckBoxTint(class UCheckBox* Box, FSlateColor NewColor)
+{
+	FCheckBoxStyle NewStyle = Box->WidgetStyle;
+
+	FSlateBrush NewUnchecked = NewStyle.UncheckedImage;
+	NewUnchecked.TintColor = NewColor;
+	NewStyle.SetUncheckedImage(NewUnchecked);
+
+	FSlateBrush NewChecked = NewStyle.CheckedImage;
+	NewChecked.TintColor = NewColor;
+	NewStyle.SetCheckedImage(NewChecked);
+
+	Box->SetWidgetStyle(NewStyle);
+}
+
+void UBaseLocalizationWidget::SetSliderTint(class USlider* Slider, struct FSlateColor NewColor)
+{
+	FSliderStyle SliderStyle = Slider->GetWidgetStyle();
+
+	FSlateBrush NormalImage = SliderStyle.NormalBarImage;
+	NormalImage.TintColor = NewColor;
+	SliderStyle.SetNormalBarImage(NormalImage);
+
+	Slider->SetWidgetStyle(SliderStyle);
 }
