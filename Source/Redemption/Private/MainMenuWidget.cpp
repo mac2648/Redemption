@@ -9,7 +9,6 @@
 
 void UMainMenuWidget::Start()
 {
-	//UE_LOG(LogTemp, Warning, TEXT("START"));
 	UGameplayStatics::OpenLevel(GetWorld(), "Level1");
 	APlayerController* Controller = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	Controller->SetInputMode(FInputModeGameOnly());

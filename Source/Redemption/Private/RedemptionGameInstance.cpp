@@ -19,7 +19,6 @@ void URedemptionGameInstance::SetPlayerDiedLocation()
 void URedemptionGameInstance::TransferInfoSaveToInstance()
 {
 	PlayerDiedLocation = SaveInfo.PlayerDiedLocation;
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *SaveInfo.PlayerDiedLocation.ToString());
 
 	SFXValue = SaveInfo.SFXValue;
 	MusicValue = SaveInfo.MusicValue;
