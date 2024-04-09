@@ -21,25 +21,25 @@ struct FSaveInfo
 	FVector PlayerDiedLocation = FVector::ZeroVector;
 
 	UPROPERTY(BlueprintReadWrite)
-	float SFXValue;
+	float SFXValue = 1.0f;
 
 	UPROPERTY(BlueprintReadWrite)
-	float MusicValue;
+	float MusicValue = 1.0f;
 
 	UPROPERTY(BlueprintReadWrite)
-	FIntPoint Resolution;
+	FIntPoint Resolution = FIntPoint(1280, 720);
 
 	UPROPERTY(BlueprintReadWrite)
 	TEnumAsByte<EWindowMode::Type> WindowMode;
 
 	UPROPERTY(BlueprintReadWrite)
-	bool IsVsync;
+	bool IsVsync = false;
 
 	UPROPERTY(BlueprintReadWrite)
-	bool CameraShake;
+	bool CameraShake = true;
 
 	UPROPERTY(BlueprintReadWrite)
-	FString Culture;
+	FString Culture = "English";
 
 };
 
