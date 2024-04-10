@@ -34,6 +34,7 @@ protected:
 	FString Culture;
 
 	bool IsVsync;
+	bool CameraShake;
 
 public:
 
@@ -49,6 +50,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void TransferInfoSaveToInstance();
 
+	UFUNCTION(BlueprintCallable)
 	void SetupSaveInfo();
 
 	UFUNCTION(BlueprintCallable)
@@ -70,6 +72,9 @@ public:
 	FString GetCulture() const { return Culture; }
 
 	UFUNCTION(BlueprintCallable)
+	bool GetCameraShake() const { return CameraShake; }
+
+	UFUNCTION(BlueprintCallable)
 	void SetSFXValue(float NewSFXValue) { SFXValue = NewSFXValue; }
 
 	UFUNCTION(BlueprintCallable)
@@ -86,4 +91,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void SetCulture(FString NewCulture) { Culture = NewCulture; }
+
+	UFUNCTION(BlueprintCallable)
+	void SetCameraShake(bool NewCameraShake) { CameraShake = NewCameraShake; }
 };

@@ -25,6 +25,8 @@ void URedemptionGameInstance::TransferInfoSaveToInstance()
 	Resolution = SaveInfo.Resolution;
 	WindowMode = SaveInfo.WindowMode;
 	IsVsync = SaveInfo.IsVsync;
+	Culture = SaveInfo.Culture;
+	CameraShake = SaveInfo.CameraShake;
 }
 
 void URedemptionGameInstance::SetupSaveInfo()
@@ -35,5 +37,7 @@ void URedemptionGameInstance::SetupSaveInfo()
 	SaveInfo.Resolution = Resolution;
 	SaveInfo.WindowMode = WindowMode;
 	SaveInfo.IsVsync = IsVsync;
+	SaveInfo.Culture = Culture;
+	SaveInfo.CameraShake = CameraShake;
 }
 
