@@ -97,3 +97,16 @@ void ASkullNPC::PlayNextSound(int32 CurrentSoundIndex, int32 TotalSounds)
             }, 0.14f, false);
     }
 }
+
+void ASkullNPC::OnPlayerDeath()
+{
+    GetWorldTimerManager().ClearTimer(SoundTimerHandle); 
+
+    if (DialogueWidget)
+    {
+        DialogueWidget->RemoveFromParent(); 
+        DialogueWidget = nullptr; 
+    }
+
+    ResetDialogue();
+}
