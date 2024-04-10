@@ -43,5 +43,6 @@ void ARatController::StartChase()
         {
             MoveComp->MaxWalkSpeed = 400;
         }
+        OnPlayerSightUpdate.Broadcast();
     }
 }

@@ -54,7 +54,15 @@ bool UBTTask_DefineNextPatrolPoint::SetNextPatrolLocation(UPatrolComponent* Patr
 		else
 		{
 			PatrolComp->InverseDirection();
-			Index += PatrolComp->GetPatrolDirection() * 2;
+			if (PathIndicators.Num() > 1)
+			{
+				Index += PatrolComp->GetPatrolDirection() * 2;
+			}
+			else
+			{
+				Index = 0;
+			}
+			
 		}
 	}
 
