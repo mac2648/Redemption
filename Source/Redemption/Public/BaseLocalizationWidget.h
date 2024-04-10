@@ -39,4 +39,7 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	void SetSliderTint(class USlider* Slider, struct FSlateColor NewColor);
+
+	UFUNCTION(BlueprintCallable)
+	void SetCBStringTint(class UComboBoxString* ComboBox, struct FSlateColor NewColor);
 };

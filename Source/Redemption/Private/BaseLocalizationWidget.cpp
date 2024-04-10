@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "BaseLocalizationWidget.h"
 #include "Internationalization/Internationalization.h"
 #include "Internationalization/Culture.h"
@@ -12,7 +11,7 @@
 #include "Components/Button.h"
 #include "Components/CheckBox.h"
 #include "Components/Slider.h"
-
+#include "Components/ComboBoxString.h"
 
 void UBaseLocalizationWidget::NativeConstruct()
 {
@@ -62,4 +61,15 @@ void UBaseLocalizationWidget::SetSliderTint(class USlider* Slider, struct FSlate
 	SliderStyle.SetNormalBarImage(NormalImage);
 
 	Slider->SetWidgetStyle(SliderStyle);
+}
+
+void UBaseLocalizationWidget::SetCBStringTint(class UComboBoxString* ComboBox, struct FSlateColor NewColor)
+{
+	FComboBoxStyle ComboBoxStyle = ComboBox->GetWidgetStyle();
+
+	FSlateBrush NormalImage = ComboBoxStyle.ComboButtonStyle.ButtonStyle.Normal;
+	NormalImage.TintColor = NewColor;
+	ComboBoxStyle.ComboButtonStyle.ButtonStyle.SetNormal(NormalImage);
+
+	ComboBox->SetWidgetStyle(ComboBoxStyle);
 }
