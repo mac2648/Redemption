@@ -9,6 +9,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "RedemptionGameInstance.generated.h"
 
+
 /**
  * 
  */
@@ -19,7 +20,8 @@ class REDEMPTION_API URedemptionGameInstance : public UGameInstance
 
 protected:
 	
-	FVector PlayerDiedLocation = FVector::ZeroVector;
+	TArray<FVector> PlayerDiedLocation;
+	TArray<bool> CompletedLevels;
 
 	UPROPERTY(BlueprintReadWrite)
 	FSaveInfo SaveInfo;
@@ -37,9 +39,10 @@ protected:
 	bool CameraShake;
 
 public:
+	URedemptionGameInstance();
 
-	FVector GetPlayerDiedLocation();
-	void SetPlayerDiedLocation();
+	FVector GetPlayerDiedLocation(int LevelId);
+	void SetPlayerDiedLocation(int LevelId);
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void SaveGame();

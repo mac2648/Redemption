@@ -54,7 +54,10 @@ void ARedemptionGameMode::BeginPlay()
     }
 
     URedemptionGameInstance* Instance = Cast<URedemptionGameInstance>(GetGameInstance());
-    FVector PlayerBodyPosition = Instance->GetPlayerDiedLocation();
+
+    int32 WorldId = RedemptionUtils::GetWorldID(GetWorld());
+
+    FVector PlayerBodyPosition = Instance->GetPlayerDiedLocation(WorldId);
 
     if (PlayerBodyPosition != FVector::ZeroVector)
     {

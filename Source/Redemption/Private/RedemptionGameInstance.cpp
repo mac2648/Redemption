@@ -3,17 +3,24 @@
 
 #include "RedemptionGameInstance.h"
 
-FVector URedemptionGameInstance::GetPlayerDiedLocation()
+URedemptionGameInstance::URedemptionGameInstance()
 {
-	
-	return PlayerDiedLocation;
-	
+	for (int i = 0; i < NUM_LEVELS; i++)
+	{
+		PlayerDiedLocation.Add(FVector::ZeroVector);
+		CompletedLevels.Add(false);
+	}
 }
 
-void URedemptionGameInstance::SetPlayerDiedLocation()
+FVector URedemptionGameInstance::GetPlayerDiedLocation(int LevelId)
+{
+	return PlayerDiedLocation[LevelId];
+}
+
+void URedemptionGameInstance::SetPlayerDiedLocation(int LevelId)
 {
 	ACharacter* myCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
-	PlayerDiedLocation = myCharacter->GetActorLocation();
+	PlayerDiedLocation[LevelId] = myCharacter->GetActorLocation();
 }
 
 void URedemptionGameInstance::TransferInfoSaveToInstance()
@@ -27,6 +34,7 @@ void URedemptionGameInstance::TransferInfoSaveToInstance()
 	IsVsync = SaveInfo.IsVsync;
 	Culture = SaveInfo.Culture;
 	CameraShake = SaveInfo.CameraShake;
+	CompletedLevels = SaveInfo.CompletedLevels;
 }
 
 void URedemptionGameInstance::SetupSaveInfo()
@@ -39,5 +47,6 @@ void URedemptionGameInstance::SetupSaveInfo()
 	SaveInfo.IsVsync = IsVsync;
 	SaveInfo.Culture = Culture;
 	SaveInfo.CameraShake = CameraShake;
+	SaveInfo.CompletedLevels = CompletedLevels;
 }
 

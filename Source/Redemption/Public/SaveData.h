@@ -7,10 +7,7 @@
 #include "GenericPlatform/GenericWindow.h"
 #include "SaveData.generated.h"
 
-
-/**
- * 
- */
+#define NUM_LEVELS 3
 
 USTRUCT(BlueprintType)
 struct FSaveInfo
@@ -18,7 +15,10 @@ struct FSaveInfo
 	GENERATED_BODY();
 	
 	UPROPERTY(BlueprintReadWrite)
-	FVector PlayerDiedLocation = FVector::ZeroVector;
+	TArray<FVector> PlayerDiedLocation;
+
+	UPROPERTY(BlueprintReadWrite)
+	TArray<bool> CompletedLevels;
 
 	UPROPERTY(BlueprintReadWrite)
 	float SFXValue = 1.0f;
@@ -51,4 +51,7 @@ class REDEMPTION_API USaveData : public USaveGame
 public:
 	UPROPERTY(BlueprintReadWrite)
 	FSaveInfo SaveDataStruct;
+
+public:
+	USaveData();
 };

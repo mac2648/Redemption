@@ -22,4 +22,6 @@ namespace RedemptionUtils
 			}
 		}
 	}
+
+	int32 GetWorldID(UWorld* WorldContextObject);
 }

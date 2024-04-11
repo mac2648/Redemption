@@ -11,6 +11,8 @@
 #include "PowerUpComponent.h"
 #include "../RedemptionGameMode.h"
 #include "Sound/SoundCue.h"
+#include "Kismet/KismetStringLibrary.h"
+#include "RedemptionUtils.h"
 
 #define INVUL_DURATION 1.5
 
@@ -72,7 +74,9 @@ void UHealthComponent::Die()
 
     if (Instance)
     {
-        Instance->SetPlayerDiedLocation();
+        int32 WorldId = RedemptionUtils::GetWorldID(GetWorld());
+
+        Instance->SetPlayerDiedLocation(WorldId);
         Instance->SetupSaveInfo();
         Instance->SaveGame();
     }
@@ -111,7 +115,7 @@ void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDam
     }
 
     Health -= Damage;
-    UGameplayStatics::PlaySound2D(GetWorld(), PlayerHitCue,1.0f, 1.0f, 0.0f);
+    UGameplayStatics::PlaySound2D(GetWorld(), PlayerHitCue,1.0f, 1.0f, 0.04f);
 
     if (Health <= 0)
     {
