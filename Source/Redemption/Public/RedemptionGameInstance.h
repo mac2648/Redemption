@@ -9,6 +9,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "RedemptionGameInstance.generated.h"
 
+
 /**
  * 
  */
@@ -19,7 +20,8 @@ class REDEMPTION_API URedemptionGameInstance : public UGameInstance
 
 protected:
 	
-	FVector PlayerDiedLocation = FVector::ZeroVector;
+	TArray<FVector> PlayerDiedLocation;
+	TArray<bool> CompletedLevels;
 
 	UPROPERTY(BlueprintReadWrite)
 	FSaveInfo SaveInfo;
@@ -34,11 +36,13 @@ protected:
 	FString Culture;
 
 	bool IsVsync;
+	bool CameraShake;
 
 public:
+	URedemptionGameInstance();
 
-	FVector GetPlayerDiedLocation();
-	void SetPlayerDiedLocation();
+	FVector GetPlayerDiedLocation(int LevelId);
+	void SetPlayerDiedLocation(int LevelId);
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void SaveGame();
@@ -49,6 +53,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void TransferInfoSaveToInstance();
 
+	UFUNCTION(BlueprintCallable)
 	void SetupSaveInfo();
 
 	UFUNCTION(BlueprintCallable)
@@ -70,6 +75,9 @@ public:
 	FString GetCulture() const { return Culture; }
 
 	UFUNCTION(BlueprintCallable)
+	bool GetCameraShake() const { return CameraShake; }
+
+	UFUNCTION(BlueprintCallable)
 	void SetSFXValue(float NewSFXValue) { SFXValue = NewSFXValue; }
 
 	UFUNCTION(BlueprintCallable)
@@ -86,4 +94,13 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void SetCulture(FString NewCulture) { Culture = NewCulture; }
+
+	UFUNCTION(BlueprintCallable)
+	void SetCameraShake(bool NewCameraShake) { CameraShake = NewCameraShake; }
+
+	UFUNCTION(BlueprintCallable)
+	void SetCompleteLevel();
+
+	UFUNCTION(BlueprintCallable)
+	bool GetCompletedLevel(int Index) const { return CompletedLevels[Index]; }
 };

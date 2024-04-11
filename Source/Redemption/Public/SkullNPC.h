@@ -54,6 +54,9 @@ public:
 
 	void PlayNextSound(int32 CurrentSoundIndex, int32 TotalSounds);
 
+	UFUNCTION(BlueprintCallable)
+	void OnPlayerDeath();
+
 	virtual void Talk() override;
 
 	void ResetDialogue();

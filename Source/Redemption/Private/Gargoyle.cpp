@@ -66,6 +66,9 @@ void AGargoyle::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Othe
 {
 	if (ARedemptionPlayer* Player = Cast<ARedemptionPlayer>(OtherActor))
 	{
-		UGameplayStatics::ApplyDamage(Player, 1.0f, GetController(), this, UDamageType::StaticClass());
+		if (!Player->bIsCrouched)
+		{
+			UGameplayStatics::ApplyDamage(Player, 1.0f, GetController(), this, UDamageType::StaticClass());
+		}
 	}
 }

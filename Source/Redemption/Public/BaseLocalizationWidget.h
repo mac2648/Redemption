@@ -32,4 +32,14 @@ public:
 protected:
 	UFUNCTION(BlueprintCallable)
 	void SetButtonTint(class UButton* Button, struct FSlateColor NewColor);
+
+	//this function seems to not work I'm not able to find why
+	UFUNCTION(BlueprintCallable)
+	void SetCheckBoxTint(class UCheckBox* Box, FSlateColor NewColor);
+
+	UFUNCTION(BlueprintCallable)
+	void SetSliderTint(class USlider* Slider, struct FSlateColor NewColor);
+
+	UFUNCTION(BlueprintCallable)
+	void SetCBStringTint(class UComboBoxString* ComboBox, struct FSlateColor NewColor);
 };

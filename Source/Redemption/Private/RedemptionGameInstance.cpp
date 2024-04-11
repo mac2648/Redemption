@@ -1,19 +1,26 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "RedemptionGameInstance.h"
+#include "RedemptionUtils.h"
 
-FVector URedemptionGameInstance::GetPlayerDiedLocation()
+URedemptionGameInstance::URedemptionGameInstance()
 {
-	
-	return PlayerDiedLocation;
-	
+	for (int i = 0; i < NUM_LEVELS; i++)
+	{
+		PlayerDiedLocation.Add(FVector::ZeroVector);
+		CompletedLevels.Add(false);
+	}
 }
 
-void URedemptionGameInstance::SetPlayerDiedLocation()
+FVector URedemptionGameInstance::GetPlayerDiedLocation(int LevelId)
+{
+	return PlayerDiedLocation[LevelId];
+}
+
+void URedemptionGameInstance::SetPlayerDiedLocation(int LevelId)
 {
 	ACharacter* myCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
-	PlayerDiedLocation = myCharacter->GetActorLocation();
+	PlayerDiedLocation[LevelId] = myCharacter->GetActorLocation();
 }
 
 void URedemptionGameInstance::TransferInfoSaveToInstance()
@@ -25,6 +32,9 @@ void URedemptionGameInstance::TransferInfoSaveToInstance()
 	Resolution = SaveInfo.Resolution;
 	WindowMode = SaveInfo.WindowMode;
 	IsVsync = SaveInfo.IsVsync;
+	Culture = SaveInfo.Culture;
+	CameraShake = SaveInfo.CameraShake;
+	CompletedLevels = SaveInfo.CompletedLevels;
 }
 
 void URedemptionGameInstance::SetupSaveInfo()
@@ -35,5 +45,14 @@ void URedemptionGameInstance::SetupSaveInfo()
 	SaveInfo.Resolution = Resolution;
 	SaveInfo.WindowMode = WindowMode;
 	SaveInfo.IsVsync = IsVsync;
+	SaveInfo.Culture = Culture;
+	SaveInfo.CameraShake = CameraShake;
+	SaveInfo.CompletedLevels = CompletedLevels;
 }
 
+void URedemptionGameInstance::SetCompleteLevel()
+{
+	CompletedLevels[URedemptionUtils::GetWorldID(GetWorld())] = true;
+	SetupSaveInfo();
+	SaveGame();
+}

@@ -7,14 +7,6 @@
 #include "RedemptionGameInstance.h"
 #include "Kismet/KismetSystemLibrary.h"
 
-void UMainMenuWidget::Start()
-{
-	UGameplayStatics::OpenLevel(GetWorld(), "Level1");
-	APlayerController* Controller = UGameplayStatics::GetPlayerController(GetWorld(), 0);
-	Controller->SetInputMode(FInputModeGameOnly());
-	Controller->bShowMouseCursor = false;
-}
-
 void UMainMenuWidget::Quit()
 {
 
@@ -29,7 +21,6 @@ void UMainMenuWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	StartButton->OnClicked.AddDynamic(this, &UMainMenuWidget::Start);
 	QuitButton->OnClicked.AddDynamic(this, &UMainMenuWidget::Quit);
 	OptionsButton->OnClicked.AddDynamic(this, &UMainMenuWidget::Option);
 
