@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "RedemptionGameInstance.h"
+#include "RedemptionUtils.h"
 
 URedemptionGameInstance::URedemptionGameInstance()
 {
@@ -50,3 +50,9 @@ void URedemptionGameInstance::SetupSaveInfo()
 	SaveInfo.CompletedLevels = CompletedLevels;
 }
 
+void URedemptionGameInstance::SetCompleteLevel()
+{
+	CompletedLevels[URedemptionUtils::GetWorldID(GetWorld())] = true;
+	SetupSaveInfo();
+	SaveGame();
+}

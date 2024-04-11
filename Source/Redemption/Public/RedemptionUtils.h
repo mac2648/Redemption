@@ -1,12 +1,23 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
 #include "Kismet/GameplayStatics.h"
+#include "RedemptionUtils.generated.h"
 
-namespace RedemptionUtils
+/**
+ * 
+ */
+UCLASS()
+class REDEMPTION_API URedemptionUtils : public UBlueprintFunctionLibrary
 {
+	GENERATED_BODY()
+	
+public:
 	template <class ComponentT>
-	void GetAllActorsWithComponentByClass(UWorld* WorldContextObject,TArray<AActor*> &OutActors)
+	static void GetAllActorsWithComponentByClass(UWorld* WorldContextObject, TArray<AActor*>& OutActors)
 	{
 		OutActors.Empty();
 
@@ -23,5 +34,6 @@ namespace RedemptionUtils
 		}
 	}
 
-	int32 GetWorldID(UWorld* WorldContextObject);
-}
+	UFUNCTION(BlueprintCallable)
+	static int32 GetWorldID(UWorld* WorldContextObject);
+};

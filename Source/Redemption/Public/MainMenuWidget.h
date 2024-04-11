@@ -36,9 +36,6 @@ public:
 	virtual void NativeConstruct() override;
 
 protected:
-	
-	UFUNCTION(BlueprintCallable)
-	void Start();
 
 	UFUNCTION(BlueprintCallable)
 	void Quit();

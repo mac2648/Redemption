@@ -97,4 +97,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void SetCameraShake(bool NewCameraShake) { CameraShake = NewCameraShake; }
+
+	UFUNCTION(BlueprintCallable)
+	void SetCompleteLevel();
+
+	UFUNCTION(BlueprintCallable)
+	bool GetCompletedLevel(int Index) const { return CompletedLevels[Index]; }
 };

@@ -55,7 +55,7 @@ void ARedemptionGameMode::BeginPlay()
 
     URedemptionGameInstance* Instance = Cast<URedemptionGameInstance>(GetGameInstance());
 
-    int32 WorldId = RedemptionUtils::GetWorldID(GetWorld());
+    int32 WorldId = URedemptionUtils::GetWorldID(GetWorld());
 
     FVector PlayerBodyPosition = Instance->GetPlayerDiedLocation(WorldId);
 
@@ -91,7 +91,7 @@ void ARedemptionGameMode::DestroyInteractableActors()
 {
     TArray<AActor*> InteractableActors;
 
-    RedemptionUtils::GetAllActorsWithComponentByClass<UInteractWidgetComponent>(GetWorld(), InteractableActors);
+    URedemptionUtils::GetAllActorsWithComponentByClass<UInteractWidgetComponent>(GetWorld(), InteractableActors);
 
     for (AActor* Current : InteractableActors)
     {

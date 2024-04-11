@@ -74,7 +74,7 @@ void UHealthComponent::Die()
 
     if (Instance)
     {
-        int32 WorldId = RedemptionUtils::GetWorldID(GetWorld());
+        int32 WorldId = URedemptionUtils::GetWorldID(GetWorld());
 
         Instance->SetPlayerDiedLocation(WorldId);
         Instance->SetupSaveInfo();
