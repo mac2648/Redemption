@@ -10,5 +10,5 @@ int32 URedemptionUtils::GetWorldID(UWorld* WorldContextObject)
 	//Levels need to be called "Level" + the number
 	UE_LOG(LogTemp, Warning, TEXT("Level %d"), FCString::Atoi(*MapName));
 	UE_LOG(LogTemp, Warning, TEXT("MapName = %s"), *MapName);
-	return FCString::Atoi(*MapName) - 1;
+	return FCString::Atoi(*MapName);
 }

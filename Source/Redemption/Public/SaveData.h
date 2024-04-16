@@ -7,7 +7,7 @@
 #include "GenericPlatform/GenericWindow.h"
 #include "SaveData.generated.h"
 
-#define NUM_LEVELS 3
+#define NUM_LEVELS 4
 
 USTRUCT(BlueprintType)
 struct FSaveInfo
