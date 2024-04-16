@@ -79,6 +79,9 @@ protected:
 	UInputAction* RecoverHealthAction;
 
 	UPROPERTY(EditDefaultsOnly, Category = "DevTools")
+	UInputAction* UnlockLevelsAction;
+
+	UPROPERTY(EditDefaultsOnly, Category = "DevTools")
 	TSubclassOf<UUserWidget> ChoosePowerUpWidgetClass;
 	//---------------------- END OF PLAYTEST TOOLS VARIABLES ------------------------------------------------------------------
 
@@ -172,6 +175,7 @@ protected:
 #ifdef PLAYTEST_TOOLS
 	void RecoverHealth();
 	void ChangePowerUp();
+	void UnlockAllLevels();
 #endif
 
 	//tick functions
