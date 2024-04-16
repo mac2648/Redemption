@@ -91,7 +91,6 @@ void ARedemptionPlayer::BeginPlay()
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("SET"))
 			Subsystem->AddMappingContext(DefaultMappingContext, 1);
 			Subsystem->AddMappingContext(TPPMappingContext, 2);
 			Subsystem->AddMappingContext(CrouchMappingContext, 2);
@@ -398,7 +397,6 @@ void ARedemptionPlayer::ReactivateInput()
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("REACTIVATE"))
 			Subsystem->AddMappingContext(DefaultMappingContext, 1);
 			Subsystem->AddMappingContext(TPPMappingContext, 2);
 
@@ -412,7 +410,6 @@ void ARedemptionPlayer::DeactivateInput()
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("DEACTIVATE"))
 			Subsystem->RemoveMappingContext(DefaultMappingContext);
 			Subsystem->RemoveMappingContext(TPPMappingContext);
 		}
