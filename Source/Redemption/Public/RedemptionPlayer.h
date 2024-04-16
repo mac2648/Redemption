@@ -47,6 +47,9 @@ protected:
 	UInputMappingContext* TPPMappingContext;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	UInputMappingContext* CrouchMappingContext;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputAction* JumpAction;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
@@ -149,6 +152,12 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	float GetPlayerNoise() { return PlayerNoise; }
+
+	UFUNCTION(BlueprintCallable)
+	void DeactivateInput();
+
+	UFUNCTION(BlueprintCallable)
+	void ReactivateInput();
 
 protected:
 	virtual void BeginPlay() override;
