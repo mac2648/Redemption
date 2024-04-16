@@ -91,8 +91,10 @@ void ARedemptionPlayer::BeginPlay()
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
+			UE_LOG(LogTemp, Warning, TEXT("SET"))
 			Subsystem->AddMappingContext(DefaultMappingContext, 1);
 			Subsystem->AddMappingContext(TPPMappingContext, 2);
+			Subsystem->AddMappingContext(CrouchMappingContext, 2);
 		}
 	}
 	// Creating the stamina widget for the hud
@@ -386,6 +388,33 @@ void ARedemptionPlayer::NotifyAIOfFall()
 		{
 			StopSprinting();
 			NeedToStopSprinting = false;
+		}
+	}
+}
+
+void ARedemptionPlayer::ReactivateInput()
+{
+	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
+	{
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("REACTIVATE"))
+			Subsystem->AddMappingContext(DefaultMappingContext, 1);
+			Subsystem->AddMappingContext(TPPMappingContext, 2);
+
+		}
+	}
+}
+
+void ARedemptionPlayer::DeactivateInput()
+{
+	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
+	{
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("DEACTIVATE"))
+			Subsystem->RemoveMappingContext(DefaultMappingContext);
+			Subsystem->RemoveMappingContext(TPPMappingContext);
 		}
 	}
 }
