@@ -9,6 +9,5 @@ void AZombieController::StopAttack()
 	if (UBlackboardComponent* BBComp = GetBlackboardComponent())
 	{
 		BBComp->SetValueAsBool("IsAttacking", false);
-		UE_LOG(LogTemp, Warning, TEXT("StopAttacking"))
 	}
 }
