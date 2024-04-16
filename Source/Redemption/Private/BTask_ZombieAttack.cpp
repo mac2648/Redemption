@@ -2,6 +2,7 @@
 
 #include "BTask_ZombieAttack.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "ZombieController.h"
 
 UBTask_ZombieAttack::UBTask_ZombieAttack()
 {
@@ -14,6 +15,13 @@ EBTNodeResult::Type UBTask_ZombieAttack::ExecuteTask(UBehaviorTreeComponent& Own
 	{
 		BBComp->SetValueAsBool(IsAttacking.SelectedKeyName, true);
 		BBComp->SetValueAsBool(IsStunned.SelectedKeyName, true);
+
+		if (AZombieController* Controller = Cast<AZombieController>((OwnerComp.GetAIOwner())))
+		{
+			FTimerHandle StopAttackHandle;
+			GetWorld()->GetTimerManager().SetTimer(StopAttackHandle, Controller, &AZombieController::StopAttack, 2.7);
+		}
+
 		return EBTNodeResult::Succeeded;
 	}
 
