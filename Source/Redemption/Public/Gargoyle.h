@@ -31,6 +31,9 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	bool IsLanded = false;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Audio")
+	UAudioComponent* AudioComp;
+
 public:
 	// Sets default values for this pawn's properties
 	AGargoyle();
