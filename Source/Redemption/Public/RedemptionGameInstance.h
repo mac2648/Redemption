@@ -4,9 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
-#include "RedemptionPlayer.h"
+#include "DevTools.h"
 #include "SaveData.h"
-#include "Kismet/GameplayStatics.h"
 #include "RedemptionGameInstance.generated.h"
 
 
@@ -103,4 +102,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	bool GetCompletedLevel(int Index) const { return CompletedLevels[Index]; }
+
+
+	void UnlockAllLevels();
 };

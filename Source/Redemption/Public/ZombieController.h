@@ -13,5 +13,7 @@ UCLASS()
 class REDEMPTION_API AZombieController : public ALandEnemyController
 {
 	GENERATED_BODY()
-	
+
+public:
+	void StopAttack();
 };

@@ -18,6 +18,7 @@
 #include "Kismet/KismetSystemLibrary.h"
 #include "StaminaBarWidget.h"
 #include "Sound/SoundCue.h"
+#include "RedemptionGameInstance.h"
 
 
 
@@ -222,6 +223,7 @@ void ARedemptionPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 
 		EnhancedInputComponent->BindAction(ChangePowerAction, ETriggerEvent::Started, this, &ARedemptionPlayer::ChangePowerUp);
 		EnhancedInputComponent->BindAction(RecoverHealthAction, ETriggerEvent::Started, this, &ARedemptionPlayer::RecoverHealth);
+		EnhancedInputComponent->BindAction(UnlockLevelsAction, ETriggerEvent::Started, this, &ARedemptionPlayer::UnlockAllLevels);
 
 		#endif
 	}
@@ -429,6 +431,14 @@ void ARedemptionPlayer::ChangePowerUp()
 	{
 		UUserWidget* PowerWidget = CreateWidget<UUserWidget>(GetWorld(), ChoosePowerUpWidgetClass);
 		PowerWidget->AddToViewport();
+	}
+}
+
+void ARedemptionPlayer::UnlockAllLevels()
+{
+	if (URedemptionGameInstance* GameInstance = Cast<URedemptionGameInstance>(UGameplayStatics::GetGameInstance(GetWorld())))
+	{
+		GameInstance->UnlockAllLevels();
 	}
 }
 

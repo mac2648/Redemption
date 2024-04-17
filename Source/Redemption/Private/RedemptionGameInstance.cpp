@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "RedemptionGameInstance.h"
+#include "RedemptionPlayer.h"
+#include "Kismet/GameplayStatics.h"
 #include "RedemptionUtils.h"
 
 URedemptionGameInstance::URedemptionGameInstance()
@@ -56,3 +58,15 @@ void URedemptionGameInstance::SetCompleteLevel()
 	SetupSaveInfo();
 	SaveGame();
 }
+
+#ifdef PLAYTEST_TOOLS
+void URedemptionGameInstance::UnlockAllLevels()
+{
+	for (int i = 0; i < NUM_LEVELS; i++)
+	{
+		CompletedLevels[i] = true;
+	}
+	SetupSaveInfo();
+	SaveGame();
+}
+#endif
