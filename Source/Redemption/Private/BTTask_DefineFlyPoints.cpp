@@ -5,6 +5,7 @@
 #include "PatrolPathIndicator.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include <Kismet/GameplayStatics.h>
 
 #define GET_GARGOYLE Cast<AGargoyle>(OwnerComp.GetAIOwner()->GetPawn())
 #define GET_BLACKBOARD OwnerComp.GetBlackboardComponent()
@@ -21,6 +22,7 @@ EBTNodeResult::Type UBTTask_DefineFlyPoints::ExecuteTask(UBehaviorTreeComponent&
 	if (!Gargoyle) return EBTNodeResult::Failed;
 
 	FVector FlyPoint1 = Gargoyle->GetActorLocation() + FVector(30.0, 0.0, 250.0);
+	FVector CurrentLocation = Gargoyle->GetActorLocation();
 
 	GET_BLACKBOARD->SetValueAsVector(PathPoint1.SelectedKeyName, FlyPoint1);
 
@@ -28,6 +30,7 @@ EBTNodeResult::Type UBTTask_DefineFlyPoints::ExecuteTask(UBehaviorTreeComponent&
 	FVector FlyPoint2 = NextStandingPoint->GetActorLocation() + FVector(30.0, 0.0, 250.0);
 
 	GET_BLACKBOARD->SetValueAsVector(PathPoint2.SelectedKeyName, FlyPoint2);
+	UGameplayStatics::PlaySoundAtLocation(this, Gargoyle->AlertSound, CurrentLocation);
 
 	return EBTNodeResult::Succeeded;
 }

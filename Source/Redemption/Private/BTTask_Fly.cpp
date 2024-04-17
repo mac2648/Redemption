@@ -6,7 +6,6 @@
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
-#include <Kismet/GameplayStatics.h>
 
 #define GET_GARGOYLE Cast<AGargoyle>(OwnerComp.GetAIOwner()->GetPawn())
 #define GET_BLACKBOARD OwnerComp.GetBlackboardComponent()
@@ -31,7 +30,6 @@ EBTNodeResult::Type UBTTask_Fly::ExecuteTask(UBehaviorTreeComponent& OwnerComp, 
 	GargoyleMoveComp->Velocity = FlyVec * Speed;
 
 	GET_BLACKBOARD->SetValueAsBool(IsLanded.SelectedKeyName, false);
-	UGameplayStatics::PlaySoundAtLocation(this, Gargoyle->AlertSound, CurrentLocation);
 
 	if ((CurrentLocation - LocationVec).Length() < 15.0f)
 	{
