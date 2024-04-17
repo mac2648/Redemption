@@ -7,7 +7,6 @@
 #include "Kismet/GameplayStatics.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Components/AudioComponent.h"
 
 
 // Sets default values
@@ -23,10 +22,6 @@ AGargoyle::AGargoyle()
 
 	SkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Skeletal Mesh"));
 	SkeletalMesh->SetupAttachment(CapsuleComp);
-
-	AudioComp = CreateDefaultSubobject<UAudioComponent>(TEXT("AudioComp"));
-	AudioComp->SetupAttachment(RootComponent);
-	AudioComp->bAutoActivate = false;
 
 }
 
@@ -71,10 +66,6 @@ int AGargoyle::GetStandingIndex(APatrolPathIndicator* Point) const
 
 void AGargoyle::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (AudioComp && !AudioComp->IsPlaying())
-	{
-		AudioComp->Play();
-	}
 	if (ARedemptionPlayer* Player = Cast<ARedemptionPlayer>(OtherActor))
 	{
 		if (!Player->bIsCrouched)
