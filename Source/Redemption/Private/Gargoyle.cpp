@@ -8,6 +8,7 @@
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 
+
 // Sets default values
 AGargoyle::AGargoyle()
 {
@@ -21,6 +22,7 @@ AGargoyle::AGargoyle()
 
 	SkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Skeletal Mesh"));
 	SkeletalMesh->SetupAttachment(CapsuleComp);
+
 }
 
 // Called when the game starts or when spawned

@@ -21,7 +21,7 @@ EBTNodeResult::Type UBTTask_Fly::ExecuteTask(UBehaviorTreeComponent& OwnerComp, 
 	FVector CurrentLocation = Gargoyle->GetActorLocation();
 
 	FVector LocationVec = GET_BLACKBOARD->GetValueAsVector(Location.SelectedKeyName);
-	
+
 	FVector FlyVec = LocationVec - CurrentLocation;
 	FlyVec.Normalize();
 
