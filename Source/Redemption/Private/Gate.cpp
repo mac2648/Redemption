@@ -74,6 +74,7 @@ void AGate::CheckOpenConditions()
 		IsOpen = true;
 		FTimerHandle RotationHandle;
 		GetWorld()->GetTimerManager().SetTimer(RotationHandle, this, &AGate::RotateGate, ROTATION_INTERVAL, false);
+		ActivateEasterEgg();
 	}
 	else if (!ShouldOpen && IsOpen)
 	{

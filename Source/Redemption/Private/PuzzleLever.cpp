@@ -51,7 +51,7 @@ void APuzzleLever::Tick(float DeltaTime)
 
 		FRotator PuzzleMeshRot = PuzzleMesh->GetRelativeRotation();
 		
-		if ((PuzzleMeshRot - DesiredRot).IsNearlyZero(1))
+		if ((PuzzleMeshRot - DesiredRot).IsNearlyZero(2))
 		{
 			IsRotating = false;
 		}
