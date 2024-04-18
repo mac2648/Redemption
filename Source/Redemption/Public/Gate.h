@@ -51,4 +51,7 @@ protected:
 	UFUNCTION()
 	void CheckOpenConditions();
 	void RotateGate();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void ActivateEasterEgg();
 };
