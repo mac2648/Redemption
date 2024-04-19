@@ -70,7 +70,7 @@ void AGate::CheckOpenConditions()
 
 	if (ShouldOpen && !IsOpen)
 	{
-		UGameplayStatics::SpawnSound2D(this, DoorOpenSoundBase, 0.7f);
+		UGameplayStatics::PlaySoundAtLocation(this, DoorCloseSoundBase, GetActorLocation(), 2);
 		IsOpen = true;
 		FTimerHandle RotationHandle;
 		GetWorld()->GetTimerManager().SetTimer(RotationHandle, this, &AGate::RotateGate, ROTATION_INTERVAL, false);
@@ -78,7 +78,7 @@ void AGate::CheckOpenConditions()
 	}
 	else if (!ShouldOpen && IsOpen)
 	{
-		UGameplayStatics::SpawnSound2D(this, DoorCloseSoundBase, 0.7f);
+		UGameplayStatics::PlaySoundAtLocation(this, DoorCloseSoundBase, GetActorLocation(), 2);
 		IsOpen = false;
 		FTimerHandle RotationHandle;
 		GetWorld()->GetTimerManager().SetTimer(RotationHandle, this, &AGate::RotateGate, ROTATION_INTERVAL, false);

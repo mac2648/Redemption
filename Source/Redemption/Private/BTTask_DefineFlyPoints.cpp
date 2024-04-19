@@ -30,7 +30,7 @@ EBTNodeResult::Type UBTTask_DefineFlyPoints::ExecuteTask(UBehaviorTreeComponent&
 	FVector FlyPoint2 = NextStandingPoint->GetActorLocation() + FVector(30.0, 0.0, 250.0);
 
 	GET_BLACKBOARD->SetValueAsVector(PathPoint2.SelectedKeyName, FlyPoint2);
-	UGameplayStatics::PlaySoundAtLocation(this, Gargoyle->AlertSound, CurrentLocation);
+	UGameplayStatics::PlaySoundAtLocation(this, Gargoyle->AlertSound, CurrentLocation, 3.0);
 
 	return EBTNodeResult::Succeeded;
 }
