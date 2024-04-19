@@ -250,39 +250,47 @@ void ARedemptionPlayer::Move(const FInputActionValue& Value)
 		AddMovementInput(ForwardDirection, MovementVector.Y);
 		AddMovementInput(RightDirection, MovementVector.X);
 
-		if (bIsCrouched)
-		{
-			UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 0.25f, this);
-			PlayerNoise = 0.25;
-		}
-		else if (bIsSprinting)
-		{
-			UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 1, this);
-			PlayerNoise = 1;
-		}
-		else
-		{
-			UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 0.5f, this);
-			PlayerNoise = 0.5;
-		}
-
-		if (!FootStepsHandle.IsValid())
+		if (CanJump())
 		{
 			if (bIsCrouched)
 			{
-				StepVolume = 0.35;
-				GetWorld()->GetTimerManager().SetTimer(FootStepsHandle, this, &ARedemptionPlayer::StepSound, CROUCH_STEP_TIMER, true);
+				UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 0.25f, this);
+				PlayerNoise = 0.25;
 			}
 			else if (bIsSprinting)
 			{
-				StepVolume = 1.5;
-				GetWorld()->GetTimerManager().SetTimer(FootStepsHandle, this, &ARedemptionPlayer::StepSound, SPRINT_STEP_TIMER, true);
+				UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 1, this);
+				PlayerNoise = 1;
 			}
 			else
 			{
-				StepVolume = 0.75;
-				GetWorld()->GetTimerManager().SetTimer(FootStepsHandle, this, &ARedemptionPlayer::StepSound, WALK_STEP_TIMER, true);
+				UAISense_Hearing::ReportNoiseEvent(GetWorld(), GetActorLocation(), 0.5f, this);
+				PlayerNoise = 0.5;
 			}
+
+			if (!FootStepsHandle.IsValid())
+			{
+				if (bIsCrouched)
+				{
+					StepVolume = 0.35;
+					GetWorld()->GetTimerManager().SetTimer(FootStepsHandle, this, &ARedemptionPlayer::StepSound, CROUCH_STEP_TIMER, true);
+				}
+				else if (bIsSprinting)
+				{
+					StepVolume = 1.5;
+					GetWorld()->GetTimerManager().SetTimer(FootStepsHandle, this, &ARedemptionPlayer::StepSound, SPRINT_STEP_TIMER, true);
+				}
+				else
+				{
+					StepVolume = 0.75;
+					GetWorld()->GetTimerManager().SetTimer(FootStepsHandle, this, &ARedemptionPlayer::StepSound, WALK_STEP_TIMER, true);
+				}
+			}
+		}
+		else
+		{
+			GetWorld()->GetTimerManager().ClearTimer(FootStepsHandle);
+			PlayerNoise = 0;
 		}
 	}
 }
