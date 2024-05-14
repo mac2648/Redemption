@@ -98,6 +98,8 @@ protected:
 
 	bool NeedToStopSprinting = false;
 
+	class URedemptionGameInstance* GameInstance;
+
 private:
 	// Stamina settings
 	UPROPERTY(VisibleAnywhere, Category = "Stamina")
