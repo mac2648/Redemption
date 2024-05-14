@@ -41,6 +41,9 @@ struct FSaveInfo
 	UPROPERTY(BlueprintReadWrite)
 	FString Culture = "English";
 
+	UPROPERTY(BlueprintReadWrite)
+	float CameraSensitivity = 1.0f;
+
 };
 
 UCLASS()

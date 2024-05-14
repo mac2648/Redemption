@@ -37,6 +37,8 @@ void URedemptionGameInstance::TransferInfoSaveToInstance()
 	Culture = SaveInfo.Culture;
 	CameraShake = SaveInfo.CameraShake;
 	CompletedLevels = SaveInfo.CompletedLevels;
+
+	CameraSensitivity = SaveInfo.CameraSensitivity;
 }
 
 void URedemptionGameInstance::SetupSaveInfo()
@@ -50,6 +52,7 @@ void URedemptionGameInstance::SetupSaveInfo()
 	SaveInfo.Culture = Culture;
 	SaveInfo.CameraShake = CameraShake;
 	SaveInfo.CompletedLevels = CompletedLevels;
+	SaveInfo.CameraSensitivity = CameraSensitivity;
 }
 
 void URedemptionGameInstance::SetCompleteLevel()

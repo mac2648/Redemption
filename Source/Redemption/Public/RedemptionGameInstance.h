@@ -37,6 +37,8 @@ protected:
 	bool IsVsync;
 	bool CameraShake;
 
+	float CameraSensitivity;
+
 public:
 	URedemptionGameInstance();
 
@@ -103,6 +105,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	bool GetCompletedLevel(int Index) const { return CompletedLevels[Index]; }
 
+	UFUNCTION(BlueprintCallable)
+	float GetCameraSensitivity() const { return CameraSensitivity; }
+
+	UFUNCTION(BlueprintCallable)
+	void SetCameraSensitivity(float NewCameraSensitivity) { CameraSensitivity = NewCameraSensitivity; }
 
 	void UnlockAllLevels();
 };

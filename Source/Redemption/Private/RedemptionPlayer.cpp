@@ -87,6 +87,8 @@ ARedemptionPlayer::ARedemptionPlayer()
 void ARedemptionPlayer::BeginPlay()
 {
 	Super::BeginPlay();
+
+	GameInstance = Cast<URedemptionGameInstance>(UGameplayStatics::GetGameInstance(this));
 	
 	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
 	{
@@ -300,11 +302,14 @@ void ARedemptionPlayer::Look(const FInputActionValue& Value)
 	// input is a Vector2D
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
 
-	if (Controller != nullptr)
+	if (GameInstance)
 	{
-		// add yaw and pitch input to controller
-		AddControllerYawInput(LookAxisVector.X);
-		AddControllerPitchInput(LookAxisVector.Y);
+		if (Controller != nullptr)
+		{
+			// add yaw and pitch input to controller
+			AddControllerYawInput(LookAxisVector.X * GameInstance->GetCameraSensitivity());
+			AddControllerPitchInput(LookAxisVector.Y * GameInstance->GetCameraSensitivity());
+		}
 	}
 }
 
@@ -444,7 +449,7 @@ void ARedemptionPlayer::ChangePowerUp()
 
 void ARedemptionPlayer::UnlockAllLevels()
 {
-	if (URedemptionGameInstance* GameInstance = Cast<URedemptionGameInstance>(UGameplayStatics::GetGameInstance(GetWorld())))
+	if (GameInstance)
 	{
 		GameInstance->UnlockAllLevels();
 	}
