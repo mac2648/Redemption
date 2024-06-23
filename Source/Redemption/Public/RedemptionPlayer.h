@@ -166,6 +166,7 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+	void ControllerStatusChanged(bool Connected, FPlatformUserId PlatformId, int32 UserId);
 
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
