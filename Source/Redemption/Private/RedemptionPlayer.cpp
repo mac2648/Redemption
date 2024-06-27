@@ -19,7 +19,7 @@
 #include "StaminaBarWidget.h"
 #include "Sound/SoundCue.h"
 #include "RedemptionGameInstance.h"
-
+#include "Misc/CoreDelegates.h"
 
 
 #define POWER_UP_ACTION PowerUpComp->GetUsePowerAction()
@@ -89,6 +89,8 @@ void ARedemptionPlayer::BeginPlay()
 	Super::BeginPlay();
 
 	GameInstance = Cast<URedemptionGameInstance>(UGameplayStatics::GetGameInstance(this));
+
+	FCoreDelegates::OnControllerConnectionChange.AddUObject(this, &ARedemptionPlayer::ControllerStatusChanged);
 	
 	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
 	{
@@ -428,6 +430,14 @@ void ARedemptionPlayer::DeactivateInput()
 			Subsystem->RemoveMappingContext(DefaultMappingContext);
 			Subsystem->RemoveMappingContext(TPPMappingContext);
 		}
+	}
+}
+
+void ARedemptionPlayer::ControllerStatusChanged(bool Connected, FPlatformUserId PlatformId, int32 UserId)
+{
+	if (!Connected)
+	{
+		LauchPauseMenu();
 	}
 }
 
